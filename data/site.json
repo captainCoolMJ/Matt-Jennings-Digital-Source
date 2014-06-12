@@ -1,0 +1,81 @@
+{
+	"timeline": [
+		{
+			"from":"2003",
+			"to": "present",
+			"action": "Play Guitar",
+			"category": "life",
+			"details": "I've been actively playing the guitar since 2003 and continue to jam."
+		},
+		{
+			"from":"sept 1 2008",
+			"to": "july 20 2012",
+			"action": "Move to Canterbury, UK",
+			"category": "life",
+			"details": "I left America to pursue a higher education in the United Kingdom."
+		},
+		{
+			"from":"May 29 1990",
+			"to": "present",
+			"action": "Travel the World",
+			"category": "life",
+			"details": "One of my passions in life is to explore as much of the world as I can. I have had the opportunity to visit many countries already and continue to do so."
+		},
+		{
+			"from":"sept 1 2008",
+			"to": "july 1 2012",
+			"action": "University of Kent - BSc (Hons) Multimedia Technology & Design",
+			"category": "life",
+			"details": "Began and completed a university education."
+		},
+		{
+			"from":"august 1 2012",
+			"to": "present",
+			"action": "Live in Philadelphia, PA",
+			"details": "Graduated, moved back to America, and got an apartment in Philadelphia."
+		},
+		{
+			"from":"oct 20 2013",
+			"to": "oct 24 2013",
+			"action": "CSS Dev Conf 2013",
+			"category": "life",
+			"details": "I attended the CSS Dev Conf in Estes Park, Colorado to refine my CSS and front-end development skills."
+		},
+		{
+			"from":"june 1 2007",
+			"to": "june 1 2008",
+			"action": "Student Video Technician, HCTV",
+			"category": "work",
+			"details": "Worked for a local cable access channel in my town filming local events such as sports, music and theatre."
+		},
+		{
+			"from":"july 1 2010",
+			"to": "sept 1 2010",
+			"action": "Interactive Design Intern, Blue Diesel",
+			"category": "work",
+			"details": "Assisted in designing websites and print publications for pharmaceutical clients."
+		},
+		{
+			"from":"july 1 2011",
+			"to": "sept 1 2011",
+			"action": "Interactive Design Freelancer, Blue Diesel",
+			"category": "work",
+			"details": "Transitioned from an intern to freelance position at Blue Diesel. Projects included website design, banner ad design, icon design, and email template design."
+		},
+		{
+			"from":"oct 1 2012",
+			"to": "dec 1 2013",
+			"action": "Junior Web Developer, Agency M",
+			"category": "work",
+			"details": "Developed websites in an ad agency. Most sites required knowledge of HTML, CSS, JavaScript & PHP. Also used Drupal and Wordpress for CMS frameworks."
+		},
+		{
+			"from":"jan 1 2014",
+			"to": "present",
+			"action": "Multimedia Developer, Red Nucleus",
+			"category": "work",
+			"details": "Develop interactive e-learning solutions for major pharmaceutical clients. Development heavily involves use of HTML, CSS, Javascript and Grunt. Also involves knowledge of databasing, Angular, Backbone and basic server side scripting."
+		}
+
+	]
+}

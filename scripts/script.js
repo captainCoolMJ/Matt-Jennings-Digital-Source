@@ -181,7 +181,7 @@
 	/*
 	* Smooth scrolling main navigation
 	***********************************/
-	$('a[href*=#]:not([href=#])').click(function() {
+	$('a[href*=#]:not([href=#])').click(function(e) {
 		if( location.pathname.replace(/^\//,'' ) == this.pathname.replace(/^\//,'') && location.hostname == this.hostname ) {
 
 			var target = $(this.hash);
@@ -191,7 +191,7 @@
 				$('html,body').stop().animate({
 					scrollTop: target.offset().top
 				}, 350, 'easeInOutQuart');
-				return false;
+				e.preventDefault();
 			}
 
 		}

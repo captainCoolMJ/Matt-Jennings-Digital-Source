@@ -60,7 +60,7 @@
 			"to": "sept 1 2011",
 			"action": "Interactive Design Freelancer, Blue Diesel",
 			"category": "work",
-			"details": "Transitioned from an intern to freelance position at Blue Diesel. Projects included website design, banner ad design, icon design, and email template design. This gave me a perfect jump start into creating effective UI/UX and my skill set become a powerful combination of art and code."
+			"details": "Transitioned from an intern to freelance position at Blue Diesel. Projects included website design, banner ad design, icon design, and email template design. This gave me a perfect jump start into creating effective UI/UX and my skill set became a powerful combination of art and code."
 		},
 		{
 			"from":"oct 1 2012",
@@ -71,10 +71,17 @@
 		},
 		{
 			"from":"jan 1 2014",
-			"to": "present",
+			"to": "july 31 2014",
 			"action": "Multimedia Developer, Red Nucleus",
 			"category": "work",
 			"details": "Develop interactive e-learning solutions for major pharmaceutical clients in the form of iPad focused HTML5 games, visual perceptorships and interactive eBooks. Also assist in the migration of developers to modern techniques by leading multiple courses and seminars on responsive design, HTML5, CSS3, and modern Javascript frameworks."
+		},
+		{
+			"from":"aug 16 2014",
+			"to": "present",
+			"action": "Front End Engineer, Qordoba",
+			"category": "work",
+			"details": "My work focuses on building a modern language localization platform with an AngularJS based front-end. Working at Qordoba requires an extensive knowledge of Javascript, HTML, CSS (SASS), Grunt, and Git, however, I have also found myself developing with Node.js and unit testing frameworks too."
 		}
 
 	]

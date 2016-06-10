@@ -343,7 +343,7 @@
 				},
 				error: function(err) {
 
-					$('.form-contact').html('<p>There has been an error. Please <a href="mailto:info@redmeded.com" title="Send us an email">send us an email</a> instead.</p><p>' + err.status + ': ' + err.statusText + '</p>');
+					$('.form-contact').html('<p>There has been an error. Please <a href="mailto:matt@mattjenningsdigital.com" title="Send us an email">send me an email</a> instead.</p><p>' + err.status + ': ' + err.statusText + '</p>');
 					$('.form-text').remove();
 
 				},

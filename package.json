@@ -1,0 +1,62 @@
+{
+  "name": "matt-jennings-digital",
+  "version": "4.0.0",
+  "description": "Matt Jennings' Portfolio Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "webpack",
+    "clean": "rimraf ./build",
+    "start": "npm run build && node -r dotenv/config build/app.js",
+    "start:dev": "nodemon -e ts -w ./source -x npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/captainCoolMJ/Matt-Jennings-Digital-Source.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/captainCoolMJ/Matt-Jennings-Digital-Source/issues"
+  },
+  "homepage": "https://github.com/captainCoolMJ/Matt-Jennings-Digital-Source#readme",
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.21",
+    "autoprefixer": "^9.4.7",
+    "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^2.1.0",
+    "dotenv-webpack": "^1.7.0",
+    "jest": "^24.0.0",
+    "nodemon": "^1.18.9",
+    "postcss-loader": "^3.0.0",
+    "rimraf": "^2.6.3",
+    "style-loader": "^0.23.1",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.3.1",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4"
+  },
+  "jest": {
+    "collectCoverageFrom": ["source/**/*.ts"],
+    "moduleFileExtensions": ["ts", "js"],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testMatch": [
+      "**/*.spec.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "esModuleInterop": true
+        }
+      }
+    }
+  }
+}

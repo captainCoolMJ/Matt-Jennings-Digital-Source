@@ -6,11 +6,16 @@
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
-        "lib": ["es2015"],
+        "resolveJsonModule": true,
+        "jsx": "react",
+        "lib": ["dom", "es2015"],
         "noUnusedLocals": true,
-        "noUnusedParameters": false
+        "noUnusedParameters": false,
+        "downlevelIteration": true
     },
     "include": [
-        "./source/**/*.ts"
+        "./typings/**/*",
+        "./source/**/*.ts",
+        "./source/**/*.tsx"
     ]
 }

@@ -9,6 +9,7 @@ import { appConfigurationSanitize } from './app/configuration-sanitize';
 import { appConfigurationCreate } from './app/configuration-create';
 import { appRootStoreGetInitialState } from '../app/root-store/get-initial-state';
 
+const manifest = JSON.parse(fs.readFileSync('./build/manifest.json').toString());
 const configuration = appConfigurationCreate();
 
 const app = express();
@@ -59,6 +60,7 @@ app.use('*', (req, res) => {
     const variables = {
         title: configuration.sitename,
         content: renderToString(appStart(store, messages, configuration)),
+        css: manifest['main.css'],
         base: configuration.window_keys.base,
         store: `${configuration.window_keys.state}: ${JSON.stringify(store.getState())}`,
         messages: `${configuration.window_keys.translations}: ${JSON.stringify(messages)}`,

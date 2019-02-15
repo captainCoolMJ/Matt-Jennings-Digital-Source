@@ -6,6 +6,16 @@ import { AppI18nMessageType } from '../app/i18n/types';
 import { AppConfigurationType } from '../app/configuration/types';
 import { appStart } from '../app/start';
 
+declare global {
+    interface Window { 
+        __mjd: {
+            s: AppRootStoreStateInterface;
+            t: AppI18nMessageType;
+            c: AppConfigurationType;
+        }; 
+    }
+}
+
 export const clientEntry = (
     rootElement: HTMLElement, 
     initialState: AppRootStoreStateInterface = appRootStoreGetInitialState(),
@@ -23,17 +33,9 @@ export const clientEntry = (
     return hydrate(appStart(store, translations, settings), rootElement);
 };
 
-(window as any).__mjd = (window as any).__mjd || {};
+if (document.getElementById('root') && window.__mjd) {
 
-try {
-
-    clientEntry(
-        document.getElementById('root'), 
-        (window as any).__mjd.s,
-        (window as any).__mjd.t,
-        (window as any).__mjd.c,
-    );
-} catch (e) {
-
-    console.error(e);
+    const { s, t, c } = window.__mjd;
+    
+    clientEntry(document.getElementById('root'), s, t, c);
 }

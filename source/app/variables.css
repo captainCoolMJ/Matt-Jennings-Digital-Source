@@ -1,0 +1,10 @@
+:root {
+    --color-white: #FFF;
+    --color-black: #111;
+    --color-blue: #08C;
+    --color-orange: #F68620;
+
+    --font-family-heading: 'Kameron', Arial, sans-serif;
+    --font-family-body: 'Lato', Helvetica, Arial, sans-serif;
+    --font-size-base: 10px;
+}

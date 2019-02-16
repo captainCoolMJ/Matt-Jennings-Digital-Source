@@ -1,0 +1,7 @@
+.text {
+    color: var(--color-black);
+    font-size: 1.6rem;
+    font-family: var(--font-family-body);
+    font-weight: 300;
+    line-height: 1.5;
+}

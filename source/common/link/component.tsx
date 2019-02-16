@@ -8,6 +8,7 @@ export const LinkComponent: FunctionComponent<LinkComponentPropsInterface> = (pr
         href={props.to} 
         title={props.title} 
         target={props.open ? '_blank' : '_self'}
+        onClick={props.onClick}
     >
         {props.children}
     </a>

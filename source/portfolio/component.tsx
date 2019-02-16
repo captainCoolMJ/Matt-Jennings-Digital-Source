@@ -5,12 +5,33 @@ import { TitleComponent } from '../common/title/component';
 import { TextComponent } from '../common/text/component';
 import { ListComponent } from '../common/list/component';
 import { AppI18nComponent } from '../app/i18n/component';
+import { PortfolioStoreReadyStateEnum } from './store/ready-state.enum';
+import { api } from '../helper/api';
 
 export class PortfolioComponent extends Component<PortfolioComponentPropsInterface> {
 
     constructor(props) {
         super(props);
-        
+
+        if (props.portfolio.readyState !== PortfolioStoreReadyStateEnum.loaded) {
+    
+            props.setState({
+                portfolio: {
+                    ...props.portfolio,
+                    readyState: PortfolioStoreReadyStateEnum.loading
+                }
+            });
+    
+            api.fetch(`${props.configuration.apiBaseUrl}/api/portfolio`)
+                .then((body) => {
+                    props.setState({
+                        portfolio: {
+                            items: body.data,
+                            readyState: PortfolioStoreReadyStateEnum.loaded
+                        }
+                    });
+                });
+        }
     }
 
     public render(): ReactNode {

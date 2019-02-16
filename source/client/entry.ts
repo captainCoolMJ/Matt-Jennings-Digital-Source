@@ -8,9 +8,7 @@ import { appStart } from '../app/start';
 import '../common/style/normalize.css';
 import '../app/variables.css';
 import './style.css';
-import { skillsStoreSubscriber } from '../skills/store/subscriber';
-import { portfolioStoreSubscriber } from '../portfolio/store/subscriber';
-import { timelineStoreSubscriber } from '../timeline/store/subscriber';
+import { browserSubscriber } from '../router/browser';
 
 declare global {
     interface Window { 
@@ -36,9 +34,8 @@ export const clientEntry = (
 
     const store = storeCreate(initialState);
 
-    portfolioStoreSubscriber(store, settings);
-    timelineStoreSubscriber(store, settings);
-    skillsStoreSubscriber(store, settings);
+    store.subscribe((state) => console.info(state));
+    store.subscribe(browserSubscriber)
 
     return hydrate(appStart(store, translations, settings), rootElement);
 };

@@ -5,12 +5,33 @@ import { TimelineItemComponent } from './item/component';
 import { TimelineItemCategoryEnum } from './item/category.enum';
 import { ListComponent } from '../common/list/component';
 import { AppI18nComponent } from '../app/i18n/component';
+import { TimelineStoreReadyStateEnum } from './store/ready-state.enum';
+import { api } from '../helper/api';
 
 export class TimelineComponent extends Component<TimelineComponentPropsInterface> {
 
     constructor(props) {
         super(props);
 
+        if (props.timeline.readyState !== TimelineStoreReadyStateEnum.loaded) {
+    
+            props.setState({
+                timeline: {
+                    ...props.timeline,
+                    readyState: TimelineStoreReadyStateEnum.loading
+                }
+            });
+    
+            api.fetch(`${props.configuration.apiBaseUrl}/api/timeline`)
+                .then((body) => {
+                    props.setState({
+                        timeline: {
+                            items: body.data,
+                            readyState: TimelineStoreReadyStateEnum.loaded
+                        }
+                    });
+                });
+        }
     }
 
     public render(): ReactNode {

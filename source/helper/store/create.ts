@@ -1,8 +1,7 @@
 import { EventEmitter } from 'events';
-import { StoreStateInterface } from './state.interface';
 import { StoreType, StoreStateType } from './types';
 
-export const storeCreate = <T extends StoreStateType>(state: StoreStateInterface<T> = {}): StoreType<T> => {
+export const storeCreate = <T extends StoreStateType>(state: T): StoreType<T> => {
 
     const emitter = new EventEmitter();
 
@@ -12,7 +11,7 @@ export const storeCreate = <T extends StoreStateType>(state: StoreStateInterface
             emitter.emit('setState', state);
         },
         getState: () => state,
-        subscribe: (cb: (state: StoreStateInterface<T>) => void) => {
+        subscribe: (cb: (state: T) => void) => {
 
             emitter.addListener('setState', cb);
 

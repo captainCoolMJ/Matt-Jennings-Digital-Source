@@ -5,6 +5,9 @@ import { appRootStoreGetInitialState } from '../app/root-store/get-initial-state
 import { AppI18nMessageType } from '../app/i18n/types';
 import { AppConfigurationType } from '../app/configuration/types';
 import { appStart } from '../app/start';
+import '../common/style/normalize.css';
+import '../app/variables.css';
+import './style.css';
 
 declare global {
     interface Window { 

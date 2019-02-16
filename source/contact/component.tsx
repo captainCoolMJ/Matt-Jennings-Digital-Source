@@ -14,30 +14,36 @@ export const ContactComponent: FunctionComponent<ContactComponentPropsInterface>
 
         <ListComponent>
             <ListComponent.Item>
-                <LinkComponent 
-                    to={`mailto:${props.configuration.links.email}?subject=${props.translate('contact.optionEmailSubject')}`}
-                    title={props.translate('contact.optionEmailTitle')}
-                >
-                    <AppI18nComponent id='contact.optionEmail' />
-                </LinkComponent>
+                <TextComponent>
+                    <LinkComponent 
+                        to={`mailto:${props.configuration.links.email}?subject=${props.translate('contact.optionEmailSubject')}`}
+                        title={props.translate('contact.optionEmailTitle')}
+                    >
+                        <AppI18nComponent id='contact.optionEmail' />
+                    </LinkComponent>
+                </TextComponent>
             </ListComponent.Item>
             <ListComponent.Item>
-                <LinkComponent 
-                    open 
-                    to={props.configuration.links.github} 
-                    title={props.translate('contact.optionGithubTitle')
-                }>
-                    <AppI18nComponent id='contact.optionGithub' />
-                </LinkComponent>
+                <TextComponent>
+                    <LinkComponent 
+                        open 
+                        to={props.configuration.links.github} 
+                        title={props.translate('contact.optionGithubTitle')
+                    }>
+                        <AppI18nComponent id='contact.optionGithub' />
+                    </LinkComponent>
+                </TextComponent>
             </ListComponent.Item>
             <ListComponent.Item>
-                <LinkComponent 
-                    open 
-                    to={props.configuration.links.linked_in}
-                    title={props.translate('contact.optionLinkedInTitle')
-                }>
-                    <AppI18nComponent id='contact.optionLinkedIn' />
-                </LinkComponent>
+                <TextComponent>
+                    <LinkComponent 
+                        open 
+                        to={props.configuration.links.linked_in}
+                        title={props.translate('contact.optionLinkedInTitle')
+                    }>
+                        <AppI18nComponent id='contact.optionLinkedIn' />
+                    </LinkComponent>
+                </TextComponent>
             </ListComponent.Item>
         </ListComponent>
     </div>

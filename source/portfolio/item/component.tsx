@@ -12,7 +12,7 @@ export const PortfolioItemComponent: FunctionComponent<PortfolioItemComponentPro
         <TextComponent>{props.model.description}</TextComponent>
         <ListComponent>
             {props.model.tags.map((tag, index) => (
-                <ListComponent.Item key={index}>{tag}</ListComponent.Item>
+                <ListComponent.Item key={index}><TextComponent>{tag}</TextComponent></ListComponent.Item>
             ))}
         </ListComponent>
         <TextComponent><LinkComponent to={props.model.links.external} open>{props.model.links.external}</LinkComponent></TextComponent>

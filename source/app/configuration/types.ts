@@ -3,6 +3,6 @@ import { ConfigurationInjectPropsInterface } from '../../helper/configuration/in
 
 export type AppDangerousConfigurationType = typeof configuration;
 
-export type AppConfigurationType = Pick<AppDangerousConfigurationType, 'sitename'|'links'>;
+export type AppConfigurationType = Pick<AppDangerousConfigurationType, 'sitename'|'links'|'apiBaseUrl'>;
 
 export type AppConfigurationInjectPropsType = ConfigurationInjectPropsInterface<AppConfigurationType>;

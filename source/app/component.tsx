@@ -48,19 +48,25 @@ export const AppComponent: FunctionComponent<AppComponentPropsInterface> = (prop
         <NavigationComponent>
             <ListComponent>
                 <ListComponent.Item>
-                    <LinkComponent to='#work' title={props.translate('navigation.workTitle')}>
-                        <AppI18nComponent id='navigation.work' />
-                    </LinkComponent>
+                    <TextComponent>
+                        <LinkComponent to='#work' title={props.translate('navigation.workTitle')}>
+                            <AppI18nComponent id='navigation.work' />
+                        </LinkComponent>
+                    </TextComponent>
                 </ListComponent.Item>
                 <ListComponent.Item>
-                    <LinkComponent to='#experience' title={props.translate('navigation.experienceTitle')}>
-                        <AppI18nComponent id='navigation.experience' />
-                    </LinkComponent>
+                    <TextComponent>
+                        <LinkComponent to='#experience' title={props.translate('navigation.experienceTitle')}>
+                            <AppI18nComponent id='navigation.experience' />
+                        </LinkComponent>
+                    </TextComponent>
                 </ListComponent.Item>
                 <ListComponent.Item>
-                    <LinkComponent to='#talk' title={props.translate('navigation.contactTitle')}>
-                        <AppI18nComponent id='navigation.contact' />
-                    </LinkComponent>
+                    <TextComponent>
+                        <LinkComponent to='#talk' title={props.translate('navigation.contactTitle')}>
+                            <AppI18nComponent id='navigation.contact' />
+                        </LinkComponent>
+                    </TextComponent>
                 </ListComponent.Item>
             </ListComponent>
         </NavigationComponent>

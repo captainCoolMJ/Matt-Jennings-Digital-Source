@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { TitleComponentPropsInterface } from './component-props.interface';
+import styles from './styles.css';
 
 const priorityToTagName = {
     1: 'h1',
@@ -18,5 +19,5 @@ export const TitleComponent: FunctionComponent<TitleComponentPropsInterface> = (
 
     const Tag = priorityToTagName[priority];
 
-    return <Tag>{props.children}</Tag>
+    return <Tag className={styles.title}>{props.children}</Tag>
 };

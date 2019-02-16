@@ -1,5 +1,8 @@
 import { AppRootStoreInjectedPropsType } from "../app/root-store/types";
+import { AppConfigurationInjectPropsType } from "../app/configuration/types";
 
-export interface SkillsComponentProps extends AppRootStoreInjectedPropsType<'skills'> {
+export interface SkillsComponentPropsInterface extends 
+    AppRootStoreInjectedPropsType<'skills', true>,
+    AppConfigurationInjectPropsType {
 
 }

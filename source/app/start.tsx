@@ -11,7 +11,7 @@ import { AppContainer } from './container';
 export const appStart = (
     store: StoreType<AppRootStoreStateInterface>,
     translations: AppI18nMessageType,
-    settings: AppConfigurationType,
+    settings: AppConfigurationType
 ) => (
     <StoreContext.Provider value={store}>
         <I18nContext.Provider value={translations}>

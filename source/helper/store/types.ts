@@ -7,7 +7,7 @@ export type StoreSetStateType<T extends StoreStateType> = (newState: Partial<Sto
 export type StoreType<T extends StoreStateType> = {
     setState: StoreSetStateType<T>;
     getState: () => T;
-    subscribe: (cb: (state: T) => void) => () => void;
+    subscribe: (cb: (state: T, prevState: T) => void) => () => void;
 }
 
 export type StoreInjectedPropsType<

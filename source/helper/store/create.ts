@@ -7,11 +7,12 @@ export const storeCreate = <T extends StoreStateType>(state: T): StoreType<T> =>
 
     return {
         setState: (newState) => {
+            const oldState = JSON.parse(JSON.stringify(state));
             Object.assign(state, newState);
-            emitter.emit('setState', state);
+            emitter.emit('setState', state, oldState);
         },
         getState: () => state,
-        subscribe: (cb: (state: T) => void) => {
+        subscribe: (cb: (state: T, prevState: T) => void) => {
 
             emitter.addListener('setState', cb);
 

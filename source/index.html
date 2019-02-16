@@ -8,10 +8,10 @@
 </head>
 <body>
     <div id="root">{{content}}</div>
-    <script>window['{{base}}'] = {
-        {{store}},
-        {{messages}},
-        {{configuration}},
+    <script>window.__data = {
+        s: {{store}},
+        t: {{messages}},
+        c: {{configuration}}
     };</script>
 </body>
 </html>

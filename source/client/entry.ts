@@ -8,10 +8,13 @@ import { appStart } from '../app/start';
 import '../common/style/normalize.css';
 import '../app/variables.css';
 import './style.css';
+import { skillsStoreSubscriber } from '../skills/store/subscriber';
+import { portfolioStoreSubscriber } from '../portfolio/store/subscriber';
+import { timelineStoreSubscriber } from '../timeline/store/subscriber';
 
 declare global {
     interface Window { 
-        __mjd: {
+        __data: {
             s: AppRootStoreStateInterface;
             t: AppI18nMessageType;
             c: AppConfigurationType;
@@ -33,12 +36,16 @@ export const clientEntry = (
 
     const store = storeCreate(initialState);
 
+    portfolioStoreSubscriber(store, settings);
+    timelineStoreSubscriber(store, settings);
+    skillsStoreSubscriber(store, settings);
+
     return hydrate(appStart(store, translations, settings), rootElement);
 };
 
-if (document.getElementById('root') && window.__mjd) {
+if (document.getElementById('root') && window.__data) {
 
-    const { s, t, c } = window.__mjd;
-    
+    const { s, t, c } = window.__data;
+
     clientEntry(document.getElementById('root'), s, t, c);
 }

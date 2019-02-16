@@ -1,8 +1,8 @@
-import configuration from '../../../configuration/settings.json';
-import { ConfigurationInjectPropsInterface } from '../../helper/configuration/inject-props.interface.js';
+import { ConfigurationInjectPropsInterface } from '../../helper/configuration/inject-props.interface';
+import { AppConfigurationInterface } from '../configuration.interface';
 
-export type AppDangerousConfigurationType = typeof configuration;
+export type AppDangerousConfigurationType = AppConfigurationInterface;
 
-export type AppConfigurationType = Pick<AppDangerousConfigurationType, 'sitename'|'links'|'apiBaseUrl'>;
+export type AppConfigurationType = Pick<AppConfigurationInterface, 'sitename'|'links'|'apiBaseUrl'>;
 
 export type AppConfigurationInjectPropsType = ConfigurationInjectPropsInterface<AppConfigurationType>;

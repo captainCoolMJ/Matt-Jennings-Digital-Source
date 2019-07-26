@@ -6,16 +6,16 @@
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-TKVHNVS');</script>
+	})(window,document,'script','dataLayer','<%=keys.gtm%>');</script>
 	<!-- End Google Tag Manager -->
 	<meta charset="utf-8">
-	<title>Matt Jennings | Front End Developer &amp; All Around Great Guy</title>
-	<meta name="description" content="Matt Jennings is a Dubai based front end developer specializing in handcrafted responsive websites and applications.">
+	<title><%=title%></title>
+	<meta name="description" content="<%=description%>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-	<link rel="icon" href="/images/favicon.ico">
+	<link rel="icon" href="<%=assets.favicon%>">
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Kameron|Lato:300,400,300italic,700">
-	<link rel="stylesheet" href="/style/screen.css">
+	<link rel="stylesheet" href="<%=assets.css%>">
 
 	<style>
 
@@ -48,7 +48,7 @@
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKVHNVS"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%=keys.gtm%>"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -224,7 +224,7 @@ var path = document.querySelector('.path'),
 <script src="scripts/modernizr.custom.js"></script>
 <script src="scripts/playhead.js"></script>
 
-<script src="scripts/script.min.js"></script>
+<script src="<%=script%>"></script>
 <script src="scripts/grid.js"></script>
 <script>
 

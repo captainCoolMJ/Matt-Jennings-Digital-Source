@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  client:
+    image: captaincool/mjd:latest
+    command: "tail -f /dev/null"
+    ports: 
+      - 8080:8080
+    volumes:
+      - "..:/var/www/html"

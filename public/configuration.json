@@ -1,0 +1,11 @@
+{
+    "title": "Matt Jennings | Front End Developer &amp; All Around Great Guy",
+    "description": "Matt Jennings is a Dubai based front end developer specializing in handcrafted responsive websites and applications.",
+    "assets": {
+        "favicon": "/images/favicon.ico",
+        "css": "/style/screen.css"
+    },
+    "keys": {
+        "gtm": "GTM-TKVHNVS"
+    }
+}

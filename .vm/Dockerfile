@@ -1,8 +1,6 @@
-FROM ubuntu:16.04
+FROM node:10.16
 
-RUN apt-get update && apt-get install -y nodejs npm ruby-dev ruby-compass
-
-RUN ln -s `which nodejs` /usr/bin/node
+RUN apt-get update && apt-get install -y curl ruby-dev ruby-compass
 
 WORKDIR /var/www/html
 

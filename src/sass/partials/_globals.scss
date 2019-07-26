@@ -1,0 +1,63 @@
+
+/* Grid information */
+@include add-grid(12);
+@include add-gutter(1/3);
+
+/* Responsive Pieces */
+$tablet : '400px';
+$desktop : '769px';
+
+/* Default font-size */
+$base_size : 10px;
+
+/* Classes */
+.cf {
+	@include clearfix();
+}
+
+.hide_text {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.jump_link {
+	display: block;
+	padding-top: 51px;
+	margin-top: -51px;
+
+	@extend .hide_text;
+}
+
+/* Mixins */
+@mixin box-sizing($val) {
+	-webkit-box-sizing: $val;
+	   -moz-box-sizing: $val;
+			box-sizing: $val;
+}
+
+@mixin box-shadow($val) {
+	-webkit-box-shadow: $val;
+	   -moz-box-shadow: $val;
+			box-shadow: $val;
+}
+
+@mixin font-size($size) {
+	font-size: $size * $base_size;
+	font-size: $size + rem;
+}
+
+@mixin border-radius($val) {
+	-moz-border-radius: $val;
+		 border-radius: $val;
+}
+
+@mixin transition($val) {
+
+	-webkit-transition: $val;
+	   -moz-transition: $val;
+			transition: $val;
+			
+}

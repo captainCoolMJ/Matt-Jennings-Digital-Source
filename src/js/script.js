@@ -70,7 +70,7 @@
 			};
 		};
 
-		var TimelineEvt = function(event) {
+		var Event = function(event) {
 			this.start = formatDate(event.from);
 			this.end = event.to.toLowerCase() !== 'present' ? formatDate(event.to) : formatDate(Date.now());
 			this.duration = this.end.ms - this.start.ms;
@@ -80,7 +80,7 @@
 			this.$timelinePlot = $('<div class="timeline-evt">');
 		};
 
-		TimelineEvt.prototype.build = function(index, startDate) {
+		Event.prototype.build = function(index, startDate) {
 
 			if( this.end.ms < startDate ) {
 				return false;
@@ -123,7 +123,7 @@
 
 		};
 
-		TimelineEvt.prototype.addEventListeners = function() {
+		Event.prototype.addEventListeners = function() {
 
 			this.$timelinePlot.hover(function() {
 				$(this).toggleClass('hover');
@@ -139,7 +139,7 @@
 
 			timeline.forEach(function(timeEvent) {
 
-				var evt = new TimelineEvt(timeEvent);
+				var evt = new Event(timeEvent);
 
 				sortedEvents.push(evt);
 
@@ -198,166 +198,166 @@
 	});
 
 	/* Form validation */
-	// function checkValid(fieldVal) {
+	function checkValid(fieldVal) {
 
-	// 	if( fieldVal.value.length > 0 ) {
+		if( fieldVal.value.length > 0 ) {
 
-	// 		if( fieldVal.fieldName === 'email' ) {
+			if( fieldVal.fieldName === 'email' ) {
 				
-	// 			var email = fieldVal.value,
-	// 				invalidChars = " /:,;",
-	// 				badChar,
-	// 				atPos,
-	// 				periodPos;
+				var email = fieldVal.value,
+					invalidChars = " /:,;",
+					badChar,
+					atPos,
+					periodPos;
 
-	// 			// Check for invalid characters
-	// 			for (var i=0; i<invalidChars.length; i++) {
+				// Check for invalid characters
+				for (var i=0; i<invalidChars.length; i++) {
 					
-	// 				badChar = invalidChars.charAt(i);
+					badChar = invalidChars.charAt(i);
 
-	// 				if (email.indexOf(badChar,0) > -1) {
-	// 					return false;
-	// 				}
+					if (email.indexOf(badChar,0) > -1) {
+						return false;
+					}
 
-	// 			}
+				}
 				
-	// 			// Check for first @ symbol
-	// 			atPos = email.indexOf("@",1);
+				// Check for first @ symbol
+				atPos = email.indexOf("@",1);
 				
-	// 			if (atPos == -1) {
-	// 				return false;
-	// 			}	
+				if (atPos == -1) {
+					return false;
+				}	
 
-	// 			// Check for only one "@" symbol
-	// 			if (email.indexOf("@",atPos+1) != -1) {
-	// 				return false;
-	// 			}
+				// Check for only one "@" symbol
+				if (email.indexOf("@",atPos+1) != -1) {
+					return false;
+				}
 
-	// 			// Make sure there's a period after the @
-	// 			periodPos = email.indexOf(".",atPos);
-	// 			if (periodPos == -1) {
-	// 				return false;
-	// 			}
+				// Make sure there's a period after the @
+				periodPos = email.indexOf(".",atPos);
+				if (periodPos == -1) {
+					return false;
+				}
 
-	// 			// Ensure at least two characters after "."
-	// 			if (periodPos+3 > email.length)	{
-	// 				return false;
-	// 			}
+				// Ensure at least two characters after "."
+				if (periodPos+3 > email.length)	{
+					return false;
+				}
 
-	// 			// If all the above pass correctly
-	// 			fieldVal.valid = true;
+				// If all the above pass correctly
+				fieldVal.valid = true;
 
 
-	// 		} else {
+			} else {
 
-	// 			fieldVal.valid = true;
+				fieldVal.valid = true;
 
-	// 		}
+			}
 
-	// 	} else {
+		} else {
 
-	// 		fieldVal.valid = false;
+			fieldVal.valid = false;
 
-	// 	}
+		}
 
-	// }
+	}
 
 	// Form processing
-	// function processForm() {
+	function processForm() {
 
-	// 	var formFieldArr = [],
-	// 		$errorList = $('<ul>'),
-	// 		formHeight = $('.form-contact').css('height'),
-	// 		$loaderDiv = $('<div class="loaderDiv">').css({
-	// 			'height': formHeight
-	// 		});
+		var formFieldArr = [],
+			$errorList = $('<ul>'),
+			formHeight = $('.form-contact').css('height'),
+			$loaderDiv = $('<div class="loaderDiv">').css({
+				'height': formHeight
+			});
 
-	// 	$('.form-contact').css('height', formHeight).append($loaderDiv);
+		$('.form-contact').css('height', formHeight).append($loaderDiv);
 
-	// 	// For each required field, create object and add to the field array
-	// 	$('.form-contact .form-required').each(function(i, field){
+		// For each required field, create object and add to the field array
+		$('.form-contact .form-required').each(function(i, field){
 
-	// 		var fieldObj = {
-	// 			'fieldName': $(field).attr('name'),
-	// 			'text': $(field).attr('id').replace('form-', ''),
-	// 			'value': $(field).val(),
-	// 			'valid': false
-	// 		};
+			var fieldObj = {
+				'fieldName': $(field).attr('name'),
+				'text': $(field).attr('id').replace('form-', ''),
+				'value': $(field).val(),
+				'valid': false
+			};
 
-	// 		formFieldArr.push(fieldObj);
+			formFieldArr.push(fieldObj);
 
-	// 	});
+		});
 
-	// 	// Validate all required fields
-	// 	formFieldArr.map(checkValid);
+		// Validate all required fields
+		formFieldArr.map(checkValid);
 
-	// 	// Filter out the correct fields
-	// 	var invalidFields = formFieldArr.filter(function(field){
-	// 		return field.valid === false;
-	// 	});
+		// Filter out the correct fields
+		var invalidFields = formFieldArr.filter(function(field){
+			return field.valid === false;
+		});
 
-	// 	// If there are any errors
-	// 	if( invalidFields.length ) {
+		// If there are any errors
+		if( invalidFields.length ) {
 
-	// 		$('.form-contact').css('height', 'auto');
-	// 		$loaderDiv.remove();
+			$('.form-contact').css('height', 'auto');
+			$loaderDiv.remove();
 
-	// 		invalidFields.forEach(function(field){
+			invalidFields.forEach(function(field){
 
-	// 			var $errorLi = $('<li>'),
-	// 				errVal = field.text.toLowerCase(),
-	// 				errStr = 'Please enter valid ' + errVal;
+				var $errorLi = $('<li>'),
+					errVal = field.text.toLowerCase(),
+					errStr = 'Please enter valid ' + errVal;
 
-	// 			$errorLi.text(errStr);
-	// 			$errorList.append($errorLi);
+				$errorLi.text(errStr);
+				$errorList.append($errorLi);
 
-	// 		});
+			});
 
-	// 		$('.form-error').html($errorList);
+			$('.form-error').html($errorList);
 
-	// 	} else {
+		} else {
 
-	// 		// All fields are valid, prepare data string for form request
-	// 		var dataPrepArr = formFieldArr.map(function(field){
-	// 			var str = encodeURIComponent(field.fieldName)+'='+encodeURIComponent(field.value);
-	// 			return str;
-	// 		});
+			// All fields are valid, prepare data string for form request
+			var dataPrepArr = formFieldArr.map(function(field){
+				var str = encodeURIComponent(field.fieldName)+'='+encodeURIComponent(field.value);
+				return str;
+			});
 
-	// 		var preppedDataStr = dataPrepArr.join('&');
+			var preppedDataStr = dataPrepArr.join('&');
 
-	// 		// Disable editing form
-	// 		$('.form-contact input, .form-contact textarea').attr('disabled', true);
+			// Disable editing form
+			$('.form-contact input, .form-contact textarea').attr('disabled', true);
 
-	// 		$('.form-error').text('');
+			$('.form-error').text('');
 
-	// 		$.ajax({
-	// 			type : "POST",
-	// 			data : preppedDataStr,
-	// 			dataType : 'json',
-	// 			url: "scripts/sendmail.php",
-	// 			success: function(data) {
+			$.ajax({
+				type : "POST",
+				data : preppedDataStr,
+				dataType : 'json',
+				url: "scripts/sendmail.php",
+				success: function(data) {
 					
-	// 				$('.form-contact').html('<p>' + data.msg + '</p>');
-	// 				$('.form-text').remove();
+					$('.form-contact').html('<p>' + data.msg + '</p>');
+					$('.form-text').remove();
 
-	// 			},
-	// 			error: function(err) {
+				},
+				error: function(err) {
 
-	// 				$('.form-contact').html('<p>There has been an error. Please <a href="mailto:matt@mattjenningsdigital.com" title="Send us an email">send me an email</a> instead.</p><p>' + err.status + ': ' + err.statusText + '</p>');
-	// 				$('.form-text').remove();
+					$('.form-contact').html('<p>There has been an error. Please <a href="mailto:info@redmeded.com" title="Send us an email">send us an email</a> instead.</p><p>' + err.status + ': ' + err.statusText + '</p>');
+					$('.form-text').remove();
 
-	// 			},
-	// 			complete: function() {
+				},
+				complete: function() {
 
-	// 				$loaderDiv.remove();
-	// 				$('.form-contact input, .form-contact textarea').attr('disabled', false);
+					$loaderDiv.remove();
+					$('.form-contact input, .form-contact textarea').attr('disabled', false);
 
-	// 			}
-	// 		});
+				}
+			});
 
-	// 	}
+		}
 
-	// }
+	}
 
 	/*$(window).load(function() {
 			
@@ -368,15 +368,6 @@
 		}, 200);
 
 	});*/
-
-	function getBounds ($el) {
-		return {
-			'left': Math.round($el.offset().left),
-			'top': Math.round($el.offset().top),
-			'right': Math.round($el.offset().left + $el.outerWidth()),
-			'bottom': Math.round($el.offset().top + $el.outerHeight())
-		};
-	}
 
 	$(document).ready(function() {
 
@@ -405,26 +396,21 @@
 
 		});
 
-		var bounds;
-		if ($('.timelines').length) {
-			bounds = getBounds($('.timelines'));
-		}
-
-		// var bounds = {
-		// 	'left': Math.round($('.timelines').offset().left),
-		// 	'top': Math.round($('.timelines').offset().top),
-		// 	'right': Math.round($('.timelines').offset().left + $('.timelines').outerWidth()),
-		// 	'bottom': Math.round($('.timelines').offset().top + $('.timelines').outerHeight())
-		// };
+		var bounds = {
+			'left': Math.round($('.timelines').offset().left),
+			'top': Math.round($('.timelines').offset().top),
+			'right': Math.round($('.timelines').offset().left + $('.timelines').outerWidth()),
+			'bottom': Math.round($('.timelines').offset().top + $('.timelines').outerHeight())
+		};
 
 		// contact form
-		// $('.form-contact .form-submit').click(function(e){
+		$('.form-contact .form-submit').click(function(e){
 
-		// 	e.preventDefault();
+			e.preventDefault();
 
-		// 	processForm();
+			processForm();
 
-		// });
+		});
 
 		// should only hover within the bounds of the timeline square
 

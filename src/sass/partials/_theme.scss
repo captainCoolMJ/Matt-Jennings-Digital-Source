@@ -1,0 +1,377 @@
+/* COLORS */
+
+/* Orange */
+$color1 : #F68620;
+/* Blue */
+$color2 : #08C;
+
+$light : #FFF;
+$dark : #111;
+
+$primary: $color1;
+$secondary : $color2;
+
+
+::selection{
+	background: rgba($secondary,.65);
+	color: $light;
+}
+::-moz-selection{
+	background: rgba($secondary,.65);
+	color: $light;
+}
+
+html {
+	font-size: $base_size;
+}
+
+body {
+	font: normal 300 1.6em/1.4 'Lato', Helvetica, Arial, sans-serif;
+	color: $dark;
+	background-color: $light;
+	@include transition(.2s right);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Kameron', Arial, sans-serif;
+}
+
+h1 { @include font-size(1.4); }
+h2 { @include font-size(2.4); }
+h3 { @include font-size(1.8); }
+h4 { font-weight: bold; }
+
+a {
+	color: $dark;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+img {
+	max-width: 100%;
+}
+
+p {
+	padding: 0 0 .25em 0;
+	/* padding: 1em 0;
+
+	&:first-child {
+		padding-top: 0;
+	} */
+}
+
+ul {
+	text-align: left;
+	padding: 1em 0 1em 2em;
+	list-style: disc;
+
+	&:first-child {
+		padding-top: 0;
+	}
+}
+
+.small {
+	vertical-align: top;
+	font-size: .65em;
+}
+
+strong {
+	font-weight: 500;
+}
+
+@include breakpoint($desktop) {
+	form {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+}
+
+label {
+	cursor: pointer;
+}
+
+input,
+button,
+textarea {
+	background: $light;
+	padding: .75em;
+	@include font-size(1.6);
+	font-family: 'Lato', Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	border: 1px solid #EEE;
+
+	@include box-sizing(border-box);
+	@include border-radius(2px);
+	@include box-shadow(inset 0 0 5px rgba($dark, .075));
+	cursor: pointer;
+
+	-webkit-transition: .2s all;
+	   -moz-transition: .2s all;
+			transition: .2s all;
+
+	&:focus {
+		outline: 0;
+		background: rgba($secondary, .08);
+	}
+	&:hover {
+		background: rgba($secondary, .04);
+	}
+}
+
+label,
+input[type="text"],
+textarea {
+	display: block;
+	width: 100%;
+
+	@include breakpoint($tablet) {
+		text-align: left;
+	}
+}
+
+@include breakpoint($desktop) {
+	input[type="submit"] {
+		display: inline-block;
+		float: left;
+	}
+}
+
+textarea {
+	resize: vertical;
+}
+
+header {
+
+	background: $light;
+	background: rgba($light, .75);
+	border-top: 2px solid $primary;
+	border-bottom: 1px dotted #BBB;
+
+	-webkit-transition: background .5s, left .2s;
+	   -moz-transition: background .5s, left .2s;
+			transition: background .5s, left .2s;
+
+	&.hover {
+		background:$light;
+	}
+
+	text-align: left;
+
+	h1 {
+		margin-top: 5px;
+		font-family: 'Lato', Helvetica, Arial, sans-serif;
+	}
+
+	.logo {
+		margin-top: 5px;
+	}
+
+}
+
+.main_nav {
+
+	background: $primary;
+	a {
+		color: $light;
+	}
+
+	#toggleMenu { color: $dark; }
+	@include transition(.2s right);
+
+	ul {
+		list-style: none;
+		padding: 0 2em 0 0;
+		text-align: right;
+	}
+
+	@include breakpoint($desktop) {
+
+		background: transparent;
+		a {
+			color: $dark;
+		}
+
+		ul {
+			padding: 0;
+		}
+	}
+}
+
+.sct .nav-next {
+
+	position: fixed;
+	bottom: 0; left: 0;
+	width: 100%;
+
+	padding: 0;
+
+	display: none;
+	z-index: 9999;
+	
+	a {
+		display: block;
+		padding: 1em;
+		text-align: center;
+		border: 1px solid #EEE;
+		background: $secondary;
+		color: #FFF;
+
+		@include box-sizing(border-box);
+		@include transition(.2s all);
+
+		&:hover {
+			color: $secondary;
+			background: rgba(#FFF, .04);
+		}
+	}
+}
+
+.sct {
+
+	position: relative;
+	border-top: 1px solid #BBB;
+	text-align: left;
+
+	@include breakpoint($desktop) {
+		text-align: center;
+	}
+
+	h1 {
+
+		padding-bottom: .25em;
+		line-height: 1;
+
+		@include font-size(4);
+
+		@include breakpoint($tablet) {
+			@include font-size(7);
+		}
+
+		@include breakpoint($desktop) {
+			@include font-size(8);
+		}
+	}
+
+	a {
+		position: relative;
+		color: $secondary;
+
+		&:hover {
+			text-decoration: none;
+			top: 1px; left: 1px;
+		}
+	}
+
+}
+
+.sct-top {
+	border: 0;	
+}
+
+.sct-exp {
+
+	h2 {
+		padding-bottom: .5em;
+	}
+
+	p {
+		padding: 0;
+	}
+
+	.timelines {
+		text-align: left;
+	}
+
+	.timeline-evt {
+		padding: 1em 0;
+	}
+
+	.plot-date {
+		font-style: italic;
+	}
+
+	.plot-details {
+		padding-top: .5em;
+	}
+
+	/*
+	@include breakpoint($desktop) {
+		.timeline-evt {
+			display: block;
+			border: 1px solid $light;
+			cursor: pointer;
+
+			@include border-radius(2px);
+			@include box-shadow(0 0 3px rgba($dark, .25));
+
+			.time-evt-description {
+				background: $dark;
+				color: #FFF;
+			}
+
+		}
+	} */
+
+}
+
+@include breakpoint($desktop) {
+
+	/* #timeline-life {
+		.timeline-evt {
+			background: rgba($primary, .5);
+		}
+		color: $light;
+	}
+	#timeline-work {
+		.timeline-evt {
+			background: rgba($secondary, .5);
+		}
+		color: $dark;
+	} */
+
+}
+
+.sct-talk {
+
+	legend {
+		display: none;
+	}
+
+	.form-required {
+		
+	}
+
+	.social {
+		text-align: center;
+
+		li {
+			display: inline-block;
+
+			a {
+				display: block;
+				padding: .5em 1em;
+			}
+		}
+	}
+}
+
+footer {
+	text-align: center;
+
+	a {
+		position: relative;
+		color: $secondary;
+
+		&:hover {
+			text-decoration: none;
+			border-bottom: 1px dotted $secondary;
+			top: 1px; left: 1px;
+		}
+	}
+}

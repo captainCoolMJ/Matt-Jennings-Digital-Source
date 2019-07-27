@@ -1,4 +1,4 @@
-(function(jQuery) {
+module.exports = function(jQuery) {
 	'use strict';
 
 	var date = new Date();
@@ -17,7 +17,7 @@
 			
 			//$('.nav-next').fadeToggle(2000);
 
-			$('.timeline-evt').addClass('active');
+			jQuery('.timeline-evt').addClass('active');
 
 		}, 1000);
 	};
@@ -77,7 +77,7 @@
 			this.evt = event.action;
 			this.cat = event.category;
 			this.details = event.details;
-			this.$timelinePlot = $('<div class="timeline-evt">');
+			this.$timelinePlot = jQuery('<div class="timeline-evt">');
 		};
 
 		Event.prototype.build = function(index, startDate) {
@@ -94,10 +94,10 @@
 				this.end.formatted = 'Present';
 			}
 
-			var $timelineDescription = $('<div class="time-evt-description">'),
-				$title = $('<h4 class="plot-title">').text(this.evt),
-				$range = $('<p class="plot-date">').text( this.start.formatted + ' - ' + this.end.formatted ),
-				$details = $('<p class="plot-details">').text(this.details);
+			var $timelineDescription = jQuery('<div class="time-evt-description">'),
+				$title = jQuery('<h4 class="plot-title">').text(this.evt),
+				$range = jQuery('<p class="plot-date">').text( this.start.formatted + ' - ' + this.end.formatted ),
+				$details = jQuery('<p class="plot-details">').text(this.details);
 
 			width = width > 100 ? 100 : width;
 			leftPos = leftPos < 0 ? 0 : leftPos;
@@ -126,7 +126,7 @@
 		Event.prototype.addEventListeners = function() {
 
 			this.$timelinePlot.hover(function() {
-				$(this).toggleClass('hover');
+				jQuery(this).toggleClass('hover');
 			});
 
 		};
@@ -159,8 +159,8 @@
 					return event.cat === 'life';
 				});
 
-			var $workTimeline = $('#timeline-work'),
-				$lifeTimeline = $('#timeline-life');
+			var $workTimeline = jQuery('#timeline-work'),
+				$lifeTimeline = jQuery('#timeline-life');
 
 			work.forEach(function(evt, i) {
 				$workTimeline.append(evt.build(i, yearRange));
@@ -181,14 +181,14 @@
 	/*
 	* Smooth scrolling main navigation
 	***********************************/
-	$('a[href*=#]:not([href=#])').click(function(e) {
+	jQuery('a[href*=#]:not([href=#])').click(function(e) {
 		if( location.pathname.replace(/^\//,'' ) == this.pathname.replace(/^\//,'') && location.hostname == this.hostname ) {
 
-			var target = $(this.hash);
-			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			var target = jQuery(this.hash);
+			target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
 
 			if( target.length ) {
-				$('html,body').stop().animate({
+				jQuery('html,body').stop().animate({
 					scrollTop: target.offset().top
 				}, 350, 'easeInOutQuart');
 				e.preventDefault();
@@ -197,199 +197,27 @@
 		}
 	});
 
-	/* Form validation */
-	function checkValid(fieldVal) {
-
-		if( fieldVal.value.length > 0 ) {
-
-			if( fieldVal.fieldName === 'email' ) {
-				
-				var email = fieldVal.value,
-					invalidChars = " /:,;",
-					badChar,
-					atPos,
-					periodPos;
-
-				// Check for invalid characters
-				for (var i=0; i<invalidChars.length; i++) {
-					
-					badChar = invalidChars.charAt(i);
-
-					if (email.indexOf(badChar,0) > -1) {
-						return false;
-					}
-
-				}
-				
-				// Check for first @ symbol
-				atPos = email.indexOf("@",1);
-				
-				if (atPos == -1) {
-					return false;
-				}	
-
-				// Check for only one "@" symbol
-				if (email.indexOf("@",atPos+1) != -1) {
-					return false;
-				}
-
-				// Make sure there's a period after the @
-				periodPos = email.indexOf(".",atPos);
-				if (periodPos == -1) {
-					return false;
-				}
-
-				// Ensure at least two characters after "."
-				if (periodPos+3 > email.length)	{
-					return false;
-				}
-
-				// If all the above pass correctly
-				fieldVal.valid = true;
-
-
-			} else {
-
-				fieldVal.valid = true;
-
-			}
-
-		} else {
-
-			fieldVal.valid = false;
-
-		}
-
-	}
-
-	// Form processing
-	function processForm() {
-
-		var formFieldArr = [],
-			$errorList = $('<ul>'),
-			formHeight = $('.form-contact').css('height'),
-			$loaderDiv = $('<div class="loaderDiv">').css({
-				'height': formHeight
-			});
-
-		$('.form-contact').css('height', formHeight).append($loaderDiv);
-
-		// For each required field, create object and add to the field array
-		$('.form-contact .form-required').each(function(i, field){
-
-			var fieldObj = {
-				'fieldName': $(field).attr('name'),
-				'text': $(field).attr('id').replace('form-', ''),
-				'value': $(field).val(),
-				'valid': false
-			};
-
-			formFieldArr.push(fieldObj);
-
-		});
-
-		// Validate all required fields
-		formFieldArr.map(checkValid);
-
-		// Filter out the correct fields
-		var invalidFields = formFieldArr.filter(function(field){
-			return field.valid === false;
-		});
-
-		// If there are any errors
-		if( invalidFields.length ) {
-
-			$('.form-contact').css('height', 'auto');
-			$loaderDiv.remove();
-
-			invalidFields.forEach(function(field){
-
-				var $errorLi = $('<li>'),
-					errVal = field.text.toLowerCase(),
-					errStr = 'Please enter valid ' + errVal;
-
-				$errorLi.text(errStr);
-				$errorList.append($errorLi);
-
-			});
-
-			$('.form-error').html($errorList);
-
-		} else {
-
-			// All fields are valid, prepare data string for form request
-			var dataPrepArr = formFieldArr.map(function(field){
-				var str = encodeURIComponent(field.fieldName)+'='+encodeURIComponent(field.value);
-				return str;
-			});
-
-			var preppedDataStr = dataPrepArr.join('&');
-
-			// Disable editing form
-			$('.form-contact input, .form-contact textarea').attr('disabled', true);
-
-			$('.form-error').text('');
-
-			$.ajax({
-				type : "POST",
-				data : preppedDataStr,
-				dataType : 'json',
-				url: "scripts/sendmail.php",
-				success: function(data) {
-					
-					$('.form-contact').html('<p>' + data.msg + '</p>');
-					$('.form-text').remove();
-
-				},
-				error: function(err) {
-
-					$('.form-contact').html('<p>There has been an error. Please <a href="mailto:info@redmeded.com" title="Send us an email">send us an email</a> instead.</p><p>' + err.status + ': ' + err.statusText + '</p>');
-					$('.form-text').remove();
-
-				},
-				complete: function() {
-
-					$loaderDiv.remove();
-					$('.form-contact input, .form-contact textarea').attr('disabled', false);
-
-				}
-			});
-
-		}
-
-	}
-
-	/*$(window).load(function() {
-			
-		setTimeout(function() {
-
-			setVerticalCenters($('.sct'));
-
-		}, 200);
-
-	});*/
-
-	$(document).ready(function() {
+	jQuery(document).ready(function() {
 
 		// Load up the site data
-		$.getJSON('data/site.json', function(data){
+		jQuery.getJSON('data/site.json', function(data){
 			//loadWork(data.work);
 			loadTimeline(data.timeline);
 
 		});
 
 		// Targets, selector to apply class to, class to apply
-		toggleHoverClass($('.title, .logo'), $('.logo'), 'hover');
-		toggleHoverClass($('header, .main_nav'), $('header'), 'hover');
+		toggleHoverClass(jQuery('.title, .logo'), jQuery('.logo'), 'hover');
+		toggleHoverClass(jQuery('header, .main_nav'), jQuery('header'), 'hover');
 
 		toggleNext();
 
-		$('#toggleMenu').on('click', function() {
+		jQuery('#toggleMenu').on('click', function() {
 			
-			$('body').addClass('menu-active');
+			jQuery('body').addClass('menu-active');
 
-			$('body').one('click', function() {
-				$('body').removeClass('menu-active');
+			jQuery('body').one('click', function() {
+				jQuery('body').removeClass('menu-active');
 			});
 
 			return false;
@@ -397,20 +225,11 @@
 		});
 
 		var bounds = {
-			'left': Math.round($('.timelines').offset().left),
-			'top': Math.round($('.timelines').offset().top),
-			'right': Math.round($('.timelines').offset().left + $('.timelines').outerWidth()),
-			'bottom': Math.round($('.timelines').offset().top + $('.timelines').outerHeight())
+			'left': Math.round(jQuery('.timelines').offset().left),
+			'top': Math.round(jQuery('.timelines').offset().top),
+			'right': Math.round(jQuery('.timelines').offset().left + jQuery('.timelines').outerWidth()),
+			'bottom': Math.round(jQuery('.timelines').offset().top + jQuery('.timelines').outerHeight())
 		};
-
-		// contact form
-		$('.form-contact .form-submit').click(function(e){
-
-			e.preventDefault();
-
-			processForm();
-
-		});
 
 		// should only hover within the bounds of the timeline square
 
@@ -419,5 +238,4 @@
 		//$('.timelines').on('mousemove', timelineMouseMove);
 
 	});
-
-}($));
+};

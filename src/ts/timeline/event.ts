@@ -19,7 +19,7 @@ export class TimelineEvent {
 
   constructor(event: TimelineRawEventInterface) {
     this.start = dateFormat(event.from);
-    this.end = event.to.toLowerCase() !== 'present' ? dateFormat(event.to) : dateFormat(String(Date.now()));
+    this.end = event.to.toLowerCase() !== 'present' ? dateFormat(event.to) : dateFormat(new Date().toDateString());
     this.duration = this.end.ms - this.start.ms;
     this.evt = event.action;
     this.cat = event.category;
@@ -36,7 +36,7 @@ export class TimelineEvent {
     let width = Math.round((this.duration / range) * 100),
       leftPos = Math.round(((this.start.ms - startDate) / range) * 100);
 
-    if (dateFormat(String(Date.now())).ms === this.end.ms) {
+    if (dateFormat(new Date().toDateString()).ms === this.end.ms) {
       this.end.formatted = 'Present';
     }
 

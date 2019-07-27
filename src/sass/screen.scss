@@ -3,6 +3,8 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
+@import url('https://fonts.googleapis.com/css?family=Kameron|Lato:300,300i,400,700&display=swap');
+
 @import "compass/reset";
 @import "compass/utilities/general/clearfix";
 @import "breakpoint";
@@ -12,3 +14,28 @@
 @import "partials/_layout";
 @import "partials/_theme";
 @import "partials/_portfolio";
+
+a.hover .path {
+    stroke-dasharray: 110;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash .75s linear alternate;
+            animation: dash .75s linear alternate;
+}
+
+@keyframes dash {
+    from {
+        stroke-dashoffset: 110;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@-webkit-keyframes dash {
+    from {
+        stroke-dashoffset: 110;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}

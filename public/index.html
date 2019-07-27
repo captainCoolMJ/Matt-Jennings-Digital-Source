@@ -22,6 +22,15 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<nav id="nav" class="main_nav" role="navigation">
+	<a href="#" id="toggleMenu" title="menu">&equiv; Menu</a>
+	<ul>
+		<li><a href="#work" title="My Work">work</a></li>
+		<li><a href="#experience" title="My Work Experience">experience</a></li>
+		<li><a href="#talk" title="Contact Me">contact</a></li>
+	</ul>
+</nav>
+
 <header>
 	<div class="inner_wrap">
 
@@ -48,7 +57,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<div class="inner_wrap">
 
 		<h1>Delivering quality web apps.</h1>
-		<p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on <a href="https://github.com/captainCoolMJ" target="_blank" title="Github">Github</a> and <a href="http://www.linkedin.com/in/mattjennings1990/" target="_blank" title="Linked In">Linked In</a>.</p>
+		<p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on <a href="<%=links.github%>" target="_blank" title="Github">Github</a> and <a href="<%=links.linkedIn%>" target="_blank" title="Linked In">Linked In</a>.</p>
 
 	</div>
 	<p class="nav-next"><a href="#work">Next &raquo;</a></p>
@@ -158,9 +167,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<p>If you want to talk with me about work opportunities, questions, or if you're just saying hi send me a message! I will respond as soon as I possibly can (which will probably be nearly instantly).</p>
 
 		<ul class="social">
-			<li><a href="mailto:matt@mattjenningsdigital.com?subject=Hello!" title="Send me an email">Email</a>
-			<li><a href="https://github.com/captainCoolMJ" target="_blank" title="Github">Github</a></li>
-			<li><a href="http://www.linkedin.com/in/mattjennings1990/" target="_blank" title="Linked In">Linked In</a></li>
+			<li><a href="<%=links.email%>" title="Send me an email">Email</a>
+			<li><a href="<%=links.github%>" target="_blank" title="Github">Github</a></li>
+			<li><a href="<%=links.linkedIn%>" target="_blank" title="Linked In">Linked In</a></li>
 		</ul>
 
 	</div>
@@ -173,16 +182,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	</div>
 </footer>
-
-<nav id="nav" class="main_nav" role="navigation">
-	<a href="#" id="toggleMenu" title="menu">&equiv; Menu</a>
-	<ul>
-		<li><a href="#work" title="My Work">work</a></li>
-		<li><a href="#experience" title="My Work Experience">experience</a></li>
-		<li><a href="#talk" title="Contact Me">contact</a></li>
-	</ul>
-
-</nav>
 
 <script src="<%=scripts.index%>"></script>
 </body>

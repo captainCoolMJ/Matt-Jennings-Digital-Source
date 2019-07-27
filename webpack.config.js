@@ -7,9 +7,8 @@ const pkg = require('./package.json');
 
 module.exports = (env = {}) => ({
     entry: {
-        vendor: ['jquery', 'jquery.easing'],
-        index: './src/js/index.js',
-        notFound: './src/js/not-found.js',
+        index: './src/js/index.entry.js',
+        notFound: './src/js/not-found.entry.js',
     },
     mode: env.production ? 'production' : 'development',
     devtool: env.production ? undefined : 'cheap-module-eval-source-map',

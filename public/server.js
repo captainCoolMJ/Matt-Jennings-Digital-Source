@@ -27,7 +27,11 @@ const configReplace = (contents, config) => {
 const renderFile = (config) => (file) => configReplace(fs.readFileSync(path.resolve(file)).toString(), config);
 const renderToString = renderFile({
     ...configuration,
-    script: manifest['main.js'],
+    scripts: {
+        vendor: manifest['vendor.js'],
+        index: manifest['index.js'],
+        notFound: manifest['notFound.js'],
+    },
 });
 
 const routes = {

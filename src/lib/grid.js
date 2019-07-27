@@ -1,3 +1,5 @@
+var $ = require('jquery');
+
 /*
 * debouncedresize: special jQuery event that happens once after a window resize
 *
@@ -7,6 +9,7 @@
 * Copyright 2011 @louis_remi
 * Licensed under the MIT license.
 */
+
 var $event = $.event,
 $special,
 resizeTimeout;
@@ -158,7 +161,7 @@ $.fn.imagesLoaded = function( callback ) {
 	return deferred ? deferred.promise( $this ) : $this;
 };
 
-var Grid = (function() {
+module.exports = (function() {
 
 		// list of items
 	var $grid = $( '#og-grid' ),
@@ -176,16 +179,15 @@ var Grid = (function() {
 		$window = $( window ), winsize,
 		$body = $( 'html, body' ),
 		// transitionend events
-		transEndEventNames = {
-			'WebkitTransition' : 'webkitTransitionEnd',
-			'MozTransition' : 'transitionend',
-			'OTransition' : 'oTransitionEnd',
-			'msTransition' : 'MSTransitionEnd',
-			'transition' : 'transitionend'
-		},
-		transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+		transEndEventName = [
+			'webkitTransitionEnd',
+			'transitionend',
+			'oTransitionEnd',
+			'MSTransitionEnd',
+			'transitionend',
+		].join(' '),
 		// support for csstransitions
-		support = Modernizr.csstransitions,
+		support = true,
 		// default settings
 		settings = {
 			minHeight : 500,

@@ -7,14 +7,16 @@ const pkg = require('./package.json');
 
 module.exports = (env = {}) => ({
     entry: {
-        main: './src/js/script.js',
+        vendor: ['jquery', 'jquery.easing'],
+        index: './src/js/index.js',
+        notFound: './src/js/not-found.js',
     },
     mode: env.production ? 'production' : 'development',
     devtool: env.production ? undefined : 'cheap-module-eval-source-map',
     output: {
         path: path.resolve('./public/assets/scripts'),
-        publicPath: 'scripts/',
-        filename: 'app.[hash].js'
+        publicPath: '/scripts/',
+        filename: '[name].[chunkhash].js'
     },
     optimization: {
         minimizer: [new TerserPlugin()],
@@ -22,8 +24,10 @@ module.exports = (env = {}) => ({
     plugins: [
         new webpack.BannerPlugin(`${pkg.name} ${new Intl.DateTimeFormat().format(new Date())}`),
         new ManifestPlugin(),
-        new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['**/app.*.js'],
+        new CleanWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            '$': 'jquery',
         }),
     ],
 });

@@ -77,7 +77,7 @@
 })();
 
 /* CORE */
-var playHead = (function() {
+module.exports = (function() {
 	'use strict';
 
 	var valX = 0,

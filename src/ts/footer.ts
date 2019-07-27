@@ -1,11 +1,10 @@
-import { UIComponent } from './helper/ui/component'
+import { UIComponent } from './helper/ui/component';
 
 export class Footer extends UIComponent {
-    public initialize(): void {
+  public initialize(): void {
+    const dateYear = new Date().getFullYear();
+    const dateSpan = this.container.querySelector('#date');
 
-        const dateYear = (new Date()).getFullYear();
-        const dateSpan = this.container.querySelector('#date');
-
-        dateSpan.innerHTML = String(dateYear);
-    }
+    dateSpan.innerHTML = String(dateYear);
+  }
 }

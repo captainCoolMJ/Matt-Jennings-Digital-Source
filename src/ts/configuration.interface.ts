@@ -1,3 +1,3 @@
 export interface ConfigurationInterface {
-    [key: string]: any;
+  [key: string]: any;
 }

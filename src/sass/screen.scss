@@ -15,7 +15,7 @@
 @import "partials/_theme";
 @import "partials/_portfolio";
 
-a.hover .path {
+.logo.hover .path {
     stroke-dasharray: 110;
     stroke-dashoffset: 0;
     -webkit-animation: dash .75s linear alternate;

@@ -157,7 +157,7 @@ header {
 	   -moz-transition: background .5s, left .2s;
 			transition: background .5s, left .2s;
 
-	&.hover {
+	&:hover {
 		background:$light;
 	}
 
@@ -172,6 +172,10 @@ header {
 		margin-top: 5px;
 	}
 
+}
+
+.main_nav:hover ~ header {
+	background: $light;
 }
 
 .main_nav {

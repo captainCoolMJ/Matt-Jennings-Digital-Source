@@ -5,7 +5,7 @@
  * @param template - String
  * @param variables - Object
  */
-const stringTemplateReplace = (template, variables) => {
+export const stringTemplateReplace = (template: string, variables: Record<string, any>) => {
     Object.keys(variables).forEach((key) => {
         if (variables[key] instanceof Object) {
             template = stringTemplateReplace(template, Object.keys(variables[key]).reduce((acc, cur) => ({
@@ -20,5 +20,3 @@ const stringTemplateReplace = (template, variables) => {
 
     return template;
 };
-
-module.exports = stringTemplateReplace;

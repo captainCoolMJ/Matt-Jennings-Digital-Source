@@ -10,7 +10,7 @@
 		{
 			"from":"sept 1 2008",
 			"to": "july 20 2012",
-			"action": "Move to Canterbury, UK",
+			"action": "Live in Canterbury, UK",
 			"category": "life",
 			"details": "I left America to pursue a higher education in the United Kingdom."
 		},
@@ -30,10 +30,17 @@
 		},
 		{
 			"from":"august 1 2012",
-			"to": "present",
+			"to": "august 14 2014",
 			"action": "Live in Philadelphia, PA",
 			"category": "life",
 			"details": "Graduated, moved back to America, and got an apartment in Philadelphia."
+		},
+		{
+			"from":"august 14 2014",
+			"to": "present",
+			"action": "Live in Dubai, UAE",
+			"category": "life",
+			"details": "Moved to Dubai to live in the sandy land of luxury."
 		},
 		{
 			"from":"oct 20 2013",
@@ -41,27 +48,6 @@
 			"action": "CSS Dev Conf 2013",
 			"category": "life",
 			"details": "I attended the CSS Dev Conf in Estes Park, Colorado to refine my CSS and front-end development skills."
-		},
-		{
-			"from":"june 1 2007",
-			"to": "june 1 2008",
-			"action": "Student Video Technician, HCTV",
-			"category": "work",
-			"details": "Worked for a local cable access channel in my town filming local events such as sports, music and theatre."
-		},
-		{
-			"from":"july 1 2010",
-			"to": "sept 1 2010",
-			"action": "Interactive Design Intern, Blue Diesel",
-			"category": "work",
-			"details": "Assisted in designing websites and print publications for pharmaceutical clients."
-		},
-		{
-			"from":"july 1 2011",
-			"to": "sept 1 2011",
-			"action": "Interactive Design Freelancer, Blue Diesel",
-			"category": "work",
-			"details": "Transitioned from an intern to freelance position at Blue Diesel. Projects included website design, banner ad design, icon design, and email template design. This gave me a perfect jump start into creating effective UI/UX and my skill set became a powerful combination of art and code."
 		},
 		{
 			"from":"oct 1 2012",
@@ -79,10 +65,24 @@
 		},
 		{
 			"from":"aug 16 2014",
-			"to": "present",
+			"to": "feb 1 2016",
 			"action": "Front End Engineer, Qordoba",
 			"category": "work",
 			"details": "My work focuses on building a modern language localization platform with an AngularJS based front-end. Working at Qordoba requires an extensive knowledge of Javascript, HTML, CSS (SASS), Grunt, and Git, however, I have also found myself developing with Node.js and unit testing frameworks too."
+		},
+		{
+			"from":"mar 1 2016",
+			"to": "sep 1 2017",
+			"action": "Senior Web Developer, Blue Beetle",
+			"category": "work",
+			"details": "Full service agency which builds custom interactive applications and web solutions for clients around Dubai and the GCC region. Responsibilities include technology direction and strategy, full stack development and client relationship management."
+		},
+		{
+			"from":"sep 1 2017",
+			"to": "present",
+			"action": "Engineering Lead, Property Finder",
+			"category": "work",
+			"details": "Property Finder, the largest real estate web portal in the UAE, is a real estate listings platform which allows agents and brokers to connect with consumers looking for properties to buy and rent around the region."
 		}
 
 	]

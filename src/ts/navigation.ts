@@ -13,6 +13,7 @@ export class Navigation extends UIComponent {
     menu.addEventListener('click', (e) => {
       body.classList.add('menu-active');
       body.addEventListener('click', onClickBody);
+      e.stopPropagation();
     });
   }
 }

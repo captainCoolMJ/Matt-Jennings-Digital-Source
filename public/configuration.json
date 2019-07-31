@@ -3,7 +3,8 @@
     "description": "Matt Jennings is a Dubai based front end developer specializing in handcrafted responsive websites and applications.",
     "assets": {
         "favicon": "/images/favicon.ico",
-        "css": "/style/screen.css"
+        "css": "/style/screen.css",
+        "cv": "/resources/matt-jennings-resume-2017.pdf"
     },
     "links": {
         "email": "mailto:matt@mattjenningsdigital.com?subject=Hello!",

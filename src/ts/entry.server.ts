@@ -29,6 +29,8 @@ const routes = {
 };
 
 const app = express();
+
+app.disable('x-powered-by');
 app.use(compression());
 
 app.get('/', (req, res, next) => res.send(routes.index));

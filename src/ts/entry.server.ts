@@ -5,9 +5,9 @@ import compression from 'compression';
 import path from 'path';
 import fs from 'fs';
 
-import { stringTemplateReplace } from './helper/string/template-replace';
 import { AppConfigurationService } from './app/configuration.service.server';
-import { AppConfiguration } from './app/configuration.server';
+import { Index } from './index.server';
+import { NotFound } from './not-found.server';
 
 dotenv.config();
 
@@ -27,22 +27,19 @@ appConfig.set({
   },
 });
 
-const renderFile = (config: AppConfiguration) => (file: string): string =>
-  stringTemplateReplace(fs.readFileSync(path.resolve(file)).toString(), appConfig.getUnsafe());
-
-const routes = {
-  index: renderFile(appConfig)(`${args.public}/index.html`),
-  '*': renderFile(appConfig)(`${args.public}/404.html`),
-};
-
 const app = express();
 
 app.disable('x-powered-by');
 app.use(compression());
 
-app.get('/', (req, res, next) => res.send(routes.index));
+app.get('/', (req, res, next) => res.type('html').send(Index(appConfig.getUnsafe())));
 app.use(express.static(path.resolve(`${args.assets}`)));
-app.get('*', (req, res, next) => res.status(404).send(routes['*']));
+app.get('*', (req, res, next) =>
+  res
+    .type('html')
+    .status(404)
+    .send(NotFound(appConfig.getUnsafe())),
+);
 
 app.listen(appConfig.getUnsafe().port, () => {
   console.info(`listening on port ${appConfig.getUnsafe().port}`);

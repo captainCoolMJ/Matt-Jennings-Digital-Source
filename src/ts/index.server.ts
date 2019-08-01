@@ -67,11 +67,22 @@ export const Index = (data: {
             <div class="inner_wrap">
 
                 <h1>Delivering quality web apps.</h1>
-                <p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on <a href="${
-                  data.config.links.github
-                }" target="_blank" title="Github">Github</a> and <a href="${
-  data.config.links.linkedIn
-}" target="_blank" title="Linked In">Linked In</a>.</p>
+                <p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on 
+                    <a 
+                        href="${data.site.links.github}" 
+                        target="_blank" 
+                        title="Github"
+                    >
+                        Github
+                    </a> and 
+                    <a 
+                        href="${data.site.links.linked_in}" 
+                        target="_blank" 
+                        title="Linked In"
+                    >
+                        Linked In
+                    </a>.
+                </p>
 
             </div>
             <p class="nav-next"><a href="#work">Next &raquo;</a></p>
@@ -151,7 +162,7 @@ export const Index = (data: {
                 <ul class="social">
                     <li><a href="${data.site.links.email}" title="Send me an email">Email</a>
                     <li><a href="${data.site.links.github}" target="_blank" title="Github">Github</a></li>
-                    <li><a href="${data.site.links.linkedIn}" target="_blank" title="Linked In">Linked In</a></li>
+                    <li><a href="${data.site.links.linked_in}" target="_blank" title="Linked In">Linked In</a></li>
                 </ul>
 
             </div>
@@ -164,7 +175,13 @@ export const Index = (data: {
 
             </div>
         </footer>
-
+        <script>
+        window.__mjd = {
+            api: {
+                timeline: '${data.config.api.timeline}',
+            },
+        };
+        </script>
         <script src="${data.config.scripts.index}"></script>
         </body>
     </html>

@@ -5,6 +5,7 @@ import { Navigation } from './navigation';
 import { UISmoothScroller } from './helper/ui/smooth-scroller';
 import { Timeline } from './timeline';
 import { Playhead } from '../lib/playhead';
+import { TimelineRawEventInterface } from './timeline/raw-event.interface';
 
 const Grid = require('../lib/grid');
 
@@ -44,9 +45,8 @@ const entry = () => {
   nav.initialize();
 
   // Load up the site data
-  $.getJSON('data/site.json', (data: any) => {
-    //loadWork(data.work);
-    timeline.initialize(data.timeline);
+  $.getJSON((window as any).__mjd.api.timeline, (data: Array<TimelineRawEventInterface>) => {
+    timeline.initialize(data);
   });
 
   $(() => Grid.init());

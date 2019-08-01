@@ -16,10 +16,13 @@ export class AppConfiguration {
     links: {
       email: '',
       github: '',
-      linkedIn: '',
+      linked_in: '',
     },
     keys: {
       gtm: '',
+    },
+    api: {
+      timeline: '',
     },
     scripts: {},
   };

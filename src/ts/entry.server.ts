@@ -45,6 +45,10 @@ app.get('/', async (req, res, next) => {
       db.query<Array<PortfolioItemInterface>>('/portfolio'),
     ]);
 
+    appConfig.set({
+      api: response[0].api,
+    });
+
     res.type('html').send(
       Index({
         config: appConfig.getUnsafe(),

@@ -9,9 +9,12 @@ export interface AppConfigurationInterface {
   links: {
     email: string;
     github: string;
-    linkedIn: string;
+    linked_in: string;
   };
   keys: {
     gtm: string;
+  };
+  api: {
+    timeline: string;
   };
 }

@@ -1,6 +1,7 @@
 import { AppConfigurationUnsafeInterface } from './app/configuration-unsafe.interface';
+import { AppConfigurationInterface } from './app/configuration.interface';
 
-export const NotFound = (config: AppConfigurationUnsafeInterface) => `
+export const NotFound = (data: { config: AppConfigurationUnsafeInterface; site: AppConfigurationInterface }) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -9,19 +10,19 @@ export const NotFound = (config: AppConfigurationUnsafeInterface) => `
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${config.keys.gtm}');</script>
+            })(window,document,'script','dataLayer','${data.config.keys.gtm}');</script>
             <!-- End Google Tag Manager -->
             <meta charset="utf-8">
-            <title>${config.title}</title>
-            <meta name="description" content="${config.description}">
+            <title>${data.site.title}</title>
+            <meta name="description" content="${data.site.description}">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-            <link rel="icon" href="${config.assets.favicon}">
-            <link rel="stylesheet" href="${config.assets.css}">
+            <link rel="icon" href="${data.site.assets.favicon}">
+            <link rel="stylesheet" href="${data.site.assets.css}">
         </head>
         <body>
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${config.keys.gtm}"
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${data.config.keys.gtm}"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
 
@@ -39,7 +40,7 @@ export const NotFound = (config: AppConfigurationUnsafeInterface) => `
 
                 <a class="hide_text" href="#nav">Jump to Navigation</a>
 
-                <a href="/" class="logo" title="Matt Jennings Digital">
+                <a href="/" class="logo" title="${data.site.title}">
                     <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 x="0px" y="0px" width="36px" height="35px" viewBox="0 0 36 35" xml:space="preserve">
                     <path class="path" fill="none" stroke="#F8983E" stroke-width="5" stroke-miterlimit="10" d="M2.5,20.657c0,0,0-8.857,0-12.174
@@ -50,7 +51,7 @@ export const NotFound = (config: AppConfigurationUnsafeInterface) => `
 
                 </a>
 
-                <h1 class="title"><a href="/" title="Matt Jennings Digital">Matt Jennings Digital</a></h1>
+                <h1 class="title"><a href="/" title="${data.site.title}">${data.site.title}</a></h1>
                 
             </div>
         </header>
@@ -70,12 +71,12 @@ export const NotFound = (config: AppConfigurationUnsafeInterface) => `
             <div class="inner_wrap">
                 
                 <p><a href="#top" title="Back to top">Back to top &raquo;</a></p>
-                <p>&copy;<span id="date">YYYY</span> Matt Jennings Digital</p>
+                <p>&copy;<span id="date">YYYY</span> ${data.site.title}</p>
 
             </div>
         </footer>
 
-        <script src="${config.scripts.notFound}"></script>
+        <script src="${data.config.scripts.notFound}"></script>
         </body>
     </html>
 `;

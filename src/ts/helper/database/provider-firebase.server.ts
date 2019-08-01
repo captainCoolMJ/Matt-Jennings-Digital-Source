@@ -1,26 +1,26 @@
 import { DatabaseProviderInterface } from './provider.interface';
 import firebase from 'firebase';
+import { DatabaseConnectOptionsInterface } from './connect-options.interface';
 
 export class DatabaseProviderFirebase implements DatabaseProviderInterface {
-  private fb: firebase.app.App;
+  private db: firebase.database.Database;
 
-  connect(options: { databaseUrl: string; databaseSecret: string }): Promise<void> {
+  public connect(options: DatabaseConnectOptionsInterface): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.fb = firebase.initializeApp({
-        databaseUrl: options.databaseUrl,
-        apiKey: options.databaseSecret,
-      });
+      this.db = firebase
+        .initializeApp({
+          databaseURL: options.databaseUrl,
+          apiKey: options.databaseSecret,
+        })
+        .database();
       resolve();
     });
   }
-  query<T>(ref: string): Promise<T> {
-    return this.fb
-      .database()
+
+  public async query<T>(ref: string): Promise<T> {
+    return this.db
       .ref(ref)
       .once('value')
       .then((snapshot) => snapshot.val());
   }
-  // write(): Promise<void> {
-  //   return new Promise((resolve, reject) => {});
-  // }
 }

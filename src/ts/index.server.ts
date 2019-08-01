@@ -1,6 +1,13 @@
 import { AppConfigurationUnsafeInterface } from './app/configuration-unsafe.interface';
+import { AppConfigurationInterface } from './app/configuration.interface';
+import { PortfolioItemInterface } from './portfolio/item.interface';
 
-export const Index = (config: AppConfigurationUnsafeInterface) => `
+export const Index = (data: {
+  config: AppConfigurationUnsafeInterface;
+  site: AppConfigurationInterface;
+  skills: Array<string>;
+  portfolio: Array<PortfolioItemInterface>;
+}) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -9,19 +16,19 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${config.keys.gtm}');</script>
+            })(window,document,'script','dataLayer','${data.config.keys.gtm}');</script>
             <!-- End Google Tag Manager -->
             <meta charset="utf-8">
-            <title>${config.title}</title>
-            <meta name="description" content="${config.description}">
+            <title>${data.site.title}</title>
+            <meta name="description" content="${data.site.description}">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-            <link rel="icon" href="${config.assets.favicon}">
-            <link rel="stylesheet" href="${config.assets.css}">
+            <link rel="icon" href="${data.site.assets.favicon}">
+            <link rel="stylesheet" href="${data.site.assets.css}">
         </head>
         <body>
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${config.keys.gtm}"
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${data.config.keys.gtm}"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
 
@@ -39,7 +46,7 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
 
                 <a class="hide_text" href="#nav">Jump to Navigation</a>
 
-                <a href="#top" class="logo" title="Matt Jennings Digital">
+                <a href="#top" class="logo" title="${data.site.title}">
                     <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 x="0px" y="0px" width="36px" height="35px" viewBox="0 0 36 35" xml:space="preserve">
                     <path class="path" fill="none" stroke="#F8983E" stroke-width="5" stroke-miterlimit="10" d="M2.5,20.657c0,0,0-8.857,0-12.174
@@ -50,7 +57,7 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
 
                 </a>
 
-                <h1 class="title"><a href="#top" title="Matt Jennings Digital">Matt Jennings Digital</a></h1>
+                <h1 class="title"><a href="#top" title="${data.site.title}">${data.site.title}</a></h1>
                 
             </div>
         </header>
@@ -60,7 +67,11 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
             <div class="inner_wrap">
 
                 <h1>Delivering quality web apps.</h1>
-                <p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on <a href="${config.links.github}" target="_blank" title="Github">Github</a> and <a href="${config.links.linkedIn}" target="_blank" title="Linked In">Linked In</a>.</p>
+                <p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on <a href="${
+                  data.config.links.github
+                }" target="_blank" title="Github">Github</a> and <a href="${
+  data.config.links.linkedIn
+}" target="_blank" title="Linked In">Linked In</a>.</p>
 
             </div>
             <p class="nav-next"><a href="#work">Next &raquo;</a></p>
@@ -74,56 +85,26 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
                 <p class="small">*live links may be inconsistent with screenshots</p>
                 
                 <ul id="og-grid" class="og-grid clearfix">
-                    <li>
-                        <a href="https://app.qordoba.com" data-largesrc="images/portfolio/q.png" data-title="Qordoba SaaS Application" data-description="Angular based application developed to streamline localizing content from websites, mobile applications and documents. Built at <a href='http://qordoba.com/' target='_blank' title='Qordoba'>Qordoba</a>. <strong>AngularJS, JavaScript, WebSockets, RESTful Web Services, HTML, CSS (SASS), Grunt</strong>.">
-                        <img src="images/thumbs/thumb_q.jpg" alt="Qordoba SaaS Application" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://bacchettacpa.com" data-largesrc="images/portfolio/bcpa.png" data-title="Bacchetta &amp; Company" data-description="Designed and developed as independent project. Responsive to typical desktop, mobile and tablet dimensions. <strong>Grunt, HTML, CSS (SCSS), Javascript</strong>.">
-                        <img src="images/thumbs/thumb_bcpa.jpg" alt="Bachetta &amp; Company" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://redmeded.com" data-largesrc="images/portfolio/rme.png" data-title="RedMedEd" data-description="Developed as an independent project, then continued development with <a href='http://red-nucleus.com/' target='_blank' title='Red Nucleus'>Red Nucleus</a>. <strong>Grunt, HTML, CSS (SCSS), Javascript</strong>.">
-                        <img src="images/thumbs/thumb_rme.jpg" alt="Red Med Ed" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://phillywaldorf.com" data-largesrc="images/portfolio/wsp.png" data-title="The Waldorf School of Philadelphia" data-description="Part of award winning campaign (Addy Gold - Integrated Campaigns, consumer, local [single market]). Developed at <a href='http://agency-m.com' target='_blank'>M</a>. Responsive to typical desktop and mobile dimensions. <strong>Modded Wordpress theme, PHP, CSS, Javascript</strong>.">
-                        <img src="images/thumbs/thumb_wsp.jpg" alt="the Waldorf School of Philadelphia" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://novadynamix.com" data-largesrc="images/portfolio/nd+.png" data-title="Novadynamix+" data-description="Designed and developed as independent project. Responsive to typical desktop and mobile dimensions. <strong>Wordpress, PHP, CSS, JavaScript</strong>.">
-                        <img src="images/thumbs/thumb_nd+.jpg" alt="Novadynamix+" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://educatorcareers.iss.edu" data-largesrc="images/portfolio/iss.png" data-title="ISS Educator Careers" data-description="Led client site training seminar. Developed at <a href='http://agency-m.com' target='_blank'>M</a>. Responsive to typical mobile dimensions. <strong>Drupal 7, PHP, CSS, Javascript</strong>.">
-                        <img src="images/thumbs/thumb_iss.jpg" alt="ISS Educator Careers" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://www.revspringinc.com" data-largesrc="images/portfolio/rs.png" data-title="RevSpring" data-description="Developed at <a href='http://agency-m.com' target='_blank'>M</a>. Responsive to typical mobile dimensions. <strong>Drupal 7, PHP, CSS, Javascript</strong>.">
-                        <img src="images/thumbs/thumb_rs.jpg" alt="RevSpring" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://xfinity.comcast.net/parents/" data-largesrc="images/portfolio/xfparents.png" data-title="XFINITY&reg; Parental Controls" data-description="Developed at <a href='http://agency-m.com' target='_blank'>M</a>. <strong>HTML, CSS, Javascript</strong>.">
-                        <img src="images/thumbs/thumb_xf.jpg" alt="XFINITY&reg; Parental Controls"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://arabic.isswli.org/" data-largesrc="images/portfolio/isswli.png" data-title="ISS World Language Initiative" data-description="Helped in the building and translation of the ISS World Language Initiative website. Developed at <a href='http://agency-m.com' target='_blank'>M</a>. <strong>Drupal 6, CSS, Javascript</strong>.">
-                        <img src="images/thumbs/thumb_isswli.jpg" alt="ISS World Language Initiative" />
-                        </a>
-                    </li>
-                    <!-- <li>
-                        <a href="http://mattjenningsdigital.com/canterburyTakeaways/" data-largesrc="images/portfolio/ct.png" data-title="Canterbury Takeaways" data-description="Final year project for university. Researched, designed and developed independently. Fully custom content management system built in PHP and MySQL.">
-                        <img src="images/thumbs/thumb_ct.jpg" alt="Canterbury Takeaways" />
-                        </a>
-                    </li> -->
+                    ${data.portfolio
+                      .map(
+                        (item) => `
+                        <li>
+                            <a 
+                                href="${item.links.external}" 
+                                data-largesrc="${item.image}" 
+                                data-title="${item.title}" 
+                                data-description="
+                                    ${item.description}
+                                    Built at <a href='${item.links.external}' target='_blank' title='${item.title}'>
+                                    ${item.title}</a>.
+                                    <strong>${item.tags.join(', ')}</strong>."
+                            >
+                                <img src="${item.thumbnail}" alt="${item.title}" />
+                            </a>
+                        </li>
+                    `,
+                      )
+                      .join('')}
                 </ul> 
 
             </div>
@@ -135,16 +116,14 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
                 
                 <h1>How I spend my time.</h1>
 
-                <p><a href="${config.assets.cv}" title="View my resume" target="_blank">Download as PDF &raquo;</a></p>
+                <p>
+                    <a href="${data.site.assets.cv}" title="View my resume" target="_blank">
+                        Download as PDF &raquo;
+                    </a>
+                </p>
                 <h2>Skills I've acquired</h2>
                 <ul>
-                    <li>Client Side Development [HTML5, CSS3, Javascript]</li>
-                    <li>SCSS/LESS (CSS preprocessing)</li>
-                    <li>Content Management Frameworks [Drupal 7, Wordpress]</li>
-                    <li>Grunt &amp; Other Modern Workflow Utilities</li>
-                    <li>MEAN Stack [MongoDB, Express.js, Angular.js, Node.js]</li>
-                    <li>Responsive Web Design</li>
-                    <li>Adobe Photoshop, Illustrator, Fireworks</li>
+                    ${data.skills.map((skill) => `<li>${skill}</li>`).join('')}
                 </ul>
 
                 <h2>An overview of my past</h2>
@@ -170,9 +149,9 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
                 <p>If you want to talk with me about work opportunities, questions, or if you're just saying hi send me a message! I will respond as soon as I possibly can (which will probably be nearly instantly).</p>
 
                 <ul class="social">
-                    <li><a href="${config.links.email}" title="Send me an email">Email</a>
-                    <li><a href="${config.links.github}" target="_blank" title="Github">Github</a></li>
-                    <li><a href="${config.links.linkedIn}" target="_blank" title="Linked In">Linked In</a></li>
+                    <li><a href="${data.site.links.email}" title="Send me an email">Email</a>
+                    <li><a href="${data.site.links.github}" target="_blank" title="Github">Github</a></li>
+                    <li><a href="${data.site.links.linkedIn}" target="_blank" title="Linked In">Linked In</a></li>
                 </ul>
 
             </div>
@@ -181,12 +160,12 @@ export const Index = (config: AppConfigurationUnsafeInterface) => `
             <div class="inner_wrap">
                 
                 <p><a href="#top" title="Back to top">Back to top &raquo;</a></p>
-                <p>&copy;<span id="date">YYYY</span> Matt Jennings Digital</p>
+                <p>&copy;<span id="date">YYYY</span> ${data.site.title}</p>
 
             </div>
         </footer>
 
-        <script src="${config.scripts.index}"></script>
+        <script src="${data.config.scripts.index}"></script>
         </body>
     </html>
 `;

@@ -1,4 +1,4 @@
-import { UIComponent } from './helper/ui/component';
+import { UIComponent } from './common/ui/component';
 import { TimelineRawEventInterface } from './timeline/raw-event.interface';
 import { TimelineEvent } from './timeline/event';
 

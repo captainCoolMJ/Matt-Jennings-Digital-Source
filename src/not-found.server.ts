@@ -17,8 +17,8 @@ export const NotFound = (data: { config: AppConfigurationUnsafeInterface; site: 
             <meta name="description" content="${data.site.description}">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-            <link rel="icon" href="${data.site.assets.favicon}">
-            <link rel="stylesheet" href="${data.site.assets.css}">
+            <link rel="icon" href="${data.config.assets['favicon.ico']}">
+            <link rel="stylesheet" href="${data.config.assets['notFound.css']}">
         </head>
         <body>
         <!-- Google Tag Manager (noscript) -->
@@ -27,7 +27,7 @@ export const NotFound = (data: { config: AppConfigurationUnsafeInterface; site: 
         <!-- End Google Tag Manager (noscript) -->
 
         <nav id="nav" class="main_nav" role="navigation">
-            <a href="#" id="toggleMenu" title="menu">&equiv; Menu</a>
+            <button type="button" id="toggleMenu">&equiv; Menu</button>
             <ul>
                 <li><a href="/#work" title="My Work">work</a></li>
                 <li><a href="/#experience" title="My Work Experience">experience</a></li>
@@ -76,7 +76,7 @@ export const NotFound = (data: { config: AppConfigurationUnsafeInterface; site: 
             </div>
         </footer>
 
-        <script src="${data.config.scripts.notFound}"></script>
+        <script src="${data.config.assets['notFound.js']}"></script>
         </body>
     </html>
 `;

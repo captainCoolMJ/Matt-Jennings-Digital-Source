@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { dateFormat } from '../helper/date/format';
+import { dateFormat } from '../common/date/format';
 import { TimelineRawEventInterface } from './raw-event.interface';
 
 export class TimelineEvent {

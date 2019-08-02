@@ -17,18 +17,14 @@ dotenv.config();
 const args = minimist(process.argv.slice(2));
 const appConfig = AppConfigurationService();
 
-const manifest = JSON.parse(fs.readFileSync(path.resolve(`${args.public}/assets/scripts/manifest.json`)).toString());
+const manifest = JSON.parse(fs.readFileSync(path.resolve(`${args.public}/assets/manifest.json`)).toString());
 
 appConfig.set({
   keys: {
     gtm: process.env.KEYS_GTM,
   },
   port: parseInt(process.env.PORT, 10),
-  assets: {
-    styles: manifest['styles.css'],
-    index: manifest['index.js'],
-    notFound: manifest['notFound.js'],
-  },
+  assets: manifest,
 });
 
 const app = express();

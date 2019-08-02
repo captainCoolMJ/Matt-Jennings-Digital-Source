@@ -5,14 +5,14 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const pkg = require('./package.json');
 
 module.exports = (env = {}) => ({
   entry: {
-    styles: './src/ts/main.css',
-    index: './src/ts/index.entry.ts',
-    notFound: './src/ts/not-found.entry.ts',
+    index: './src/index.entry.ts',
+    notFound: './src/not-found.entry.ts',
   },
   mode: env.production ? 'production' : 'development',
   devtool: env.production ? undefined : 'cheap-module-eval-source-map',
@@ -22,7 +22,7 @@ module.exports = (env = {}) => ({
     filename: '[name].[chunkhash].js',
   },
   optimization: {
-    minimizer: [new TerserPlugin()],
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
   },
   module: {
     rules: [
@@ -30,7 +30,10 @@ module.exports = (env = {}) => ({
         test: /\.css/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: { modules: { mode: 'global' } },
+          },
           {
             loader: 'postcss-loader',
             options: {

@@ -2,12 +2,17 @@ import $ from 'jquery';
 import { Header } from './header';
 import { Footer } from './footer';
 import { Navigation } from './navigation';
-import { UISmoothScroller } from './helper/ui/smooth-scroller';
+import { UISmoothScroller } from './common/ui/smooth-scroller';
 import { Timeline } from './timeline';
-import { Playhead } from '../lib/playhead';
+import { Playhead } from './lib/playhead';
 import { TimelineRawEventInterface } from './timeline/raw-event.interface';
 
-const Grid = require('../lib/grid');
+import './common/styles/reset.css';
+import './app/styles.css';
+import './timeline/styles.css';
+import './portfolio/styles.css';
+
+const Grid = require('./lib/grid');
 
 const entry = () => {
   const header = new Header(document);

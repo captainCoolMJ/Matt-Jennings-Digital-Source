@@ -3,7 +3,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = (env = {}) => ({
-  entry: './src/ts/entry.server.ts',
+  entry: './src/entry.server.ts',
   target: 'node',
   mode: env.production ? 'production' : 'development',
   devtool: env.production ? undefined : 'cheap-module-eval-source-map',

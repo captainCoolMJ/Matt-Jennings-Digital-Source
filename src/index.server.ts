@@ -23,9 +23,8 @@ export const Index = (data: {
             <meta name="description" content="${data.site.description}">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-            <link rel="icon" href="${data.site.assets.favicon}">
-            <link rel="stylesheet" href="${data.site.assets.css}">
-            <link rel="stylesheet" href="${data.config.assets.styles}">
+            <link rel="icon" href="${data.config.assets['favicon.ico']}">
+            <link rel="stylesheet" href="${data.config.assets['index.css']}">
         </head>
         <body>
         <!-- Google Tag Manager (noscript) -->
@@ -34,7 +33,7 @@ export const Index = (data: {
         <!-- End Google Tag Manager (noscript) -->
 
         <nav id="nav" class="main_nav" role="navigation">
-            <a href="#" id="toggleMenu" title="menu">&equiv; Menu</a>
+            <button type="button" id="toggleMenu">&equiv; Menu</button>
             <ul>
                 <li><a href="#work" title="My Work">work</a></li>
                 <li><a href="#experience" title="My Work Experience">experience</a></li>
@@ -144,7 +143,7 @@ export const Index = (data: {
                 </ul>
 
                 <h2>An overview of my past</h2>
-                <div class="timelines">
+                <div class="timelines cf">
                     <div id="timeline-work">
                         <h3>Work</h3>
 
@@ -192,7 +191,7 @@ export const Index = (data: {
             },
         };
         </script>
-        <script src="${data.config.assets.index}"></script>
+        <script src="${data.config.assets['index.js']}"></script>
         </body>
     </html>
 `;

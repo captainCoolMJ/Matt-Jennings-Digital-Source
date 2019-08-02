@@ -1,0 +1,9 @@
+@media screen and (min-width: 769px) {
+    .timelines { display: flex; }
+
+    #timeline-work,
+    #timeline-life { width: 50%; }
+
+    #timeline-work { padding-right: 1%; }
+    #timeline-life { padding-left: 1%; }
+}

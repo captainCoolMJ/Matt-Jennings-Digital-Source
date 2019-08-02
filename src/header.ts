@@ -1,5 +1,5 @@
-import { UIComponent } from './helper/ui/component';
-import { uiToggleHoverClass } from './helper/ui/toggle-hover-class';
+import { UIComponent } from './common/ui/component';
+import { uiToggleHoverClass } from './common/ui/toggle-hover-class';
 
 export class Header extends UIComponent {
   public initialize(): void {

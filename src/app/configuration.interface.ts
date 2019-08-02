@@ -1,11 +1,7 @@
 export interface AppConfigurationInterface {
   title: string;
   description: string;
-  assets: {
-    favicon: string;
-    css: string;
-    cv: string;
-  };
+  assets: Record<string, string>;
   links: {
     email: string;
     github: string;

@@ -1,0 +1,493 @@
+/**
+tablet: 400px
+desktop: 769px
+**/
+
+@import url('https://fonts.googleapis.com/css?family=Kameron|Lato:300,300i,400,700&display=swap');
+
+:root {
+    --color-orange: #F68620;
+    
+    --color-blue: rgb(0, 136, 204);
+    --color-blue-alpha-65: rgba(0, 136, 204, 0.65);
+    --color-blue-alpha-8: rgba(0, 136, 204, 0.08);
+    --color-blue-alpha-4: rgba(0, 136, 204, 0.04);
+    --color-blue-1: #1A7AC9;
+    --color-blue-2: rgba(59, 139, 186);
+    
+    --color-dark: #000;
+    --color-dark-alpha-35: rgba(0, 0, 0, 0.35);
+    --color-dark-1: #111;
+    --color-dark-1-alpha-7: rgba(0, 0, 0, 0.07);
+    --color-dark-2: #333;
+    
+    --color-light: #FFF;
+    --color-light-alpha-75: rgba(255, 255, 255, 0.75);
+    --color-light-alpha-4: rgba(255, 255, 255, 0.04);
+    --color-light-1: #var(--color-light-1);
+    --color-light-2: #EFEFEF;
+    --color-light-3: #DDD;
+    --color-light-4: #CCC;
+    --color-light-5: #BBB;
+    --color-light-6: #888;
+
+    --font-family-default: 'Lato', Helvetica, Arial, sans-serif;
+    --font-family-title: 'Kameron', Arial, sans-serif;
+
+    --width-menu: 200px;
+}
+
+.cf { overflow: auto; }
+
+.cf:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.hide_text {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.jump_link {
+    display: block;
+    padding-top: 51px;
+    margin-top: -51px;
+    position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.logo.hover .path {
+    stroke-dasharray: 110;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash .75s linear alternate;
+            animation: dash .75s linear alternate;
+}
+
+@keyframes dash {
+    from {
+        stroke-dashoffset: 110;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@-webkit-keyframes dash {
+    from {
+        stroke-dashoffset: 110;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+::selection {
+    background: var(--color-blue-alpha-65);
+    color: var(--color-light);
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: var(--font-family-default);
+    font-size: 1.6em;
+    line-height: 1.4;
+    font-style: normal;
+    font-weight: 300;
+    color: var(--color-dark-1);
+    background-color: var(--color-light);
+    transition: 0.2s right;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-family-title); }
+
+h1 { font-size: 1.4rem; }
+h2 { font-size: 2.4rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-weight: bold; }
+
+a {
+    color: var(--color-dark-1);
+    text-decoration: none;
+}
+
+a:hover { text-decoration: underline; } 
+img { max-width: 100% }
+p { padding: 0 0 0.25em 0; }
+
+ul {
+    text-align: left;
+    padding: 1em 0 1em 2em;
+    list-style: disc;
+}
+ul:first-child {
+    padding-top: 0;
+}
+
+.small {
+    vertical-align: top;
+    font-size: 0.65em;
+}
+
+strong {
+    font-weight: 500;
+}
+
+label {
+    cursor: pointer;
+}
+
+input,
+button,
+textarea {
+    background: var(--color-light);
+    padding: 0.75em;
+    font-size: 1.6rem;
+    font-family: var(--font-family-default);
+    font-weight: 300;
+    border: 1px solid var(--color-light-1);
+    box-sizing: border-box;
+    border-radius: 0.125em;
+    box-shadow: inset 0 0 5px var(--color-dark-1-alpha-7);
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+input:focus,
+button:focus,
+textarea:focus {
+    outline: 0;
+    background: var(--color-blue-alpha-8);
+}
+
+input:hover,
+button:hover,
+textarea:hover {
+    background: var(--color-blue-alpha-4);
+}
+
+label,
+input[type="text"],
+textarea {
+    display: block;
+    width: 100%;
+}
+
+@media screen and (min-width: 400px) {
+    label,
+    input[type="text"],
+    textarea {
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    input[type="submit"] {
+        float: left;
+    }
+}
+
+textarea {
+    resize: vertical;
+}
+
+header {
+    background: var(--color-light-alpha-75);
+    border-top: 2px solid var(--color-orange);
+    border-bottom: 1px solid var(--color-light-5);
+    transition: 0.5s background, 0.2s left;
+    text-align: left;
+}
+
+header:hover {
+    background: var(--color-light);
+}
+
+header h1 {
+    margin-top: 5px;
+    font-family: var(--font-family-default);
+}
+
+header .logo {
+    margin-top: 5px;
+}
+
+.main_nav:hover ~ header {
+    background: var(--color-light);
+}
+
+.main_nav {
+    background: var(--color-orange);
+    transition: 0.2s right;
+}
+
+.main_nav a { color: var(--color-light); }
+
+.main_nav #toggleMenu {
+    color: var(--color-dark-1);
+}
+
+.main_nav ul {
+    list-style: none;
+    padding: 0 2em 0 0;
+    text-align: right;
+}
+
+@media screen and (min-width: 769px) {
+    .main_nav {
+        background: transparent;
+    }
+    .main_nav a { color: var(--color-dark-1); }
+
+    .main_nav ul { padding: 0; }
+}
+
+.sct .nav-next {
+	position: fixed;
+	bottom: 0; left: 0;
+	width: 100%;
+
+	padding: 0;
+
+	display: none;
+	z-index: 9999;
+}
+
+.sct .nav-next a {
+    display: block;
+    padding: 1em;
+    text-align: center;
+    border: 1px solid var(--color-light-1);
+    background: var(--color-blue);
+    color: var(--color-light);
+    box-sizing: border-box;
+    transition: 0.2s all;
+}
+
+.sct .nav-next a:hover {
+    color: var(--color-blue);
+    background: var(--color-light-alpha-4);
+}
+
+.sct {
+    position: relative;
+    border-top: 1px solid var(--color-light-5);
+    text-align: left;
+}
+
+@media screen and (min-width: 769px) {
+    .sct {
+        text-align: center;
+    }
+}
+
+.sct h1 {
+    padding-bottom: 0.25em;
+    line-height: 1;
+    font-size: 4rem;
+}
+
+@media screen and (min-width: 400px) {
+    .sct h1 { font-size: 7rem; }
+}
+
+@media screen and (min-width: 769px) {
+    .sct h1 { font-size: 8rem; }
+}
+
+.sct a {
+    position: relative;
+    color: var(--color-blue);
+}
+
+.sct a:hover {
+    text-decoration: none;
+    top: 1px;
+    left: 1px;
+}
+
+.sct-top {
+    border: 0;
+}
+
+.sct-exp h2 { padding-bottom: 0.5em; }
+.sct-exp p { padding: 0; }
+.sct-exp .timelines { text-align: left; }
+.sct-exp .timeline-evt { padding: 1em 0; }
+.sct-exp .plot-date { font-style: italic; }
+.sct-exp .plot-details { padding-top: 0.5em; }
+
+.sct-talk legend { display: none; }
+.sct-talk .social { text-align: center; }
+.sct-talk .social li { display: inline-block; }
+.sct-talk .social li a {
+    display: block;
+    padding: 0.5em 1em;
+}
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    position: relative;
+    color: var(--color-blue);
+}
+
+footer a:hover {
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-blue);
+    top: 1px;
+    left: 1px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    width: 100%;
+    position: relative;
+    right: 0;
+}
+
+.inner_wrap {
+    height: auto;
+    min-height: 100%;
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 400px) {
+    .inner_wrap { width: 80%; }
+}
+
+@media screen and (min-width: 769px) {
+    .inner_wrap { width: 66%; }
+}
+
+header {
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 8;
+}
+
+header .logo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header h1 { display: inline-block; }
+header h1 a { 
+    display: block;
+    padding: 0.5em;
+}
+
+.menu-active {
+    overflow: hidden;
+    right: var(--width-menu);
+}
+
+.menu-active .main_nav { right: 0; }
+.menu-active header { left: calc(var(--width-menu) * -1)}
+
+#toggleMenu {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+    box-shadow: none;
+
+    position: relative;
+    right: 100px;
+    top: 15px;
+}
+
+#toggleMenu:focus {
+    outline: 0;
+}
+
+@media screen and (min-width: 769px) {
+    #toggleMenu {
+        display: none;
+    }
+}
+
+.main_nav {
+    position: fixed;
+    top: 0;
+    right: calc(var(--width-menu) * -1);
+    height: 100%;
+    width: var(--width-menu);
+    z-index: 999;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 769px) {
+    .main_nav {
+        right: 20%;
+        height: 50px;
+        width: 300px;
+        z-index: 9;
+        text-align: right;
+    }
+    .main_nav li { display: inline-block; }
+    .main_nav li a {
+        display: block;
+        padding: 0.75em;
+    }
+}
+
+.sct {
+    box-sizing: border-box;
+    height: auto;
+    min-height: 100%;
+    padding: 2em 0;
+}
+
+.sct-vertical-align {
+    height: 100%;
+}
+
+.sct-vertical-align .inner_wrap {
+    margin-top: -100px;
+    height: auto;
+    min-height: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+footer { padding: 2em 0; }

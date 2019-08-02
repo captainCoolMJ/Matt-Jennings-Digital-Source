@@ -1,4 +1,4 @@
-import { UIComponent } from './helper/ui/component';
+import { UIComponent } from './common/ui/component';
 
 export class Footer extends UIComponent {
   public initialize(): void {

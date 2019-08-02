@@ -19,6 +19,7 @@ export const NotFound = (data: { config: AppConfigurationUnsafeInterface; site: 
 
             <link rel="icon" href="${data.site.assets.favicon}">
             <link rel="stylesheet" href="${data.site.assets.css}">
+            <link rel="stylesheet" href="${data.config.assets.css}">
         </head>
         <body>
         <!-- Google Tag Manager (noscript) -->
@@ -76,7 +77,7 @@ export const NotFound = (data: { config: AppConfigurationUnsafeInterface; site: 
             </div>
         </footer>
 
-        <script src="${data.config.scripts.notFound}"></script>
+        <script src="${data.config.assets.notFound}"></script>
         </body>
     </html>
 `;

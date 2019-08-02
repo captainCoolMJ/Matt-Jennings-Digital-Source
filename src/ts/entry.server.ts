@@ -24,7 +24,8 @@ appConfig.set({
     gtm: process.env.KEYS_GTM,
   },
   port: parseInt(process.env.PORT, 10),
-  scripts: {
+  assets: {
+    styles: manifest['styles.css'],
     index: manifest['index.js'],
     notFound: manifest['notFound.js'],
   },
@@ -72,7 +73,7 @@ app.get('*', async (req, res, next) => {
       .send(
         NotFound({
           config: appConfig.getUnsafe(),
-          site: response as any,
+          site: response,
         }),
       );
   } catch (e) {

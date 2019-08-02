@@ -2,6 +2,5 @@ node_modules
 npm-debug.log
 .sass-cache
 .DS_Store
-public/**/*.js
-manifest.json
+public
 .env

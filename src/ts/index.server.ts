@@ -25,6 +25,7 @@ export const Index = (data: {
 
             <link rel="icon" href="${data.site.assets.favicon}">
             <link rel="stylesheet" href="${data.site.assets.css}">
+            <link rel="stylesheet" href="${data.config.assets.styles}">
         </head>
         <body>
         <!-- Google Tag Manager (noscript) -->
@@ -69,6 +70,7 @@ export const Index = (data: {
                 <h1>Delivering quality web apps.</h1>
                 <p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on 
                     <a 
+                        rel="noopener"
                         href="${data.site.links.github}" 
                         target="_blank" 
                         title="Github"
@@ -76,6 +78,7 @@ export const Index = (data: {
                         Github
                     </a> and 
                     <a 
+                        rel="noopener"
                         href="${data.site.links.linked_in}" 
                         target="_blank" 
                         title="Linked In"
@@ -101,12 +104,15 @@ export const Index = (data: {
                         (item) => `
                         <li>
                             <a 
+                                rel="noopener"
                                 href="${item.links.external}" 
                                 data-largesrc="${item.image}" 
                                 data-title="${item.title}" 
                                 data-description="
                                     ${item.description}
-                                    Built at <a href='${item.links.external}' target='_blank' title='${item.title}'>
+                                    Built at <a rel='noopener' href='${item.links.external}' target='_blank' title='${
+                          item.title
+                        }'>
                                     ${item.title}</a>.
                                     <strong>${item.tags.join(', ')}</strong>."
                             >
@@ -128,7 +134,7 @@ export const Index = (data: {
                 <h1>How I spend my time.</h1>
 
                 <p>
-                    <a href="${data.site.assets.cv}" title="View my resume" target="_blank">
+                    <a rel="noopener" href="${data.site.assets.cv}" title="View my resume" target="_blank">
                         Download as PDF &raquo;
                     </a>
                 </p>
@@ -160,9 +166,13 @@ export const Index = (data: {
                 <p>If you want to talk with me about work opportunities, questions, or if you're just saying hi send me a message! I will respond as soon as I possibly can (which will probably be nearly instantly).</p>
 
                 <ul class="social">
-                    <li><a href="${data.site.links.email}" title="Send me an email">Email</a>
-                    <li><a href="${data.site.links.github}" target="_blank" title="Github">Github</a></li>
-                    <li><a href="${data.site.links.linked_in}" target="_blank" title="Linked In">Linked In</a></li>
+                    <li><a rel="noopener" href="${data.site.links.email}" title="Send me an email">Email</a>
+                    <li><a rel="noopener" href="${
+                      data.site.links.github
+                    }" target="_blank" title="Github">Github</a></li>
+                    <li><a rel="noopener" href="${
+                      data.site.links.linked_in
+                    }" target="_blank" title="Linked In">Linked In</a></li>
                 </ul>
 
             </div>
@@ -182,7 +192,7 @@ export const Index = (data: {
             },
         };
         </script>
-        <script src="${data.config.scripts.index}"></script>
+        <script src="${data.config.assets.index}"></script>
         </body>
     </html>
 `;

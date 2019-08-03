@@ -1,3 +1,16 @@
+.timelines { text-align: left; }
+.timeline-evt { padding: 1em 0; }
+.plot-title { 
+    font-family: var(--font-family-title);
+    font-weight: bold; 
+}
+.plot-date,
+.plot-details {
+    padding: 0;
+}
+.plot-date { font-style: italic; }
+.plot-details { padding-top: 0.5em; }
+
 @media screen and (min-width: 769px) {
     .timelines { display: flex; }
 

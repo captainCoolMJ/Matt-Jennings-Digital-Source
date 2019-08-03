@@ -1,0 +1,31 @@
+.title {
+    font-family: var(--font-family-title);
+}
+
+.title--1 { font-size: 1.4rem; }
+.title--2 { font-size: 2.4rem; }
+.title--3 { font-size: 1.8rem; }
+.title--4 { font-weight: bold; }
+
+.title--padding-bottom-small {
+    padding-bottom: 0.5em;
+}
+
+.title--large {
+    padding-bottom: 0.25em;
+    line-height: 1;
+    font-size: 4rem;
+}
+
+.title--app {
+    margin-top: 5px;
+    font-family: var(--font-family-default);
+}
+
+@media screen and (min-width: 400px) {
+    .title--large { font-size: 7rem; }
+}
+
+@media screen and (min-width: 769px) {
+    .title--large { font-size: 8rem; }
+}

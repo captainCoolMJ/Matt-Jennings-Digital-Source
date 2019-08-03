@@ -6,8 +6,8 @@ import path from 'path';
 import fs from 'fs';
 
 import { AppConfigurationService } from './app/configuration.service.server';
-import { Index } from './index.server';
-import { NotFound } from './not-found.server';
+import { indexComponent } from './index/component.server';
+import { notFoundComponent } from './not-found/component.server';
 import { AppDatabaseService } from './app/database.service.server';
 import { AppConfigurationInterface } from './app/configuration.interface';
 import { PortfolioItemInterface } from './portfolio/item.interface';
@@ -47,7 +47,7 @@ app.get('/', async (req, res, next) => {
     });
 
     res.type('html').send(
-      Index({
+      indexComponent({
         config: appConfig.getUnsafe(),
         site: response[0],
         skills: response[1],
@@ -67,7 +67,7 @@ app.get('*', async (req, res, next) => {
       .type('html')
       .status(404)
       .send(
-        NotFound({
+        notFoundComponent({
           config: appConfig.getUnsafe(),
           site: response,
         }),

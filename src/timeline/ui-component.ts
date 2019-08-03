@@ -1,8 +1,8 @@
-import { UIComponent } from './common/ui/component';
-import { TimelineRawEventInterface } from './timeline/raw-event.interface';
-import { TimelineEvent } from './timeline/event';
+import { UIComponent } from '../common/ui/component';
+import { TimelineRawEventInterface } from '../timeline/raw-event.interface';
+import { TimelineEvent } from '../timeline/event';
 
-export class Timeline extends UIComponent {
+export class TimelineUIComponent extends UIComponent {
   public initialize(rawEvents: Array<TimelineRawEventInterface>): void {
     const oneYear = 31556925974,
       yearRange = Date.now() - oneYear * 8;

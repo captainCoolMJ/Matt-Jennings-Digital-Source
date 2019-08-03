@@ -10,10 +10,10 @@ environment-clean:
 	docker-compose -f ${DOCKER_COMPOSE_FILE} down --rmi all
 
 start:
-	docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
+	docker-compose -f ${DOCKER_COMPOSE_FILE} up -d ${SERVICES_CLIENT}
 
 stop:
-	docker-compose -f ${DOCKER_COMPOSE_FILE} down
+	docker-compose -f ${DOCKER_COMPOSE_FILE} stop ${SERVICES_CLIENT}
 
 ssh:
 	docker-compose -f ${DOCKER_COMPOSE_FILE} exec ${SERVICE_CLIENT} bash

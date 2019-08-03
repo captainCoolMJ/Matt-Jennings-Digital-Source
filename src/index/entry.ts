@@ -20,7 +20,7 @@ import '../footer/styles.css';
 const Grid = require('../lib/grid');
 
 export const indexEntry = () => {
-  const header = new HeaderUIComponent(document);
+  const header = new HeaderUIComponent(document.querySelector('[data-id="header"]') as HTMLElement);
   const footer = new FooterUIComponent(document);
   const scroller = new UISmoothScroller();
   const nav = new NavigationUIComponent(document);

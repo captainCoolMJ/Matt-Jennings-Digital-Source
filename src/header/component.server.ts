@@ -1,7 +1,7 @@
 import { titleComponent } from '../title/component.server';
 
 export const headerComponent = (data: { title: string }) => `
-  <header class="header">
+  <header class="header" data-id="header">
     <div class="content__inner">
       <a class="text text--hidden" href="#nav">Jump to Navigation</a>
 

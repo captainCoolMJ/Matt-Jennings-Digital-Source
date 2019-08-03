@@ -11,7 +11,7 @@ import '../navigation/styles.css';
 import '../footer/styles.css';
 
 export const notFoundEntry = () => {
-  new HeaderUIComponent(document).initialize();
+  new HeaderUIComponent(document.querySelector('[data-id="header"]') as HTMLElement).initialize();
   new NavigationUIComponent(document).initialize();
   new FooterUIComponent(document).initialize();
 };

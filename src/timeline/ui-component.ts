@@ -8,8 +8,8 @@ export class TimelineUIComponent extends UIComponent {
       yearRange = Date.now() - oneYear * 8;
 
     const categoryTimelineElemMap: Record<string, HTMLElement> = {
-      work: this.container.getElementById('timeline-work'),
-      life: this.container.getElementById('timeline-life'),
+      work: this.container.querySelector('#timeline-work'),
+      life: this.container.querySelector('#timeline-life'),
     };
 
     rawEvents

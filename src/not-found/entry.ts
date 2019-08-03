@@ -10,10 +10,10 @@ import '../header/styles.css';
 import '../navigation/styles.css';
 import '../footer/styles.css';
 
-const entry = () => {
-  new HeaderUIComponent(document).initialize();
+export const notFoundEntry = () => {
+  new HeaderUIComponent(document.querySelector('[data-id="header"]') as HTMLElement).initialize();
   new NavigationUIComponent(document).initialize();
   new FooterUIComponent(document).initialize();
 };
 
-entry();
+notFoundEntry();

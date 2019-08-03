@@ -19,7 +19,7 @@ import '../footer/styles.css';
 
 const Grid = require('../lib/grid');
 
-const entry = () => {
+export const indexEntry = () => {
   const header = new HeaderUIComponent(document);
   const footer = new FooterUIComponent(document);
   const scroller = new UISmoothScroller();
@@ -62,4 +62,4 @@ const entry = () => {
   $(() => Grid.init());
 };
 
-entry();
+indexEntry();

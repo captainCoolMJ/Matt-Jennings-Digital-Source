@@ -9,9 +9,7 @@ export const sectionComponent = (data: { id: string; content: string; variants?:
 
   if (data.variants) {
     data.variants.forEach((variant) => {
-      if (variantsToClasses[variant]) {
-        sctClasses.push(variantsToClasses[variant]);
-      }
+      sctClasses.push(variantsToClasses[variant]);
     });
   }
 

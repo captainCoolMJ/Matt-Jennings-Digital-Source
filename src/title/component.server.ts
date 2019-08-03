@@ -15,9 +15,7 @@ export const titleComponent = (data: {
 
   if (data.variants) {
     data.variants.forEach((variant) => {
-      if (variantsToClasses[variant]) {
-        classes.push(variantsToClasses[variant]);
-      }
+      classes.push(variantsToClasses[variant]);
     });
   }
 

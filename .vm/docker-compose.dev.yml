@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  client:
+  builder:
     image: captaincool/mjd:latest
     command: "tail -f /dev/null"
     ports: 

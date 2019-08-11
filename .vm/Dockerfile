@@ -4,7 +4,7 @@ WORKDIR /var/www/html
 
 COPY ./ ./
 
-RUN npm install && npm run build
+RUN npm install --production
 
 EXPOSE 8080
 

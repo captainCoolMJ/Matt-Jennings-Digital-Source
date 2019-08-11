@@ -36,8 +36,7 @@ describe('AppConfiguration', () => {
       port: 9000,
     });
 
-    expect((config.get() as any).port).toBe(undefined);
-
+    expect((config.get() as any).port).toBeUndefined();
     expect(config.getUnsafe().port).toBe(9000);
   });
 });

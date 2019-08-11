@@ -19,9 +19,7 @@ import '../footer/styles.css';
 
 const Grid = require('../lib/grid');
 
-export const indexEntry = () => {
-  const header = new HeaderUIComponent(document.querySelector('[data-id="header"]') as HTMLElement);
-  const footer = new FooterUIComponent(document);
+export const indexEntry = (document: Document) => {
   const scroller = new UISmoothScroller();
   const nav = new NavigationUIComponent(document);
   const timeline = new TimelineUIComponent(document);
@@ -30,36 +28,50 @@ export const indexEntry = () => {
   const $firstSection = $('[data-jump-link]').eq(0),
     $navNext = $('[data-nav-next]');
 
-  let navSugTimer: ReturnType<typeof setTimeout>;
+  if ($firstSection.length && $navNext.length) {
+    let navSugTimer: ReturnType<typeof setTimeout>;
 
-  playhead.setTrack({
-    range: {
-      in: 0,
-      out: $firstSection.offset().top + 100,
-    },
-    destroy: true,
-    playIn: () => {
-      navSugTimer = setTimeout(() => {
-        $navNext.fadeIn(1000);
-      }, 1500);
-    },
-    playOut: () => {
-      clearTimeout(navSugTimer);
+    playhead.setTrack({
+      range: {
+        in: 0,
+        out: $firstSection.offset().top + 100,
+      },
+      destroy: true,
+      playIn: () => {
+        navSugTimer = setTimeout(() => {
+          $navNext.fadeIn(1000);
+        }, 1500);
+      },
+      playOut: () => {
+        clearTimeout(navSugTimer);
 
-      $navNext.fadeOut(500);
-    },
-  });
-  header.initialize();
-  footer.initialize();
+        $navNext.fadeOut(500);
+      },
+    });
+  }
+
+  const headerContainer = document.querySelector('[data-id="header"]');
+  if (headerContainer) {
+    const header = new HeaderUIComponent(headerContainer as HTMLElement);
+    header.initialize();
+  }
+
+  const footerContainer = document.querySelector('[data-id="footer"]');
+  if (footerContainer) {
+    const footer = new FooterUIComponent(footerContainer as HTMLElement);
+    footer.initialize();
+  }
+
   scroller.initialize($('html, body'));
   nav.initialize();
 
-  // Load up the site data
-  $.getJSON((window as any).__mjd.api.timeline, (data: Array<TimelineRawEventInterface>) => {
-    timeline.initialize(data);
-  });
-
+  if ((window as any).__mjd) {
+    // Load up the site data
+    $.getJSON((window as any).__mjd.api.timeline, (data: Array<TimelineRawEventInterface>) => {
+      timeline.initialize(data);
+    });
+  }
   $(() => Grid.init());
 };
 
-indexEntry();
+indexEntry(document);

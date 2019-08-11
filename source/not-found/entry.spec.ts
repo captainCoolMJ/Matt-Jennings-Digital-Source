@@ -6,6 +6,6 @@ jest.mock('../navigation/ui-component');
 
 describe('notFoundEntry', () => {
   it('should initialize the ui components', () => {
-    expect(notFoundEntry()).toBe(undefined);
+    expect(notFoundEntry(document)).toBeUndefined();
   });
 });

@@ -10,10 +10,12 @@ export class NavigationUIComponent extends UIComponent {
       body.removeEventListener('click', onClickBody);
     };
 
-    menu.addEventListener('click', (e) => {
-      body.classList.add('menu-active');
-      body.addEventListener('click', onClickBody);
-      e.stopPropagation();
-    });
+    if (menu) {
+      menu.addEventListener('click', (e) => {
+        body.classList.add('menu-active');
+        body.addEventListener('click', onClickBody);
+        e.stopPropagation();
+      });
+    }
   }
 }

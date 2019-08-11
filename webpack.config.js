@@ -11,8 +11,8 @@ const pkg = require('./package.json');
 
 module.exports = (env = {}) => ({
   entry: {
-    index: './src/index/entry.ts',
-    notFound: './src/not-found/entry.ts',
+    index: './source/index/entry.ts',
+    notFound: './source/not-found/entry.ts',
   },
   mode: env.production ? 'production' : 'development',
   devtool: env.production ? undefined : 'cheap-module-eval-source-map',

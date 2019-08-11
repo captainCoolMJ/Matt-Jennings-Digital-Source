@@ -5,7 +5,7 @@
   "version": "3.0.0",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint -c .eslintrc.json --fix ./src",
+    "lint": "eslint -c .eslintrc.json --fix ./source",
     "build:client": "webpack --env.production=true",
     "build:server": "webpack --config=webpack.server.config.js --env.production=true",
     "build": "npm run build:client && npm run build:server",
@@ -55,8 +55,12 @@
     "minimist": "^1.2.0"
   },
   "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/scripts/setup-tests.js"
+    ],
     "collectCoverageFrom": [
-      "src/**/*.ts"
+      "source/**/*.ts",
+      "!source/**/*.(interface|enum|mock).ts"
     ],
     "moduleFileExtensions": [
       "ts",

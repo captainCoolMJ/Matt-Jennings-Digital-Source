@@ -4,7 +4,7 @@ DOCKER_COMPOSE_FILE = ./.vm/docker-compose.dev.yml
 DOCKER_FILE_CLIENT = ./.vm/Dockerfile
 REPOSITORY_CLIENT = captaincool/mjd
 TAG_CLIENT = latest
-SERVICE_CLIENT = client
+SERVICE_CLIENT = builder
 
 environment-clean:
 	docker-compose -f ${DOCKER_COMPOSE_FILE} down --rmi all
@@ -18,7 +18,11 @@ stop:
 ssh:
 	docker-compose -f ${DOCKER_COMPOSE_FILE} exec ${SERVICE_CLIENT} bash
 
-build-image-client:
+build:
+	docker-compose -f ${DOCKER_COMPOSE_FILE} exec ${SERVICE_CLIENT} bash -c "npm install && npm run test && npm run build"
+
+build-image-client: 
+	make build
 	docker build -t ${REPOSITORY_CLIENT}:${TAG_CLIENT} -f ${DOCKER_FILE_CLIENT} ./
 
 push-image-client:

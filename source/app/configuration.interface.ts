@@ -11,6 +11,12 @@ export interface AppConfigurationInterface {
     gtm: string;
   };
   api: {
-    timeline: string;
+    base: string;
+    endpoints: {
+      timeline: string;
+      config: string;
+      skills: string;
+      portfolio: string;
+    };
   };
 }

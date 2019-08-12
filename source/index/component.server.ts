@@ -165,9 +165,7 @@ export const indexComponent = (
     foot: `
         <script>
           window.__mjd = {
-            api: {
-              timeline: '${data.config.api.timeline}',
-            },
+            api: ${JSON.stringify(data.config.api)},
           };
         </script>
         <script src="${data.config.assets['index.js']}"></script>

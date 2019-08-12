@@ -22,7 +22,13 @@ export class AppConfiguration {
       gtm: '',
     },
     api: {
-      timeline: '',
+      base: '',
+      endpoints: {
+        skills: '',
+        timeline: '',
+        config: '',
+        portfolio: '',
+      },
     },
     scripts: {},
   };

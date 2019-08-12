@@ -6,19 +6,16 @@ import path from 'path';
 import fs from 'fs';
 
 import { AppConfigurationService } from './app/configuration.service.server';
-import { indexComponent } from './index/component.server';
-import { notFoundComponent } from './not-found/component.server';
-import { AppDatabaseService } from './app/database.service.server';
-import { AppConfigurationInterface } from './app/configuration.interface';
-import { PortfolioItemInterface } from './portfolio/item.interface';
+import { indexEntry } from './index/entry.server';
+import { notFoundEntry } from './not-found/entry.server';
+import { AppApiService } from './app/api.service';
 
 export const entry = (options: {
   assets: Record<string, string>;
   assetsPath: string;
-  databaseUrl: string;
-  databaseSecret: string;
   gtmKey: string;
   port: string;
+  apiBase: string;
 }) => {
   const appConfig = AppConfigurationService();
 
@@ -28,6 +25,15 @@ export const entry = (options: {
     },
     port: parseInt(options.port, 10),
     assets: options.assets,
+    api: {
+      base: options.apiBase,
+      endpoints: {
+        timeline: '/timeline.json',
+        config: '/site_config.json',
+        skills: '/skills.json',
+        portfolio: '/portfolio.json',
+      },
+    },
   });
 
   const app = express();
@@ -35,59 +41,12 @@ export const entry = (options: {
   app.disable('x-powered-by');
   app.use(compression());
 
-  const db = AppDatabaseService();
-
-  app.get('/', async (req, res, next) => {
-    try {
-      const response = await Promise.all([
-        db.query<AppConfigurationInterface>('/site_config'),
-        db.query<Array<string>>('/skills'),
-        db.query<Array<PortfolioItemInterface>>('/portfolio'),
-      ]);
-
-      appConfig.set({
-        api: response[0].api,
-      });
-
-      res.type('html').send(
-        indexComponent({
-          config: appConfig.getUnsafe(),
-          site: response[0],
-          skills: response[1],
-          portfolio: response[2],
-        }),
-      );
-    } catch (e) {
-      console.info(e);
-      res.status(500).send('Server Error');
-    }
-  });
+  app.get('/', indexEntry(appConfig, AppApiService()));
   app.use(express.static(path.resolve(`${options.assetsPath}`)));
-  app.get('*', async (req, res, next) => {
-    try {
-      const response = await db.query<AppConfigurationInterface>('/site_config');
-      res
-        .type('html')
-        .status(404)
-        .send(
-          notFoundComponent({
-            config: appConfig.getUnsafe(),
-            site: response,
-          }),
-        );
-    } catch (e) {
-      console.info(e);
-      res.status(500).send('Server Error');
-    }
-  });
+  app.get('*', notFoundEntry(appConfig, AppApiService()));
 
-  db.connect({
-    databaseSecret: options.databaseSecret,
-    databaseUrl: options.databaseUrl,
-  }).then(() => {
-    app.listen(appConfig.getUnsafe().port, () => {
-      console.info(`listening on port ${appConfig.getUnsafe().port}`);
-    });
+  app.listen(appConfig.getUnsafe().port, () => {
+    console.info(`listening on port ${appConfig.getUnsafe().port}`);
   });
 };
 
@@ -98,10 +57,9 @@ try {
   entry({
     assets: JSON.parse(fs.readFileSync(path.resolve(`${args.public}/assets/manifest.json`)).toString()),
     assetsPath: args.assets,
-    databaseSecret: process.env.DATABASE_SECRET,
-    databaseUrl: process.env.DATABASE_URL,
     gtmKey: process.env.KEYS_GTM,
     port: process.env.PORT,
+    apiBase: process.env.API_BASE,
   });
 } catch (e) {
   console.info(e);

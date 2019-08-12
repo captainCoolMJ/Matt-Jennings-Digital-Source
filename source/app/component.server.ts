@@ -1,6 +1,9 @@
 import { ComponentDataInterface } from '../component-data.interface';
 
-export const appComponent = (data: ComponentDataInterface, { head = '', body = '', foot = '' }): string => `
+export const appComponent = (
+  data: ComponentDataInterface,
+  slots: { head: string; body: string; foot: string },
+): string => `
   <!DOCTYPE html>
   <html lang="en" class="app">
     <head>
@@ -18,7 +21,7 @@ export const appComponent = (data: ComponentDataInterface, { head = '', body = '
 
       <link rel="icon" href="${data.config.assets['favicon.ico']}">
 
-      ${head}
+      ${slots.head}
     </head>
     <body class="app__inner">
       <!-- Google Tag Manager (noscript) -->
@@ -26,9 +29,9 @@ export const appComponent = (data: ComponentDataInterface, { head = '', body = '
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- End Google Tag Manager (noscript) -->
 
-      ${body}
+      ${slots.body}
 
-      ${foot}
+      ${slots.foot}
     </body>
   </html>
 `;

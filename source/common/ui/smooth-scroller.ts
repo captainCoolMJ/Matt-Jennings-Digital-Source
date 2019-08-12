@@ -7,8 +7,8 @@ import 'jquery.easing';
 export class UISmoothScroller {
   private $container: JQuery<HTMLElement>;
 
-  public initialize($container: JQuery<HTMLElement>): void {
-    this.$container = $container;
+  public initialize(container: HTMLElement | NodeListOf<HTMLElement>): void {
+    this.$container = $(container);
     $('a[href*=#]:not([href=#])', this.$container).click(this.onClickLink.bind(this));
   }
 

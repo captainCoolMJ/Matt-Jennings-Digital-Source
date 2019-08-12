@@ -1,8 +1,5 @@
 const $ = require('jquery');
 
-// Mock Firebase
-jest.mock('firebase');
-
 // Mock Express
 jest.mock('express', () => {
   const mock = jest.fn().mockImplementation(() => ({

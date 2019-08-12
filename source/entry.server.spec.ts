@@ -6,10 +6,9 @@ describe('entry', () => {
       entry({
         assets: {},
         assetsPath: '/',
-        databaseSecret: '',
-        databaseUrl: '',
         gtmKey: '',
         port: '',
+        apiBase: '',
       }),
     ).toBeUndefined();
   });

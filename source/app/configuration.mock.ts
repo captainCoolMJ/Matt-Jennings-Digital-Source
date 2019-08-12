@@ -1,6 +1,6 @@
 import { AppConfigurationInterface } from './configuration.interface';
 
-export const appConfigMock = (): AppConfigurationInterface => ({
+export const appConfigurationMock = (): AppConfigurationInterface => ({
   title: 'Site',
   description: 'Description',
   links: {
@@ -13,6 +13,12 @@ export const appConfigMock = (): AppConfigurationInterface => ({
     gtm: '',
   },
   api: {
-    timeline: '',
+    base: '',
+    endpoints: {
+      timeline: '',
+      skills: '',
+      portfolio: '',
+      config: '',
+    },
   },
 });

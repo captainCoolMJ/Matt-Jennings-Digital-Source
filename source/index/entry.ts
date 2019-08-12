@@ -16,6 +16,7 @@ import '../navigation/styles.css';
 import '../timeline/styles.css';
 import '../portfolio/styles.css';
 import '../footer/styles.css';
+import { AppApiService } from '../app/api.service';
 
 const Grid = require('../lib/grid');
 
@@ -62,16 +63,18 @@ export const indexEntry = (document: Document) => {
     footer.initialize();
   }
 
-  scroller.initialize($('html, body'));
+  scroller.initialize(document.querySelectorAll('html, body'));
   nav.initialize();
 
-  if ((window as any).__mjd) {
+  if (window.__mjd) {
     // Load up the site data
-    $.getJSON((window as any).__mjd.api.timeline, (data: Array<TimelineRawEventInterface>) => {
-      timeline.initialize(data);
-    });
+    AppApiService()
+      .fetch<Array<TimelineRawEventInterface>>(`${window.__mjd.api.base}${window.__mjd.api.endpoints.timeline}`)
+      .then((data) => {
+        timeline.initialize(data);
+      });
   }
-  $(() => Grid.init());
+  Grid.init();
 };
 
 indexEntry(document);

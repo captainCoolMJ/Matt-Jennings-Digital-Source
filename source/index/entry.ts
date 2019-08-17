@@ -26,7 +26,9 @@ export const indexEntry = (document: Document) => {
   if (navNextElement) {
     let delay: ReturnType<typeof timingDelay>;
 
-    new Playhead().setTrack({
+    const playhead = new Playhead();
+    playhead.initialize();
+    playhead.addTrack({
       range: {
         in: 0,
         out: 100,

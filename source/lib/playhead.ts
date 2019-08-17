@@ -1,80 +1,61 @@
+import { PlayheadTrackInterface } from './playhead/track.interface';
 import { PlayheadTrackOptionsInterface } from './playhead/track-options.interface';
 
 /***********
  * PLAYHEAD *
  ************/
 export class Playhead {
-  constructor() {
-    setPageOffset.call(this);
-    // Global listener to retrieve values
-    window.addEventListener('scroll', setPageOffset.bind(this));
-    function setPageOffset() {
-      this.valX =
-        window.pageXOffset !== undefined
-          ? window.pageXOffset
-          : (document.documentElement || document.body.parentNode || (document.body as any)).scrollLeft;
-      this.valY =
-        window.pageYOffset !== undefined
-          ? window.pageYOffset
-          : (document.documentElement || document.body.parentNode || (document.body as any)).scrollTop;
-    }
+  private tracks: Array<PlayheadTrackInterface> = [];
+
+  public initialize() {
+    window.addEventListener('scroll', this.onScrollWindow);
   }
 
-  public setTrack(options: PlayheadTrackOptionsInterface): void {
-    // Setting default options from call
-    var inRange = Math.floor(options.range.in),
-      outRange = Math.floor(options.range.out),
-      playIn = options.playIn,
-      playOut = options.playOut,
-      orientation = options.orientation,
-      destroy = !!options.destroy,
-      scrollVal = 0;
-
-    // Trigger to make sure functions only fire once
-    var hasTriggered = false;
-
+  public addTrack(options: PlayheadTrackOptionsInterface): void {
     // Check to make sure the value is positive
-    if (outRange <= inRange) {
-      console.error('Range must be a positive value!');
+    if (options.range.out <= options.range.in) {
+      throw new Error('Range must be a positive value!');
     }
 
-    handleRanges.call(this);
+    const track = {
+      ...options,
+      hasPlayedIn: false,
+    };
 
-    // Adding scroll listener
-    window.addEventListener('scroll', handleRanges.bind(this), false);
+    this.tracks.push(track);
+    this.handleTrackPosition(this.calcWindowPosition(), track);
+  }
 
-    function handleRanges() {
-      // Determines which value to receive
-      scrollVal = orientation === 'landscape' ? this.valX : this.valY;
+  public addTracks(tracks: Array<PlayheadTrackOptionsInterface>): void {
+    tracks.forEach(this.addTrack.bind(this));
+  }
 
-      if (scrollVal >= inRange && scrollVal <= outRange) {
-        if (!hasTriggered) {
-          playIn();
-        }
+  private calcWindowPosition(): { x: number; y: number } {
+    return {
+      x: window.pageXOffset,
+      y: window.pageYOffset,
+    };
+  }
 
-        // Ensure playIn only calls once
-        hasTriggered = true;
-      } else if (scrollVal > outRange || scrollVal < inRange) {
-        if (hasTriggered) {
-          // Prevent another call
-          if (destroy) {
-            window.removeEventListener('scroll', handleRanges);
-          }
+  private handleTrackPosition(position: { x: number; y: number }, track: PlayheadTrackInterface): void {
+    const scrollPosition = track.orientation === 'landscape' ? position.x : position.y;
+    if (!track.hasPlayedIn && scrollPosition >= track.range.in && scrollPosition <= track.range.out) {
+      track.playIn();
+      track.hasPlayedIn = true;
+      return;
+    }
 
-          playOut();
-        }
+    if (track.hasPlayedIn && (scrollPosition > track.range.out || scrollPosition < track.range.in)) {
+      track.playOut();
+      track.hasPlayedIn = false;
 
-        // Reset playIn
-        hasTriggered = false;
-      } else {
-        return false;
+      if (track.destroy) {
+        this.tracks = this.tracks.filter((item) => track !== item);
       }
     }
   }
 
-  public setTracks(tracks: Array<PlayheadTrackOptionsInterface>): void {
-    tracks.forEach(function(track) {
-      this.setTrack(track);
-    });
-  }
+  private onScrollWindow = (): void => {
+    this.tracks.forEach((track) => this.handleTrackPosition(this.calcWindowPosition(), track));
+  };
 }

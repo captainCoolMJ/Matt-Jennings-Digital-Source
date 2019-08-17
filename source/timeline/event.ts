@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { dateFormat } from '../common/date/format';
 import { TimelineRawEventInterface } from './raw-event.interface';
 
@@ -15,8 +14,6 @@ export class TimelineEvent {
 
   public details: string;
 
-  private $timelinePlot: JQuery<HTMLElement> = $('<div class="timeline-evt">');
-
   constructor(event: TimelineRawEventInterface) {
     this.start = dateFormat(event.from);
     this.end = event.to.toLowerCase() !== 'present' ? dateFormat(event.to) : dateFormat(new Date().toDateString());
@@ -31,40 +28,21 @@ export class TimelineEvent {
       return null;
     }
 
-    const range = Date.now() - startDate;
-
-    let width = Math.round((this.duration / range) * 100),
-      leftPos = Math.round(((this.start.ms - startDate) / range) * 100);
-
     if (dateFormat(new Date().toDateString()).ms === this.end.ms) {
       this.end.formatted = 'Present';
     }
 
-    const $timelineDescription = $('<div class="time-evt-description">'),
-      $title = $('<h4 class="plot-title">').text(this.evt),
-      $range = $('<p class="plot-date">').text(this.start.formatted + ' - ' + this.end.formatted),
-      $details = $('<p class="plot-details">').text(this.details);
+    const timelinePlotElement = document.createElement('div');
 
-    width = width > 100 ? 100 : width;
-    leftPos = leftPos < 0 ? 0 : leftPos;
+    timelinePlotElement.classList.add('timeline-evt', `timeline-${this.cat}`);
+    timelinePlotElement.innerHTML = `
+      <div class="time-evt-description">
+        <h4 class="plot-title">${this.evt}</h4>
+        <p class="plot-date">${this.start.formatted} - ${this.end.formatted}</p>
+        <p class="plot-details">${this.details}</p>
+      </div>
+    `;
 
-    this.$timelinePlot.addClass('timeline-' + this.cat);
-
-    $timelineDescription
-      .append($title)
-      .append($range)
-      .append($details);
-
-    this.addEventListeners();
-
-    this.$timelinePlot.append($timelineDescription);
-
-    return this.$timelinePlot[0];
-  }
-
-  private addEventListeners(): void {
-    this.$timelinePlot.hover(() => {
-      $(this).toggleClass('hover');
-    });
+    return timelinePlotElement;
   }
 }

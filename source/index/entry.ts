@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { HeaderUIComponent } from '../header/ui-component';
 import { FooterUIComponent } from '../footer/ui-component';
 import { NavigationUIComponent } from '../navigation/ui-component';
@@ -6,6 +5,8 @@ import { UISmoothScroller } from '../common/ui/smooth-scroller';
 import { TimelineUIComponent } from '../timeline/ui-component';
 import { Playhead } from '../lib/playhead';
 import { TimelineRawEventInterface } from '../timeline/raw-event.interface';
+import { AppApiService } from '../app/api.service';
+import { timingDelay } from '../common/timing/delay';
 
 import '../common/styles/reset.css';
 import '../app/styles.css';
@@ -16,37 +17,29 @@ import '../navigation/styles.css';
 import '../timeline/styles.css';
 import '../portfolio/styles.css';
 import '../footer/styles.css';
-import { AppApiService } from '../app/api.service';
 
 const Grid = require('../lib/grid');
 
 export const indexEntry = (document: Document) => {
-  const scroller = new UISmoothScroller();
-  const nav = new NavigationUIComponent(document);
-  const timeline = new TimelineUIComponent(document);
-  const playhead = new Playhead();
+  const navNextElement: HTMLElement = document.querySelector('[data-nav-next]');
 
-  const $firstSection = $('[data-jump-link]').eq(0),
-    $navNext = $('[data-nav-next]');
+  if (navNextElement) {
+    let delay: ReturnType<typeof timingDelay>;
 
-  if ($firstSection.length && $navNext.length) {
-    let navSugTimer: ReturnType<typeof setTimeout>;
-
-    playhead.setTrack({
+    new Playhead().setTrack({
       range: {
         in: 0,
-        out: $firstSection.offset().top + 100,
+        out: 100,
       },
       destroy: true,
       playIn: () => {
-        navSugTimer = setTimeout(() => {
-          $navNext.fadeIn(1000);
-        }, 1500);
+        delay = timingDelay(() => navNextElement.classList.add('nav-next--visible'), 1500);
       },
       playOut: () => {
-        clearTimeout(navSugTimer);
-
-        $navNext.fadeOut(500);
+        if (delay) {
+          delay.clear();
+        }
+        navNextElement.classList.remove('nav-next--visible');
       },
     });
   }
@@ -63,15 +56,15 @@ export const indexEntry = (document: Document) => {
     footer.initialize();
   }
 
-  scroller.initialize(document.querySelectorAll('html, body'));
-  nav.initialize();
+  new UISmoothScroller().initialize(document.body);
+  new NavigationUIComponent(document).initialize();
 
   if (window.__mjd) {
     // Load up the site data
     AppApiService()
       .fetch<Array<TimelineRawEventInterface>>(`${window.__mjd.api.base}${window.__mjd.api.endpoints.timeline}`)
       .then((data) => {
-        timeline.initialize(data);
+        new TimelineUIComponent(document).initialize(data);
       });
   }
   Grid.init();

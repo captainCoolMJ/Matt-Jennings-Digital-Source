@@ -1,41 +1,31 @@
-import $ from 'jquery';
-import 'jquery.easing';
+import { uiScrollIntoView } from './scroll-into-view';
 
 /**
  * Navigate to internal links via smooth animation
  */
 export class UISmoothScroller {
-  private $container: JQuery<HTMLElement>;
+  private container: HTMLElement;
 
-  public initialize(container: HTMLElement | NodeListOf<HTMLElement>): void {
-    this.$container = $(container);
-    $('a[href*=#]:not([href=#])', this.$container).click(this.onClickLink.bind(this));
+  public initialize(container: HTMLElement): void {
+    this.container = container;
+    this.container.querySelectorAll('a[href*=\\#]:not([href=\\#])').forEach((element) => {
+      element.addEventListener('click', this.onClickLink);
+    });
   }
 
-  private getTarget(id: string): JQuery<HTMLElement> {
-    return $(id, this.$container);
+  private scrollTo(target: Element): void {
+    uiScrollIntoView(target, {
+      duration: 350,
+      easing: 'easeInOutQuart',
+    });
   }
-
-  private goTo = (id: string) => {
-    const $target = this.getTarget(id);
-
-    if ($target.length) {
-      this.$container.stop().animate(
-        {
-          scrollTop: $target.offset().top,
-        },
-        350,
-        'easeInOutQuart',
-      );
-    }
-  };
 
   private onClickLink = (e: MouseEvent) => {
-    const target: HTMLAnchorElement = e.currentTarget as any;
+    const target = this.container.querySelector((e.currentTarget as HTMLAnchorElement).hash);
 
-    if (this.getTarget(target.hash).length) {
-      this.goTo(target.hash);
+    if (target) {
       e.preventDefault();
+      this.scrollTo(target);
     }
   };
 }

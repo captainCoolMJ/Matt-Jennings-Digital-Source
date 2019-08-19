@@ -17,7 +17,7 @@ export const appComponent = (
       <meta charset="utf-8">
       <title>${data.site.title}</title>
       <meta name="description" content="${data.site.description}">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
       <link rel="icon" href="${data.config.assets['favicon.ico']}">
 

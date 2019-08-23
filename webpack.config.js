@@ -11,8 +11,8 @@ const pkg = require('./package.json');
 
 module.exports = (env = {}) => ({
   entry: {
-    index: ['whatwg-fetch', './source/index/entry.ts'],
-    notFound: ['whatwg-fetch', './source/not-found/entry.ts'],
+    index: ['./scripts/polyfills.js', 'whatwg-fetch', './source/index/entry.ts'],
+    notFound: ['./scripts/polyfills.js', 'whatwg-fetch', './source/not-found/entry.ts'],
   },
   mode: env.production ? 'production' : 'development',
   devtool: env.production ? undefined : 'cheap-module-eval-source-map',
@@ -61,10 +61,6 @@ module.exports = (env = {}) => ({
     new CheckerPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
-    }),
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
     }),
     new CopyPlugin([{ from: './static' }]),
   ],

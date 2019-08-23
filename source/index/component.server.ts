@@ -73,6 +73,7 @@ export const indexComponent = (
                   (item) => `
                   <li>
                     <a 
+                      data-id="grid-item"
                       rel="noopener"
                       href="${item.links.external}" 
                       data-largesrc="${item.image}" 

@@ -1,5 +1,3 @@
-const $ = require('jquery');
-
 // Mock Express
 jest.mock('express', () => {
   const mock = jest.fn().mockImplementation(() => ({
@@ -16,5 +14,3 @@ jest.mock('express', () => {
 
   return mock;
 });
-
-global.$ = global.jQuery = $;

@@ -7,6 +7,7 @@ import { Playhead } from '../lib/playhead';
 import { TimelineRawEventInterface } from '../timeline/raw-event.interface';
 import { AppApiService } from '../app/api.service';
 import { timingDelay } from '../common/timing/delay';
+import { PortfolioGrid } from '../portfolio/grid';
 
 import '../common/styles/reset.css';
 import '../app/styles.css';
@@ -17,8 +18,6 @@ import '../navigation/styles.css';
 import '../timeline/styles.css';
 import '../portfolio/styles.css';
 import '../footer/styles.css';
-
-const Grid = require('../lib/grid');
 
 export const indexEntry = (document: Document) => {
   const navNextElement: HTMLElement = document.querySelector('[data-nav-next]');
@@ -61,6 +60,11 @@ export const indexEntry = (document: Document) => {
   new UISmoothScroller().initialize(document.body);
   new NavigationUIComponent(document).initialize();
 
+  const portfolioContainer = document.getElementById('og-grid');
+  if (portfolioContainer) {
+    new PortfolioGrid().initialize(document.getElementById('og-grid'));
+  }
+
   if (window.__mjd) {
     // Load up the site data
     AppApiService()
@@ -69,7 +73,6 @@ export const indexEntry = (document: Document) => {
         new TimelineUIComponent(document).initialize(data);
       });
   }
-  Grid.init();
 };
 
 indexEntry(document);

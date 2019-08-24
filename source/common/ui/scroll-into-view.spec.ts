@@ -1,35 +1,20 @@
 import { uiScrollIntoView } from './scroll-into-view';
+import * as scrollTo from './scroll-to';
 
 describe('uiScrollIntoView', () => {
   const container = document.createElement('div');
-  const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(jest.fn());
 
-  let timestamp = 0;
+  jest.spyOn(scrollTo, 'uiScrollTo');
 
-  container.innerHTML = `
-    <div id="scroll-to">Me!</div>
-  `;
-
-  jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
-    timestamp += 100;
-    cb(timestamp);
-    return timestamp;
-  });
-
-  beforeEach(() => {
-    scrollToSpy.mockClear();
-  });
-
-  it('should scroll the window to an element', () => {
-    uiScrollIntoView(container.querySelector('#scroll-to'));
-    expect(scrollToSpy).toHaveBeenCalledTimes(11);
-  });
-
-  it('should scroll the window to an element with options', () => {
-    uiScrollIntoView(container.querySelector('#scroll-to'), {
-      duration: 500,
-      easing: 'easeInOutQuart',
+  it('should call scroll to with the position of the target element', () => {
+    uiScrollIntoView(container, {
+      easing: 'linear',
+      duration: 300,
     });
-    expect(scrollToSpy).toHaveBeenCalledTimes(6);
+
+    expect(scrollTo.uiScrollTo).toHaveBeenCalledWith(container.getBoundingClientRect().top, {
+      easing: 'linear',
+      duration: 300,
+    });
   });
 });

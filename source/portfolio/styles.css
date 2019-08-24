@@ -112,6 +112,12 @@
 	display: inline-block;
 	max-height: 100%;
 	max-width: 100%;
+	opacity: 0;
+	transition: opacity 350ms;
+}
+
+.og-fullimg .img--visible {
+	opacity: 1;
 }
 
 .og-details h3 {
@@ -146,16 +152,20 @@
 }
 
 .og-loading {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--color-light-3);
-    box-shadow: 0 0 1px var(--color-light-4), 15px 30px 1px var(--color-light-4), -15px 30px 1px var(--color-light-4);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -25px 0 0 -25px;
-    animation: loader 0.5s infinite ease-in-out both;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: var(--color-light-3);
+	box-shadow: 0 0 1px var(--color-light-4), 15px 30px 1px var(--color-light-4), -15px 30px 1px var(--color-light-4);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -25px 0 0 -25px;
+	animation: loader 0.5s infinite ease-in-out both;
+}
+
+.og-loading--hidden {
+	display: none;
 }
 
 @keyframes loader {

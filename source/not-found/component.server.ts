@@ -11,7 +11,7 @@ export const notFoundComponent = (intl: AppInternationalizationType) => (data: C
   appComponent(data, {
     head: `<link rel="stylesheet" href="${data.config.assets['notFound.css']}">`,
     body: `
-      ${navigationComponent({
+      ${navigationComponent(intl)({
         links: [
           {
             href: '/#work',

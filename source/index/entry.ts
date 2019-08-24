@@ -8,6 +8,7 @@ import { TimelineRawEventInterface } from '../timeline/raw-event.interface';
 import { AppApiService } from '../app/api.service';
 import { timingDelay } from '../common/timing/delay';
 import { PortfolioGrid } from '../portfolio/grid';
+import { AppInternationalizationService } from '../app/internationalization.service';
 
 import '../common/styles/reset.css';
 import '../app/styles.css';
@@ -18,7 +19,6 @@ import '../navigation/styles.css';
 import '../timeline/styles.css';
 import '../portfolio/styles.css';
 import '../footer/styles.css';
-import { AppInternationalizationService } from '../app/internationalization.service';
 
 export const indexEntry = (document: Document) => {
   const translations = AppInternationalizationService();

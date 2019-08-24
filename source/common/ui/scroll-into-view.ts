@@ -1,12 +1,11 @@
 import { uiScrollTo } from './scroll-to';
-
-type EasingTypes = 'linear' | 'easeInOutQuart';
+import { UIEasingTypes } from './easing/types';
 
 export const uiScrollIntoView = (
   target: Element,
   options?: {
     duration?: number;
-    easing?: EasingTypes;
+    easing?: UIEasingTypes;
   },
 ) => {
   uiScrollTo(target.getBoundingClientRect().top, options);

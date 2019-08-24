@@ -1,15 +1,11 @@
-type EasingTypes = 'linear' | 'easeInOutQuart';
-
-const easingMap: Record<EasingTypes, (t: number) => number> = {
-  easeInOutQuart: (t) => (t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t),
-  linear: (t) => t,
-};
+import { uiEasingFunctions } from './easing/functions';
+import { UIEasingTypes } from './easing/types';
 
 export const uiScrollTo = (
   positionY: number,
   options?: Partial<{
     duration: number;
-    easing: EasingTypes;
+    easing: UIEasingTypes;
   }>,
 ) => {
   options = {
@@ -30,7 +26,7 @@ export const uiScrollTo = (
     const timeElapsed = time - startTime;
     const timeElapsedPercent = Math.min(timeElapsed / options.duration, 1);
 
-    window.scrollTo(0, startPosY + positionY * easingMap[options.easing](timeElapsedPercent));
+    window.scrollTo(0, startPosY + positionY * uiEasingFunctions[options.easing](timeElapsedPercent));
 
     if (timeElapsed < options.duration) {
       requestAnimationFrame(step);

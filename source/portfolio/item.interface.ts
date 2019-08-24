@@ -1,4 +1,5 @@
 export interface PortfolioItemInterface {
+  isPublished: boolean;
   title: string;
   description: string;
   id: string;

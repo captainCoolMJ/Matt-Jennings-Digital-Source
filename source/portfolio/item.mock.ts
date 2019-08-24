@@ -1,4 +1,5 @@
 export const portfolioItemMock = ({
+  isPublished = true,
   title = 'Title',
   description = 'Description',
   id = 'mock',
@@ -9,6 +10,7 @@ export const portfolioItemMock = ({
     external: '',
   },
 }) => ({
+  isPublished,
   title,
   description,
   id,

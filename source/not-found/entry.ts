@@ -9,8 +9,13 @@ import '../title/styles.css';
 import '../header/styles.css';
 import '../navigation/styles.css';
 import '../footer/styles.css';
+import { AppInternationalizationService } from '../app/internationalization.service';
 
 export const notFoundEntry = (document: Document) => {
+  if (window.__mjd) {
+    AppInternationalizationService().initialize(window.__mjd.messages);
+  }
+
   new HeaderUIComponent(document.querySelector('[data-id="header"]') as HTMLElement).initialize();
   new NavigationUIComponent(document).initialize();
   new FooterUIComponent(document.querySelector('[data-id="footer"]') as HTMLElement).initialize();

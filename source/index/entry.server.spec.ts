@@ -3,15 +3,19 @@ import { AppConfiguration } from '../app/configuration.server';
 import { appConfigurationMock } from '../app/configuration.mock';
 import { Api } from '../common/api';
 import { AppConfigurationInterface } from '../app/configuration.interface';
+import { AppInternationalizationType } from '../app/types';
+import { AppInternationalizationServiceMock } from '../app/internationalization.service.mock';
 
 describe('indexEntry', () => {
   let appConfig: AppConfiguration;
   let appApi: Api;
   let configMock: AppConfigurationInterface;
+  let intl: AppInternationalizationType;
 
   beforeEach(() => {
     appConfig = new AppConfiguration();
     configMock = appConfigurationMock();
+    intl = AppInternationalizationServiceMock();
 
     appConfig.set(configMock);
   });
@@ -25,7 +29,7 @@ describe('indexEntry', () => {
         .mockResolvedValueOnce([]),
     } as any;
 
-    const entry = indexEntry(appConfig, appApi);
+    const entry = indexEntry(appConfig, appApi, intl);
 
     const resSendSpy = jest.fn();
     const resTypeSpy = jest.fn();
@@ -53,7 +57,7 @@ describe('indexEntry', () => {
       fetch: jest.fn().mockRejectedValue({}),
     };
 
-    const entry = indexEntry(appConfig, appApi);
+    const entry = indexEntry(appConfig, appApi, intl);
 
     const resSendSpy = jest.fn();
     const resTypeSpy = jest.fn();

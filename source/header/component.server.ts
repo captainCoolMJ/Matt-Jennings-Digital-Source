@@ -1,9 +1,10 @@
 import { titleComponent } from '../title/component.server';
+import { AppInternationalizationType } from '../app/types';
 
-export const headerComponent = (data: { title: string }) => `
+export const headerComponent = (intl: AppInternationalizationType) => (data: { title: string }) => `
   <header class="header" data-id="header">
     <div class="content__inner">
-      <a class="text text--hidden" href="#nav">Jump to Navigation</a>
+      <a class="text text--hidden" href="#nav">${intl.translate('navigation.link.jump')}</a>
 
       <div class="header__logo">
         <a href="#top" class="logo" title="${data.title}">

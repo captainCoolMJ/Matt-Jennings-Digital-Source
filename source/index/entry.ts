@@ -18,8 +18,22 @@ import '../navigation/styles.css';
 import '../timeline/styles.css';
 import '../portfolio/styles.css';
 import '../footer/styles.css';
+import { AppInternationalizationService } from '../app/internationalization.service';
 
 export const indexEntry = (document: Document) => {
+  const translations = AppInternationalizationService();
+
+  if (window.__mjd) {
+    // Load up the site data
+    AppApiService()
+      .fetch<Array<TimelineRawEventInterface>>(`${window.__mjd.api.base}${window.__mjd.api.endpoints.timeline}`)
+      .then((data) => {
+        new TimelineUIComponent(document).initialize(data);
+      });
+
+    translations.initialize(window.__mjd.messages);
+  }
+
   const navNextElement: HTMLElement = document.querySelector('[data-nav-next]');
 
   if (navNextElement) {
@@ -63,15 +77,6 @@ export const indexEntry = (document: Document) => {
   const portfolioContainer = document.getElementById('og-grid');
   if (portfolioContainer) {
     new PortfolioGrid().initialize(document.getElementById('og-grid'));
-  }
-
-  if (window.__mjd) {
-    // Load up the site data
-    AppApiService()
-      .fetch<Array<TimelineRawEventInterface>>(`${window.__mjd.api.base}${window.__mjd.api.endpoints.timeline}`)
-      .then((data) => {
-        new TimelineUIComponent(document).initialize(data);
-      });
   }
 };
 

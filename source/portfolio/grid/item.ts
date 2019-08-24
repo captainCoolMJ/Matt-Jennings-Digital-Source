@@ -1,6 +1,7 @@
 import { imageLoad } from '../../common/image/load';
 import { uiScrollTo } from '../../common/ui/scroll-to';
 import { PortfolioGridOptionsInterface } from './options.interface';
+import { AppInternationalizationType } from '../../app/types';
 
 export class PortfolioGridItem {
   public height: number;
@@ -17,7 +18,11 @@ export class PortfolioGridItem {
 
   private previewElement: HTMLElement;
 
-  constructor(item: HTMLElement, private options: PortfolioGridOptionsInterface) {
+  constructor(
+    private intl: AppInternationalizationType,
+    item: HTMLElement,
+    private options: PortfolioGridOptionsInterface,
+  ) {
     this.itemElement = item;
     this.thumbnailHeight = item.offsetHeight;
   }
@@ -115,7 +120,14 @@ export class PortfolioGridItem {
         <div class="og-details">
           <h3 data-id="grid-item-title">${this.title}</h3>
           <p data-id="grid-item-description">${this.description}</p>
-          <a data-id="grid-item-link" href="${this.href}" class="btn_go" target="_blank">Live site</a>
+          <a 
+            data-id="grid-item-link" 
+            href="${this.href}" 
+            class="btn_go" 
+            target="_blank"
+          >
+            ${this.intl.translate('portfolio.link.liveSite')}
+          </a>
         </div>
       </div>
     `;

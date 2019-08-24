@@ -2,6 +2,7 @@ import { imageLoad } from '../common/image/load';
 import { timingDelay } from '../common/timing/delay';
 import { PortfolioGridOptionsInterface } from './grid/options.interface';
 import { PortfolioGridItem } from './grid/item';
+import { AppInternationalizationService } from '../app/internationalization.service';
 
 export class PortfolioGrid {
   private settings: PortfolioGridOptionsInterface = {
@@ -82,7 +83,7 @@ export class PortfolioGrid {
     }
 
     // update previewPos
-    this.activePreview = new PortfolioGridItem(item, this.settings);
+    this.activePreview = new PortfolioGridItem(AppInternationalizationService(), item, this.settings);
 
     const dataElement = item.querySelector('a');
     this.activePreview.setData({

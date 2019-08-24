@@ -14,7 +14,7 @@ export class PortfolioGrid {
   private gridItemElements: NodeListOf<HTMLElement>;
   private activePreview: PortfolioGridItem;
 
-  public initialize(grid: HTMLElement, config?: Partial<PortfolioGridOptionsInterface>): void {
+  public initialize(grid: HTMLElement, config?: Partial<PortfolioGridOptionsInterface>): Promise<void> {
     this.settings = {
       ...this.settings,
       ...config,
@@ -25,7 +25,7 @@ export class PortfolioGrid {
     this.gridItemElements = this.gridElement.querySelectorAll('li');
 
     // preload all images
-    Promise.all(
+    return Promise.all(
       Array.prototype.slice
         .call(this.gridElement.querySelectorAll('img'))
         .map((element: HTMLImageElement) => imageLoad(element.src)),
@@ -83,6 +83,14 @@ export class PortfolioGrid {
 
     // update previewPos
     this.activePreview = new PortfolioGridItem(item, this.settings);
+
+    const dataElement = item.querySelector('a');
+    this.activePreview.setData({
+      href: dataElement.href,
+      largesrc: dataElement.dataset.largesrc,
+      title: dataElement.dataset.title,
+      description: dataElement.dataset.description,
+    });
     this.activePreview.open({ extraScroll: scrollExtra });
   }
 }

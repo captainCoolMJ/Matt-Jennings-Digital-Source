@@ -8,59 +8,39 @@ export class PortfolioGridItem {
 
   private static marginExpanded = 10;
 
-  private itemHeight: number;
+  private href: string;
+  private largesrc: string;
+  private title: string;
+  private description: string;
 
   private thumbnailHeight: number;
 
-  private titleElement: HTMLElement;
-  private descriptionElement: HTMLElement;
-  private hrefElement: HTMLAnchorElement;
-  private loadingElement: HTMLElement;
-  private fullImageElement: HTMLElement;
   private previewElement: HTMLElement;
-  private largeImgElement: HTMLImageElement;
 
   constructor(item: HTMLElement, private options: PortfolioGridOptionsInterface) {
     this.itemElement = item;
     this.thumbnailHeight = item.offsetHeight;
-
-    this.create();
-    this.update();
   }
 
-  public update(): void {
-    const anchor = this.itemElement.querySelector('a');
-
-    // update preview´s content
-    const eldata = {
-      href: anchor.href,
-      largesrc: anchor.dataset.largesrc,
-      title: anchor.dataset.title,
-      description: anchor.dataset.description,
-    };
-
-    this.titleElement.innerHTML = eldata.title;
-    this.descriptionElement.innerHTML = eldata.description;
-    this.hrefElement.href = eldata.href;
-
-    this.loadingElement.classList.remove('og-loading--hidden');
-
-    imageLoad(eldata.largesrc).then(() => {
-      this.loadingElement.classList.add('og-loading--hidden');
-      this.fullImageElement.querySelectorAll('img').forEach((element) => element.remove());
-
-      this.largeImgElement = new Image();
-      this.largeImgElement.src = eldata.largesrc;
-      this.fullImageElement.appendChild(this.largeImgElement);
-
-      this.largeImgElement.classList.add('img--visible');
-    });
+  public setData({ href = '', largesrc = '', title = '', description = '' }): void {
+    this.href = href;
+    this.largesrc = largesrc;
+    this.title = title;
+    this.description = description;
   }
 
   public open(options?: { extraScroll: number }): void {
-    this.itemElement.classList.add('og-expanded');
+    options = {
+      extraScroll: 0,
+      ...options,
+    };
 
-    options.extraScroll = options.extraScroll || 0;
+    this.renderHTML();
+
+    imageLoad(this.largesrc).then(() => {
+      this.previewElement.querySelector('.og-loading').classList.add('og-loading--hidden');
+      this.previewElement.querySelector('.og-fullimg img').classList.add('img--visible');
+    });
 
     // set the height for the preview and the item
     this.setHeights();
@@ -86,10 +66,6 @@ export class PortfolioGridItem {
       this.previewElement.remove();
     };
 
-    if (this.largeImgElement) {
-      this.largeImgElement.classList.remove('img--visible');
-    }
-
     this.previewElement.style.height = '0px';
 
     this.itemElement.addEventListener('transitionend', onEndFn);
@@ -106,7 +82,8 @@ export class PortfolioGridItem {
     }
 
     this.height = heightPreview;
-    this.itemHeight = itemHeight;
+
+    itemHeight = itemHeight;
 
     const onEndFn = () => {
       this.itemElement.removeEventListener('transitionend', onEndFn);
@@ -114,11 +91,11 @@ export class PortfolioGridItem {
     };
 
     this.previewElement.style.height = `${this.height}px`;
-    this.itemElement.style.height = `${this.itemHeight}px`;
+    this.itemElement.style.height = `${itemHeight}px`;
     this.itemElement.addEventListener('transitionend', onEndFn);
   }
 
-  private create(): void {
+  private renderHTML(): void {
     // create Preview structure:
     this.itemElement.style.transition = `height ${this.options.speed}ms ${this.options.easing}`;
 
@@ -133,19 +110,14 @@ export class PortfolioGridItem {
         <span class="og-close"></span>
         <div class="og-fullimg">
           <div class="og-loading"></div>
+          <img data-id="grid-item-largesrc" src="${this.largesrc}" />
         </div>
         <div class="og-details">
-          <h3></h3>
-          <p></p>
-          <a href="#" class="btn_go" target="_blank">Live site</a>
+          <h3 data-id="grid-item-title">${this.title}</h3>
+          <p data-id="grid-item-description">${this.description}</p>
+          <a data-id="grid-item-link" href="${this.href}" class="btn_go" target="_blank">Live site</a>
         </div>
       </div>
     `;
-
-    this.titleElement = this.previewElement.querySelector('h3');
-    this.descriptionElement = this.previewElement.querySelector('p');
-    this.hrefElement = this.previewElement.querySelector('.btn_go');
-    this.loadingElement = this.previewElement.querySelector('.og-loading');
-    this.fullImageElement = this.previewElement.querySelector('.og-fullimg');
   }
 }

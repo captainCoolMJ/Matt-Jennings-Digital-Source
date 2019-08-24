@@ -1,78 +1,81 @@
 .navigation {
-    position: fixed;
-    top: 0;
-    right: calc(var(--width-menu) * -1);
-    height: 100%;
-    width: var(--width-menu);
-    z-index: 999;
-
-    box-sizing: border-box;
-    background: var(--color-orange);
-    transition: 0.2s right;
+  position: fixed;
+  top: 0;
+  right: calc(var(--width-menu) * -1);
+  height: 100%;
+  width: var(--width-menu);
+  z-index: 999;
+  
+  box-sizing: border-box;
+  background: var(--color-orange);
+  transition: 0.2s right;
 }
 
 .navigation__link { color: var(--color-light); }
+.navigation__link:hover {
+  text-decoration: underline;
+}
 
 .navigation__button {
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow: visible;
-
-    background: transparent;
-
-    /* inherit font & color from ancestor */
-    color: inherit;
-    font: inherit;
-
-    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-    line-height: normal;
-
-    /* Corrects font smoothing for webkit */
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
-
-    /* Corrects inability to style clickable `input` types in iOS */
-    -webkit-appearance: none;
-    box-shadow: none;
-
-    color: var(--color-dark-1);
-    position: relative;
-    right: 100px;
-    top: 15px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  
+  background: transparent;
+  
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+  
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+  
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+  box-shadow: none;
+  
+  color: var(--color-dark-1);
+  position: relative;
+  right: 100px;
+  top: 15px;
 }
 
 .navigation__button:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .navigation__items {
-    list-style: none;
-    padding: 0 2em 0 0;
-    text-align: right;
+  list-style: none;
+  padding: 0 2em 0 0;
+  text-align: right;
 }
 
 @media screen and (min-width: 769px) {
-    .navigation {
-        background: transparent;
-        right: 20%;
-        height: 50px;
-        width: 300px;
-        z-index: 9;
-        text-align: right;
-    }
-
-    .navigation__button {
-        display: none;
-    }
-    
-    .navigation__items { padding: 0; }
-    
-    .navigation__item { display: inline-block; }
-    .navigation__link {
-        color: var(--color-dark-1);
-        display: block;
-        padding: 0.75em;
-    }
+  .navigation {
+    background: transparent;
+    right: 20%;
+    height: 50px;
+    width: 300px;
+    z-index: 9;
+    text-align: right;
+  }
+  
+  .navigation__button {
+    display: none;
+  }
+  
+  .navigation__items { padding: 0; }
+  
+  .navigation__item { display: inline-block; }
+  .navigation__link {
+    color: var(--color-dark-1);
+    display: block;
+    padding: 0.75em;
+  }
 }

@@ -17,7 +17,7 @@ export const indexComponent = (intl: AppInternationalizationType) => (
   appComponent(data, {
     head: `<link rel="stylesheet" href="${data.config.assets['index.css']}">`,
     body: `
-        ${navigationComponent({
+        ${navigationComponent(intl)({
           links: [
             {
               href: '#work',

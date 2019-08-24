@@ -1,4 +1,6 @@
-export const navigationComponent = (data: {
+import { AppInternationalizationType } from '../app/types';
+
+export const navigationComponent = (intl: AppInternationalizationType) => (data: {
   links: Array<{
     href: string;
     title: string;
@@ -6,7 +8,13 @@ export const navigationComponent = (data: {
   }>;
 }) => `
   <nav id="nav" class="navigation" role="navigation">
-    <button data-toggle-menu="true" type="button" class="navigation__button">&equiv; Menu</button>
+    <button 
+      data-toggle-menu="true" 
+      type="button" 
+      class="navigation__button"
+    >
+      ${intl.translate('navigation.button.menu')}
+    </button>
     <ul class="navigation__items">
       ${data.links
         .map(

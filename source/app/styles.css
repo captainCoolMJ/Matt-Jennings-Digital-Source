@@ -2,7 +2,7 @@
  * tablet: 400px
  * desktop: 769px
 **/
-@import url('https://fonts.googleapis.com/css?family=Kameron|Lato:300,300i,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Catamaran|Lora:400i|Lato:300,300i,400,500,700&display=swap');
 
 :root {
   --color-orange: #F68620;
@@ -31,7 +31,8 @@
   --color-light-6: #888;
   
   --font-family-default: 'Lato', Helvetica, Arial, sans-serif;
-  --font-family-title: 'Kameron', Arial, sans-serif;
+  --font-family-alternate: 'Lora';
+  --font-family-title: 'Catamaran', Arial, sans-serif;
   
   --width-menu: 200px;
   --height-header: 50px;

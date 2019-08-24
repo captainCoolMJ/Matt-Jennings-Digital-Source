@@ -82,6 +82,7 @@ export const indexComponent = (intl: AppInternationalizationType) => (
             
             <ul id="og-grid" class="og-grid clearfix">
               ${data.portfolio
+                .filter((item) => item.isPublished)
                 .map(
                   (item) => `
                   <li>

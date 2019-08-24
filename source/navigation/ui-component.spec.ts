@@ -12,10 +12,10 @@ describe('NavigationUIComponent', () => {
 
     navigation.initialize();
     menu.dispatchEvent(event);
-    expect(document.body.classList).toContain('menu-active');
+    expect(document.body.classList).toContain('body--menu-active');
 
     document.body.dispatchEvent(event);
 
-    expect(document.body.classList).not.toContain('menu-active');
+    expect(document.body.classList).not.toContain('body--menu-active');
   });
 });

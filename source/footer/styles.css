@@ -1,17 +1,5 @@
 .footer {
-    box-sizing: border-box;
-    text-align: center;
-    padding: 2em 0;
-}
-
-.footer a {
-    position: relative;
-    color: var(--color-blue);
-}
-
-.footer a:hover {
-    text-decoration: none;
-    border-bottom: 1px dotted var(--color-blue);
-    top: 1px;
-    left: 1px;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 2em 0;
 }

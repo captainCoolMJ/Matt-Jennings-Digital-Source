@@ -44,7 +44,7 @@ export const notFoundComponent = (intl: AppInternationalizationType) => (data: C
           })}
           <p>${intl.translate('notFound.section.message', {
             link: `
-              <a href="/" title="${intl.translate('notFound.section.link.title')}">
+              <a class="link" href="/" title="${intl.translate('notFound.section.link.title')}">
                 ${intl.translate('notFound.section.link.message')}
               </a>
             `,

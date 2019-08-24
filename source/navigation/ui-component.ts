@@ -6,13 +6,13 @@ export class NavigationUIComponent extends UIComponent {
     const menu = this.container.querySelector('[data-toggle-menu]');
 
     const onClickBody = (e: Event) => {
-      body.classList.remove('menu-active');
+      body.classList.remove('body--menu-active');
       body.removeEventListener('click', onClickBody);
     };
 
     if (menu) {
       menu.addEventListener('click', (e) => {
-        body.classList.add('menu-active');
+        body.classList.add('body--menu-active');
         body.addEventListener('click', onClickBody);
         e.stopPropagation();
       });

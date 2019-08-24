@@ -52,28 +52,21 @@ export const indexComponent = (intl: AppInternationalizationType) => (
               variants: ['large'],
             })}
             <p>${intl.translate('main.section.message', {
-              github: `
-                <a 
-                    rel="noopener"
-                    href="${data.site.links.github}" 
-                    target="_blank" 
-                    title="${intl.translate('common.github')}"
-                >
-                  ${intl.translate('common.github')}
-                </a>
-              `,
-              linkedIn: `
-                <a 
+              github: `<a 
+                  class="link"
+                  rel="noopener"
+                  href="${data.site.links.github}" 
+                  target="_blank" 
+                  title="${intl.translate('common.github')}"
+                >${intl.translate('common.github')}</a>`,
+              linkedIn: `<a 
+                  class="link"
                   rel="noopener"
                   href="${data.site.links.linked_in}" 
                   target="_blank" 
                   title="${intl.translate('common.linkedIn')}"
-                >
-                  ${intl.translate('common.linkedIn')}
-                </a>
-              `,
+                >${intl.translate('common.linkedIn')}</a>`,
             })}<p>
-            <p data-nav-next="true" class="nav-next"><a href="#work">${intl.translate('main.section.link.next')}</a></p>
           `,
         })}
 
@@ -85,7 +78,7 @@ export const indexComponent = (intl: AppInternationalizationType) => (
               content: intl.translate('work.section.title'),
               variants: ['large'],
             })}
-            <p class="small">${intl.translate('work.section.disclaimer')}</p>
+            <p class="text--small">${intl.translate('work.section.disclaimer')}</p>
             
             <ul id="og-grid" class="og-grid clearfix">
               ${data.portfolio
@@ -99,12 +92,7 @@ export const indexComponent = (intl: AppInternationalizationType) => (
                       data-largesrc="${item.image}" 
                       data-title="${item.title}" 
                       data-description="
-                        ${item.description}
-                        ${intl.translate('portfolio.link.source', {
-                          source: `<a rel='noopener' href='${item.links.external}' target='_blank' title='${item.title}'>`,
-                        })}
-                      ${item.title}</a>.
-                      <strong>${item.tags.join(', ')}</strong>."
+                        ${item.description} <strong class='text--bold'>${item.tags.join(', ')}</strong>."
                     >
                       <img src="${item.thumbnail}" alt="${item.title}" />
                     </a>
@@ -127,6 +115,7 @@ export const indexComponent = (intl: AppInternationalizationType) => (
 
             <p>
               <a 
+                class="link"
                 rel="noopener" 
                 href="${data.site.assets.cv}" 
                 title="${intl.translate('experience.link.resume.title')}" 
@@ -167,17 +156,19 @@ export const indexComponent = (intl: AppInternationalizationType) => (
             })}
             <p>${intl.translate('contact.section.message')}</p>
 
-            <ul class="social">
-              <li>
+            <ul class="social-links__list">
+              <li class="social-links__list-item">
                 <a 
+                  class="link social-links__link"
                   rel="noopener" 
                   href="${data.site.links.email}" 
                   title="${intl.translate('common.link.email.title')}"
                 >
                   ${intl.translate('common.link.email.message')}
                 </a>
-              <li>
+              <li class="social-links__list-item">
                 <a 
+                  class="link social-links__link"
                   rel="noopener" 
                   href="${data.site.links.github}" 
                   target="_blank" 
@@ -186,8 +177,9 @@ export const indexComponent = (intl: AppInternationalizationType) => (
                   ${intl.translate('common.github')}
                 </a>
               </li>
-              <li>
+              <li class="social-links__list-item">
                 <a 
+                  class="link social-links__link"
                   rel="noopener" 
                   href="${data.site.links.linked_in}" 
                   target="_blank" 

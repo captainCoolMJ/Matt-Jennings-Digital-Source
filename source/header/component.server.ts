@@ -40,7 +40,7 @@ export const headerComponent = (intl: AppInternationalizationType) => (data: { t
       <div class="header__title">
         ${titleComponent({
           priority: 1,
-          content: `<a href="#top" class="header__link" title="${data.title}">${data.title}</a>`,
+          content: `<a href="#top" class="link link--alt header__link" title="${data.title}">${data.title}</a>`,
           variants: ['appTitle'],
         })}
       </div>

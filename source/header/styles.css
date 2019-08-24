@@ -1,56 +1,56 @@
 .header {
-    position: fixed;
-    height: var(--height-header);
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 8;
-
-    background: var(--color-light-alpha-75);
-    border-top: 2px solid var(--color-orange);
-    border-bottom: 1px dotted var(--color-light-5);
-    transition: 0.5s background, 0.2s left;
-    text-align: left;
+  position: fixed;
+  height: var(--height-header);
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  
+  background: var(--color-light-alpha-75);
+  border-top: 2px solid var(--color-orange);
+  border-bottom: 1px dotted var(--color-light-5);
+  transition: 0.5s background, 0.2s left;
+  text-align: left;
 }
 
 .header:hover { background: var(--color-light); }
 
 .header__title {
-    display: inline-block;
+  display: inline-block;
 }
 
 .header__logo {
-    margin-top: 5px;
-    display: inline-block;
-    vertical-align: middle;
+  margin-top: 5px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .header__link {
-    display: block;
-    padding: 0.5em;
+  display: block;
+  padding: 0.5em;
 }
 
 .logo.hover .logo__path {
-    stroke-dasharray: 110;
-    stroke-dashoffset: 0;
-    -webkit-animation: dash .75s linear alternate;
-            animation: dash .75s linear alternate;
+  stroke-dasharray: 110;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash .75s linear alternate;
+  animation: dash .75s linear alternate;
 }
 
 @keyframes dash {
-    from {
-        stroke-dashoffset: 110;
-    }
-    to {
-        stroke-dashoffset: 0;
-    }
+  from {
+    stroke-dashoffset: 110;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @-webkit-keyframes dash {
-    from {
-        stroke-dashoffset: 110;
-    }
-    to {
-        stroke-dashoffset: 0;
-    }
+  from {
+    stroke-dashoffset: 110;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }

@@ -5,6 +5,7 @@ export const footerComponent = (intl: AppInternationalizationType) => (data: { t
     <div class="content__inner">
       <p>
         <a 
+          class="link"
           href="#top" 
           title="${intl.translate('common.link.backToTop.title')}"
         >

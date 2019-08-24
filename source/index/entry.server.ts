@@ -5,6 +5,7 @@ import { AppConfigurationInterface } from '../app/configuration.interface';
 import { PortfolioItemInterface } from '../portfolio/item.interface';
 import { Api } from '../common/api';
 import { AppInternationalizationType } from '../app/types';
+import { TimelineRawEventInterface } from '../timeline/raw-event.interface';
 
 export const indexEntry = (
   appConfig: AppConfiguration,
@@ -18,6 +19,9 @@ export const indexEntry = (
       appApi.fetch<Array<PortfolioItemInterface>>(
         `${appConfig.get().api.base}${appConfig.get().api.endpoints.portfolio}`,
       ),
+      appApi.fetch<Array<TimelineRawEventInterface>>(
+        `${appConfig.get().api.base}${appConfig.get().api.endpoints.timeline}`,
+      ),
     ]);
 
     res.type('html');
@@ -27,6 +31,7 @@ export const indexEntry = (
         site: response[0],
         skills: response[1],
         portfolio: response[2],
+        timeline: response[3],
       }),
     );
   } catch (e) {

@@ -22,7 +22,7 @@ export const entry = (options: {
   const appConfig = AppConfigurationService();
   const intl = AppInternationalizationService();
 
-  intl.initialize(messagesEnUs);
+  intl.initialize('en-US', messagesEnUs);
 
   appConfig.set({
     keys: {

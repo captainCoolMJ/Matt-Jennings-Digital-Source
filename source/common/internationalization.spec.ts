@@ -10,11 +10,11 @@ describe('Internationalization', () => {
 
   beforeEach(() => {
     intl = new Internationalization();
-    intl.initialize(messages);
+    intl.initialize('en-US', messages);
   });
 
   it('should create and set translation messages', () => {
-    intl.initialize(messages);
+    intl.initialize('en-US', messages);
 
     expect(intl.getMessages()).toEqual(messages);
   });
@@ -35,4 +35,6 @@ describe('Internationalization', () => {
   it('should return the key when a translation is not available', () => {
     expect(intl.translate('invalid' as any)).toEqual('invalid');
   });
+
+  it('should format a date', () => {});
 });

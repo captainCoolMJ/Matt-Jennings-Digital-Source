@@ -2,10 +2,7 @@ import { HeaderUIComponent } from '../header/ui-component';
 import { FooterUIComponent } from '../footer/ui-component';
 import { NavigationUIComponent } from '../navigation/ui-component';
 import { UISmoothScroller } from '../common/ui/smooth-scroller';
-import { TimelineUIComponent } from '../timeline/ui-component';
 import { Playhead } from '../lib/playhead';
-import { TimelineRawEventInterface } from '../timeline/raw-event.interface';
-import { AppApiService } from '../app/api.service';
 import { timingDelay } from '../common/timing/delay';
 import { PortfolioGrid } from '../portfolio/grid';
 import { AppInternationalizationService } from '../app/internationalization.service';
@@ -24,14 +21,7 @@ export const indexEntry = (document: Document) => {
   const translations = AppInternationalizationService();
 
   if (window.__mjd) {
-    // Load up the site data
-    AppApiService()
-      .fetch<Array<TimelineRawEventInterface>>(`${window.__mjd.api.base}${window.__mjd.api.endpoints.timeline}`)
-      .then((data) => {
-        new TimelineUIComponent(document).initialize(data);
-      });
-
-    translations.initialize(window.__mjd.messages);
+    translations.initialize('en-US', window.__mjd.messages);
   }
 
   const navNextElement: HTMLElement = document.querySelector('[data-nav-next]');

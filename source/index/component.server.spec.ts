@@ -4,6 +4,7 @@ import { appConfigurationMock } from '../app/configuration.mock';
 import { portfolioItemMock } from '../portfolio/item.mock';
 import { skillItemMock } from '../skill/item.mock';
 import { AppInternationalizationServiceMock } from '../app/internationalization.service.mock';
+import { timelineRawEventMock } from '../timeline/raw-event.mock';
 
 describe('indexComponent', () => {
   it('should output a string', () => {
@@ -13,6 +14,7 @@ describe('indexComponent', () => {
         site: appConfigurationMock(),
         skills: [skillItemMock({})],
         portfolio: [portfolioItemMock({})],
+        timeline: [timelineRawEventMock({})],
       }),
     ).toBe('string');
   });

@@ -13,7 +13,7 @@ import { AppInternationalizationService } from '../app/internationalization.serv
 
 export const notFoundEntry = (document: Document) => {
   if (window.__mjd) {
-    AppInternationalizationService().initialize(window.__mjd.messages);
+    AppInternationalizationService().initialize('en-US', window.__mjd.messages);
   }
 
   new HeaderUIComponent(document.querySelector('[data-id="header"]') as HTMLElement).initialize();

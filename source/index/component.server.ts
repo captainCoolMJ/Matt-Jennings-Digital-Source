@@ -6,8 +6,9 @@ import { footerComponent } from '../footer/component.server';
 import { titleComponent } from '../title/component.server';
 import { sectionComponent } from '../section/component.server';
 import { navigationComponent } from '../navigation/component.server';
+import { AppInternationalizationType } from '../app/types';
 
-export const indexComponent = (
+export const indexComponent = (intl: AppInternationalizationType) => (
   data: ComponentDataInterface & {
     skills: Array<string>;
     portfolio: Array<PortfolioItemInterface>;
@@ -18,13 +19,25 @@ export const indexComponent = (
     body: `
         ${navigationComponent({
           links: [
-            { href: '#work', title: 'My Work', content: 'work' },
-            { href: '#experience', title: 'My Work Experience', content: 'experience' },
-            { href: '#talk', title: 'Contact Me', content: 'contact' },
+            {
+              href: '#work',
+              title: intl.translate('navigation.link.work.title'),
+              content: intl.translate('navigation.link.work.message'),
+            },
+            {
+              href: '#experience',
+              title: intl.translate('navigation.link.experience.title'),
+              content: intl.translate('navigation.link.experience.message'),
+            },
+            {
+              href: '#talk',
+              title: intl.translate('navigation.link.contact.title'),
+              content: intl.translate('navigation.link.contact.message'),
+            },
           ],
         })}
 
-        ${headerComponent({ title: data.site.title })}
+        ${headerComponent(intl)({ title: data.site.title })}
 
         ${sectionComponent({
           id: 'top',
@@ -32,28 +45,32 @@ export const indexComponent = (
           content: `
             ${titleComponent({
               priority: 1,
-              content: 'Delivering quality web apps.',
+              content: intl.translate('main.section.title'),
               variants: ['large'],
             })}
-            <p>I am an extremely passionate developer with a hardworking attitude and a desire to learn. <br />Check me out on 
-              <a 
+            <p>${intl.translate('main.section.message', {
+              github: `
+                <a 
+                    rel="noopener"
+                    href="${data.site.links.github}" 
+                    target="_blank" 
+                    title="${intl.translate('common.github')}"
+                >
+                  ${intl.translate('common.github')}
+                </a>
+              `,
+              linkedIn: `
+                <a 
                   rel="noopener"
-                  href="${data.site.links.github}" 
+                  href="${data.site.links.linked_in}" 
                   target="_blank" 
-                  title="Github"
-              >
-                Github
-              </a> and 
-              <a 
-                rel="noopener"
-                href="${data.site.links.linked_in}" 
-                target="_blank" 
-                title="Linked In"
-              >
-                Linked In
-              </a>.
-            </p>
-            <p data-nav-next="true" class="nav-next"><a href="#work">Next &raquo;</a></p>
+                  title="${intl.translate('common.linkedIn')}"
+                >
+                  ${intl.translate('common.linkedIn')}
+                </a>
+              `,
+            })}<p>
+            <p data-nav-next="true" class="nav-next"><a href="#work">${intl.translate('main.section.link.next')}</a></p>
           `,
         })}
 
@@ -62,10 +79,10 @@ export const indexComponent = (
           content: `
             ${titleComponent({
               priority: 1,
-              content: 'My recent projects.',
+              content: intl.translate('work.section.title'),
               variants: ['large'],
             })}
-            <p class="small">*live links may be inconsistent with screenshots</p>
+            <p class="small">${intl.translate('work.section.disclaimer')}</p>
             
             <ul id="og-grid" class="og-grid clearfix">
               ${data.portfolio
@@ -80,7 +97,9 @@ export const indexComponent = (
                       data-title="${item.title}" 
                       data-description="
                         ${item.description}
-                        Built at <a rel='noopener' href='${item.links.external}' target='_blank' title='${item.title}'>
+                        ${intl.translate('portfolio.link.source', {
+                          source: `<a rel='noopener' href='${item.links.external}' target='_blank' title='${item.title}'>`,
+                        })}
                       ${item.title}</a>.
                       <strong>${item.tags.join(', ')}</strong>."
                     >
@@ -99,19 +118,24 @@ export const indexComponent = (
           content: `
             ${titleComponent({
               priority: 1,
-              content: 'How I spend my time.',
+              content: intl.translate('experience.section.title'),
               variants: ['large'],
             })}
 
             <p>
-              <a rel="noopener" href="${data.site.assets.cv}" title="View my resume" target="_blank">
-                Download as PDF &raquo;
+              <a 
+                rel="noopener" 
+                href="${data.site.assets.cv}" 
+                title="${intl.translate('experience.link.resume.title')}" 
+                target="_blank"
+              >
+                ${intl.translate('experience.link.resume.message')}
               </a>
             </p>
 
             ${titleComponent({
               priority: 2,
-              content: `Skills I've acquired`,
+              content: intl.translate('skills.section.title'),
               variants: ['paddingBottomHalf'],
             })}
             <ul>
@@ -120,21 +144,21 @@ export const indexComponent = (
 
             ${titleComponent({
               priority: 2,
-              content: `An overview of my past`,
+              content: intl.translate('past.section.title'),
               variants: ['paddingBottomHalf'],
             })}
             <div class="timelines cf">
               <div id="timeline-work">
                 ${titleComponent({
                   priority: 3,
-                  content: 'Work',
+                  content: intl.translate('past.sectionWork.title'),
                 })}
               </div>
 
               <div id="timeline-life">
                 ${titleComponent({
                   priority: 3,
-                  content: 'Life',
+                  content: intl.translate('past.sectionLife.title'),
                 })}
               </div>
             </div>
@@ -146,27 +170,51 @@ export const indexComponent = (
           content: `
             ${titleComponent({
               priority: 1,
-              content: `Let's talk business.`,
+              content: intl.translate('contact.section.title'),
               variants: ['large'],
             })}
-            <p>If you want to talk with me about work opportunities, questions, or if you're just saying hi send me a message! I will respond as soon as I possibly can (which will probably be nearly instantly).</p>
+            <p>${intl.translate('contact.section.message')}</p>
 
             <ul class="social">
-              <li><a rel="noopener" href="${data.site.links.email}" title="Send me an email">Email</a>
-              <li><a rel="noopener" href="${data.site.links.github}" target="_blank" title="Github">Github</a></li>
-              <li><a rel="noopener" href="${
-                data.site.links.linked_in
-              }" target="_blank" title="Linked In">Linked In</a></li>
+              <li>
+                <a 
+                  rel="noopener" 
+                  href="${data.site.links.email}" 
+                  title="${intl.translate('common.link.email.title')}"
+                >
+                  ${intl.translate('common.link.email.message')}
+                </a>
+              <li>
+                <a 
+                  rel="noopener" 
+                  href="${data.site.links.github}" 
+                  target="_blank" 
+                  title="${intl.translate('common.github')}"
+                >
+                  ${intl.translate('common.github')}
+                </a>
+              </li>
+              <li>
+                <a 
+                  rel="noopener" 
+                  href="${data.site.links.linked_in}" 
+                  target="_blank" 
+                  title="${intl.translate('common.linkedIn')}"
+                >
+                  ${intl.translate('common.linkedIn')}
+                </a>
+              </li>
             </ul>
           `,
         })}
 
-        ${footerComponent({ title: data.site.title })}
+        ${footerComponent(intl)({ title: data.site.title })}
     `,
     foot: `
         <script>
           window.__mjd = {
             api: ${JSON.stringify(data.config.api)},
+            messages: ${JSON.stringify(intl.getMessages())}
           };
         </script>
         <script src="${data.config.assets['index.js']}"></script>

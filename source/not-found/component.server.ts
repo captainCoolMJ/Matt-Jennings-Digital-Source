@@ -5,20 +5,33 @@ import { titleComponent } from '../title/component.server';
 import { footerComponent } from '../footer/component.server';
 import { sectionComponent } from '../section/component.server';
 import { navigationComponent } from '../navigation/component.server';
+import { AppInternationalizationType } from '../app/types';
 
-export const notFoundComponent = (data: ComponentDataInterface) =>
+export const notFoundComponent = (intl: AppInternationalizationType) => (data: ComponentDataInterface) =>
   appComponent(data, {
     head: `<link rel="stylesheet" href="${data.config.assets['notFound.css']}">`,
     body: `
       ${navigationComponent({
         links: [
-          { href: '/#work', title: 'My Work', content: 'work' },
-          { href: '/#experience', title: 'My Work Experience', content: 'experience' },
-          { href: '/#talk', title: 'Contact Me', content: 'contact' },
+          {
+            href: '/#work',
+            title: intl.translate('navigation.link.work.title'),
+            content: intl.translate('navigation.link.work.message'),
+          },
+          {
+            href: '/#experience',
+            title: intl.translate('navigation.link.experience.title'),
+            content: intl.translate('navigation.link.experience.message'),
+          },
+          {
+            href: '/#talk',
+            title: intl.translate('navigation.link.contact.title'),
+            content: intl.translate('navigation.link.contact.message'),
+          },
         ],
       })}
 
-      ${headerComponent({ title: data.site.title })}
+      ${headerComponent(intl)({ title: data.site.title })}
 
       ${sectionComponent({
         id: 'top',
@@ -26,14 +39,27 @@ export const notFoundComponent = (data: ComponentDataInterface) =>
         content: `
           ${titleComponent({
             priority: 1,
-            content: `D'oh!`,
+            content: intl.translate('notFound.section.title'),
             variants: ['large'],
           })}
-          <p>Sorry, it seems like you've tried to access a page that doesn't exist. <a href="/" title="Go Home">Go back home</a>?</p>
+          <p>${intl.translate('notFound.section.message', {
+            link: `
+              <a href="/" title="${intl.translate('notFound.section.link.title')}">
+                ${intl.translate('notFound.section.link.message')}
+              </a>
+            `,
+          })}</p>
         `,
       })}
 
-      ${footerComponent({ title: data.site.title })}
+      ${footerComponent(intl)({ title: data.site.title })}
     `,
-    foot: `<script src="${data.config.assets['notFound.js']}"></script>`,
+    foot: `
+      <script>
+        window.__mjd = {
+          messages: ${JSON.stringify(intl.getMessages())}
+        };
+      </script>
+      <script src="${data.config.assets['notFound.js']}"></script>
+    `,
   });

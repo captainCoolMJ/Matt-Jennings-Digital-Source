@@ -3,8 +3,13 @@ import { RequestHandler } from 'express';
 import { notFoundComponent } from './component.server';
 import { Api } from '../common/api';
 import { AppConfigurationInterface } from '../app/configuration.interface';
+import { AppInternationalizationType } from '../app/types';
 
-export const notFoundEntry = (appConfig: AppConfiguration, appApi: Api): RequestHandler => async (req, res, next) => {
+export const notFoundEntry = (
+  appConfig: AppConfiguration,
+  appApi: Api,
+  intl: AppInternationalizationType,
+): RequestHandler => async (req, res, next) => {
   try {
     const response = await appApi.fetch<AppConfigurationInterface>(
       `${appConfig.get().api.base}${appConfig.get().api.endpoints.config}`,
@@ -12,7 +17,7 @@ export const notFoundEntry = (appConfig: AppConfiguration, appApi: Api): Request
     res.type('html');
     res.status(404);
     res.send(
-      notFoundComponent({
+      notFoundComponent(intl)({
         config: appConfig.getUnsafe(),
         site: response,
       }),

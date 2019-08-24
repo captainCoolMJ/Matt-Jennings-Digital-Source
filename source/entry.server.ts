@@ -4,11 +4,13 @@ import express from 'express';
 import compression from 'compression';
 import path from 'path';
 import fs from 'fs';
+import messagesEnUs from '../translations/en-US.json';
 
 import { AppConfigurationService } from './app/configuration.service.server';
 import { indexEntry } from './index/entry.server';
 import { notFoundEntry } from './not-found/entry.server';
 import { AppApiService } from './app/api.service';
+import { AppInternationalizationService } from './app/internationalization.service';
 
 export const entry = (options: {
   assets: Record<string, string>;
@@ -18,6 +20,9 @@ export const entry = (options: {
   apiBase: string;
 }) => {
   const appConfig = AppConfigurationService();
+  const intl = AppInternationalizationService();
+
+  intl.initialize(messagesEnUs);
 
   appConfig.set({
     keys: {
@@ -41,9 +46,9 @@ export const entry = (options: {
   app.disable('x-powered-by');
   app.use(compression());
 
-  app.get('/', indexEntry(appConfig, AppApiService()));
+  app.get('/', indexEntry(appConfig, AppApiService(), intl));
   app.use(express.static(path.resolve(`${options.assetsPath}`)));
-  app.get('*', notFoundEntry(appConfig, AppApiService()));
+  app.get('*', notFoundEntry(appConfig, AppApiService(), intl));
 
   app.listen(appConfig.getUnsafe().port, () => {
     console.info(`listening on port ${appConfig.getUnsafe().port}`);

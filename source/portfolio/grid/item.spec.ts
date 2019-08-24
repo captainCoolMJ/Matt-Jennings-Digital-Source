@@ -1,4 +1,5 @@
 import { PortfolioGridItem } from './item';
+import { AppInternationalizationServiceMock } from '../../app/internationalization.service.mock';
 
 describe('PortfolioGridItem', () => {
   let instance: PortfolioGridItem;
@@ -7,7 +8,7 @@ describe('PortfolioGridItem', () => {
   beforeEach(() => {
     element = document.createElement('div');
 
-    instance = new PortfolioGridItem(element, {
+    instance = new PortfolioGridItem(AppInternationalizationServiceMock(), element, {
       easing: 'ease',
       speed: 350,
       minHeight: 500,

@@ -4,8 +4,13 @@ import { indexComponent } from './component.server';
 import { AppConfigurationInterface } from '../app/configuration.interface';
 import { PortfolioItemInterface } from '../portfolio/item.interface';
 import { Api } from '../common/api';
+import { AppInternationalizationType } from '../app/types';
 
-export const indexEntry = (appConfig: AppConfiguration, appApi: Api): RequestHandler => async (req, res, next) => {
+export const indexEntry = (
+  appConfig: AppConfiguration,
+  appApi: Api,
+  intl: AppInternationalizationType,
+): RequestHandler => async (req, res, next) => {
   try {
     const response = await Promise.all([
       appApi.fetch<AppConfigurationInterface>(`${appConfig.get().api.base}${appConfig.get().api.endpoints.config}`),
@@ -17,7 +22,7 @@ export const indexEntry = (appConfig: AppConfiguration, appApi: Api): RequestHan
 
     res.type('html');
     res.send(
-      indexComponent({
+      indexComponent(intl)({
         config: appConfig.getUnsafe(),
         site: response[0],
         skills: response[1],

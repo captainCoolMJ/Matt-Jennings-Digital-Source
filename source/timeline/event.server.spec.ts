@@ -19,7 +19,7 @@ describe('TimelineEvent', () => {
   });
 
   it('should create a timeline event', () => {
-    const event = new TimelineEvent(
+    event = new TimelineEvent(
       AppInternationalizationServiceMock(),
       timelineRawEventMock({
         from: 'January 2018',
@@ -69,6 +69,32 @@ describe('TimelineEvent', () => {
   });
 
   it('should create and build the HTML for a timeline event', () => {
+    event = new TimelineEvent(
+      AppInternationalizationServiceMock(),
+      timelineRawEventMock({
+        from: 'January 2018',
+        to: 'June 2018',
+        action: 'thing',
+        category: 'work',
+        details: 'Mock details',
+      }),
+    );
+
+    expect(event.renderHTML()).toEqual(expect.any(String));
+  });
+
+  it('should render time ranges correctly', () => {
+    event = new TimelineEvent(
+      AppInternationalizationServiceMock(),
+      timelineRawEventMock({
+        from: 'January 2018',
+        to: 'present',
+        action: 'thing',
+        category: 'work',
+        details: 'Mock details',
+      }),
+    );
+
     expect(event.renderHTML()).toEqual(expect.any(String));
   });
 });

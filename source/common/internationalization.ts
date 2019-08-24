@@ -1,7 +1,10 @@
 export class Internationalization<T extends Record<string, string>> {
+  private locale: string;
+
   private messages: T;
 
-  public initialize(messages: T): void {
+  public initialize(locale: string, messages: T): void {
+    this.locale = locale;
     this.messages = messages;
   }
 
@@ -23,5 +26,9 @@ export class Internationalization<T extends Record<string, string>> {
     }
 
     return translation;
+  }
+
+  public formatDate(date: Date, options: Intl.DateTimeFormatOptions): string {
+    return new Intl.DateTimeFormat(this.locale, options).format(date);
   }
 }

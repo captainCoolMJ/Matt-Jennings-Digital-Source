@@ -10,6 +10,7 @@ describe('indexEntry', () => {
       site: AppConfigurationService().get(),
       skills: [],
       portfolio: [],
+      timeline: [],
     });
 
     expect(indexEntry(document)).toBeUndefined();

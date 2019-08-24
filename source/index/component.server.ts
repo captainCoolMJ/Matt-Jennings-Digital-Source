@@ -7,11 +7,14 @@ import { titleComponent } from '../title/component.server';
 import { sectionComponent } from '../section/component.server';
 import { navigationComponent } from '../navigation/component.server';
 import { AppInternationalizationType } from '../app/types';
+import { timelineComponent } from '../timeline/component.server';
+import { TimelineRawEventInterface } from '../timeline/raw-event.interface';
 
 export const indexComponent = (intl: AppInternationalizationType) => (
   data: ComponentDataInterface & {
     skills: Array<string>;
     portfolio: Array<PortfolioItemInterface>;
+    timeline: Array<TimelineRawEventInterface>;
   },
 ) =>
   appComponent(data, {
@@ -147,21 +150,10 @@ export const indexComponent = (intl: AppInternationalizationType) => (
               content: intl.translate('past.section.title'),
               variants: ['paddingBottomHalf'],
             })}
-            <div class="timelines cf">
-              <div id="timeline-work">
-                ${titleComponent({
-                  priority: 3,
-                  content: intl.translate('past.sectionWork.title'),
-                })}
-              </div>
 
-              <div id="timeline-life">
-                ${titleComponent({
-                  priority: 3,
-                  content: intl.translate('past.sectionLife.title'),
-                })}
-              </div>
-            </div>
+            ${timelineComponent(intl)(data.timeline, {
+              yearsToShow: 8,
+            })}
           `,
         })}
 
@@ -213,7 +205,6 @@ export const indexComponent = (intl: AppInternationalizationType) => (
     foot: `
         <script>
           window.__mjd = {
-            api: ${JSON.stringify(data.config.api)},
             messages: ${JSON.stringify(intl.getMessages())}
           };
         </script>

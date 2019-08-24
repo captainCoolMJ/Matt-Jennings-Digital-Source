@@ -43,10 +43,11 @@ describe('indexEntry', () => {
 
     await entry(jest.fn() as any, resSpy as any, jest.fn());
 
-    expect(appApi.fetch).toHaveBeenCalledTimes(3);
+    expect(appApi.fetch).toHaveBeenCalledTimes(4);
     expect(appApi.fetch).toHaveBeenCalledWith(`${configMock.api.base}${configMock.api.endpoints.config}`);
     expect(appApi.fetch).toHaveBeenCalledWith(`${configMock.api.base}${configMock.api.endpoints.skills}`);
     expect(appApi.fetch).toHaveBeenCalledWith(`${configMock.api.base}${configMock.api.endpoints.portfolio}`);
+    expect(appApi.fetch).toHaveBeenCalledWith(`${configMock.api.base}${configMock.api.endpoints.timeline}`);
 
     expect(resTypeSpy).toHaveBeenCalledWith('html');
     expect(resSendSpy).toHaveBeenCalledWith(expect.any(String));
